@@ -1,6 +1,6 @@
 # Hindi Word-Order Results — evaluation-set dashboard (v2, live model scoring)
 
-Paste a sentence from the 2,365-sentence evaluation set. The app shows the reference sentence and every
+Paste a sentence from the evaluation set. The app shows the reference sentence and every
 variant ordering. For each variant it loads the saved models `model_A/B/C.pkl` and scores the
 pre-extracted feature row with `predict_proba[:, 1]` = probability that the reference order is preferred.
 For a chosen variant it lists each model's features with their values, ranked by the absolute coefficient
@@ -28,7 +28,7 @@ feature_values.parquet        raw feature values of the 7,812 evaluation pairs (
 ## What the numbers are
 - **Feature values**: original reference-minus-variant values (not imputed or scaled) from the outer-validation
   fold copy of each pair: A = `feature_chunks/valid_pairs_fold_{0,1,2}.parquet` of run
-  `pipeline_a_20261023T120347Z_logit_rfecv_2ep`; B = `repeat_01/llm_difference_features.parquet`
+  `pipeline_a_logit_rfecv_2ep`; B = `repeat_01/llm_difference_features.parquet`
   (partition = valid); C = the same human + LLM values. Joined one-to-one; all 7,812 pairs covered, no missing
   values (a missing value would be passed to the model as NaN, median-imputed by the model's own pipeline, and shown as "—").
 - **Probabilities** come from the FINAL models, which were refit on the training rows of all folds. Every
