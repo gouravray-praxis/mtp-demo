@@ -68,7 +68,7 @@ NOT new results). `A_prime` = human block re-implemented in the B/C notebook, us
 ```python
 from src.feature_recompute import load_bundle, recompute_row
 bundle = load_bundle(root)                # loads specs/schemas once
-X = recompute_row(bundle, pipeline="A", sk_id=100002, edits={"AMT_INCOME_TOTAL": 250000.0})
+X = recompute_row(bundle, pipeline="A", sk_id=900001, edits={"AMT_INCOME_TOTAL": 250000.0})
 # -> pandas.DataFrame, 1 row, columns == feature_names_A (float64), ready for model.predict_proba
 ```
 Contract:
