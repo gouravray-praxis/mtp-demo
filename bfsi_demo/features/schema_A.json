@@ -1,0 +1,1935 @@
+{
+  "pipeline": "A",
+  "n_features": 241,
+  "features": [
+    {
+      "name": "NAME_CONTRACT_TYPE",
+      "origin": "raw",
+      "depends_on": [
+        "NAME_CONTRACT_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "CODE_GENDER",
+      "origin": "raw",
+      "depends_on": [
+        "CODE_GENDER"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_OWN_CAR",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_OWN_CAR"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_OWN_REALTY",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_OWN_REALTY"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "CNT_CHILDREN",
+      "origin": "raw",
+      "depends_on": [
+        "CNT_CHILDREN"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "AMT_INCOME_TOTAL",
+      "origin": "raw",
+      "depends_on": [
+        "AMT_INCOME_TOTAL"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "AMT_CREDIT",
+      "origin": "raw",
+      "depends_on": [
+        "AMT_CREDIT"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "AMT_ANNUITY",
+      "origin": "raw",
+      "depends_on": [
+        "AMT_ANNUITY"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "REGION_POPULATION_RELATIVE",
+      "origin": "raw",
+      "depends_on": [
+        "REGION_POPULATION_RELATIVE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "DAYS_BIRTH",
+      "origin": "raw",
+      "depends_on": [
+        "DAYS_BIRTH"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "DAYS_EMPLOYED",
+      "origin": "mechanical",
+      "depends_on": [
+        "DAYS_EMPLOYED"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "DAYS_REGISTRATION",
+      "origin": "raw",
+      "depends_on": [
+        "DAYS_REGISTRATION"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "DAYS_ID_PUBLISH",
+      "origin": "raw",
+      "depends_on": [
+        "DAYS_ID_PUBLISH"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OWN_CAR_AGE",
+      "origin": "raw",
+      "depends_on": [
+        "OWN_CAR_AGE"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "FLAG_MOBIL",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_MOBIL"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_EMP_PHONE",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_EMP_PHONE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_WORK_PHONE",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_WORK_PHONE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_CONT_MOBILE",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_CONT_MOBILE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_PHONE",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_PHONE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_EMAIL",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_EMAIL"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "CNT_FAM_MEMBERS",
+      "origin": "raw",
+      "depends_on": [
+        "CNT_FAM_MEMBERS"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "REGION_RATING_CLIENT",
+      "origin": "raw",
+      "depends_on": [
+        "REGION_RATING_CLIENT"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "REGION_RATING_CLIENT_W_CITY",
+      "origin": "raw",
+      "depends_on": [
+        "REGION_RATING_CLIENT_W_CITY"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "HOUR_APPR_PROCESS_START",
+      "origin": "raw",
+      "depends_on": [
+        "HOUR_APPR_PROCESS_START"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "REG_REGION_NOT_LIVE_REGION",
+      "origin": "raw",
+      "depends_on": [
+        "REG_REGION_NOT_LIVE_REGION"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "REG_REGION_NOT_WORK_REGION",
+      "origin": "raw",
+      "depends_on": [
+        "REG_REGION_NOT_WORK_REGION"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "LIVE_REGION_NOT_WORK_REGION",
+      "origin": "raw",
+      "depends_on": [
+        "LIVE_REGION_NOT_WORK_REGION"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "REG_CITY_NOT_LIVE_CITY",
+      "origin": "raw",
+      "depends_on": [
+        "REG_CITY_NOT_LIVE_CITY"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "REG_CITY_NOT_WORK_CITY",
+      "origin": "raw",
+      "depends_on": [
+        "REG_CITY_NOT_WORK_CITY"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "LIVE_CITY_NOT_WORK_CITY",
+      "origin": "raw",
+      "depends_on": [
+        "LIVE_CITY_NOT_WORK_CITY"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "EXT_SOURCE_1",
+      "origin": "raw",
+      "depends_on": [
+        "EXT_SOURCE_1"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "EXT_SOURCE_2",
+      "origin": "raw",
+      "depends_on": [
+        "EXT_SOURCE_2"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "EXT_SOURCE_3",
+      "origin": "raw",
+      "depends_on": [
+        "EXT_SOURCE_3"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "APARTMENTS_AVG",
+      "origin": "raw",
+      "depends_on": [
+        "APARTMENTS_AVG"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BASEMENTAREA_AVG",
+      "origin": "raw",
+      "depends_on": [
+        "BASEMENTAREA_AVG"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "YEARS_BEGINEXPLUATATION_AVG",
+      "origin": "raw",
+      "depends_on": [
+        "YEARS_BEGINEXPLUATATION_AVG"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "COMMONAREA_AVG",
+      "origin": "raw",
+      "depends_on": [
+        "COMMONAREA_AVG"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "ELEVATORS_AVG",
+      "origin": "raw",
+      "depends_on": [
+        "ELEVATORS_AVG"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "ENTRANCES_AVG",
+      "origin": "raw",
+      "depends_on": [
+        "ENTRANCES_AVG"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLOORSMAX_AVG",
+      "origin": "raw",
+      "depends_on": [
+        "FLOORSMAX_AVG"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLOORSMIN_AVG",
+      "origin": "raw",
+      "depends_on": [
+        "FLOORSMIN_AVG"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "LANDAREA_AVG",
+      "origin": "raw",
+      "depends_on": [
+        "LANDAREA_AVG"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "LIVINGAREA_AVG",
+      "origin": "raw",
+      "depends_on": [
+        "LIVINGAREA_AVG"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NONLIVINGAPARTMENTS_AVG",
+      "origin": "raw",
+      "depends_on": [
+        "NONLIVINGAPARTMENTS_AVG"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NONLIVINGAREA_AVG",
+      "origin": "raw",
+      "depends_on": [
+        "NONLIVINGAREA_AVG"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "APARTMENTS_MODE",
+      "origin": "raw",
+      "depends_on": [
+        "APARTMENTS_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BASEMENTAREA_MODE",
+      "origin": "raw",
+      "depends_on": [
+        "BASEMENTAREA_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "COMMONAREA_MODE",
+      "origin": "raw",
+      "depends_on": [
+        "COMMONAREA_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "ELEVATORS_MODE",
+      "origin": "raw",
+      "depends_on": [
+        "ELEVATORS_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "ENTRANCES_MODE",
+      "origin": "raw",
+      "depends_on": [
+        "ENTRANCES_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "LANDAREA_MODE",
+      "origin": "raw",
+      "depends_on": [
+        "LANDAREA_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "LIVINGAREA_MODE",
+      "origin": "raw",
+      "depends_on": [
+        "LIVINGAREA_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NONLIVINGAPARTMENTS_MODE",
+      "origin": "raw",
+      "depends_on": [
+        "NONLIVINGAPARTMENTS_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NONLIVINGAREA_MODE",
+      "origin": "raw",
+      "depends_on": [
+        "NONLIVINGAREA_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "TOTALAREA_MODE",
+      "origin": "raw",
+      "depends_on": [
+        "TOTALAREA_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "EMERGENCYSTATE_MODE",
+      "origin": "raw",
+      "depends_on": [
+        "EMERGENCYSTATE_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OBS_30_CNT_SOCIAL_CIRCLE",
+      "origin": "raw",
+      "depends_on": [
+        "OBS_30_CNT_SOCIAL_CIRCLE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "DEF_30_CNT_SOCIAL_CIRCLE",
+      "origin": "raw",
+      "depends_on": [
+        "DEF_30_CNT_SOCIAL_CIRCLE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "DEF_60_CNT_SOCIAL_CIRCLE",
+      "origin": "raw",
+      "depends_on": [
+        "DEF_60_CNT_SOCIAL_CIRCLE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "DAYS_LAST_PHONE_CHANGE",
+      "origin": "raw",
+      "depends_on": [
+        "DAYS_LAST_PHONE_CHANGE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_2",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_2"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_3",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_3"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_4",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_4"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_5",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_5"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_6",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_6"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_7",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_7"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_8",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_8"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_9",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_9"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_10",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_10"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_11",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_11"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_12",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_12"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_13",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_13"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_14",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_14"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_15",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_15"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_16",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_16"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_17",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_17"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_18",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_18"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_19",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_19"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_20",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_20"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FLAG_DOCUMENT_21",
+      "origin": "raw",
+      "depends_on": [
+        "FLAG_DOCUMENT_21"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "AMT_REQ_CREDIT_BUREAU_HOUR",
+      "origin": "raw",
+      "depends_on": [
+        "AMT_REQ_CREDIT_BUREAU_HOUR"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "AMT_REQ_CREDIT_BUREAU_DAY",
+      "origin": "raw",
+      "depends_on": [
+        "AMT_REQ_CREDIT_BUREAU_DAY"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "AMT_REQ_CREDIT_BUREAU_WEEK",
+      "origin": "raw",
+      "depends_on": [
+        "AMT_REQ_CREDIT_BUREAU_WEEK"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "AMT_REQ_CREDIT_BUREAU_MON",
+      "origin": "raw",
+      "depends_on": [
+        "AMT_REQ_CREDIT_BUREAU_MON"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "AMT_REQ_CREDIT_BUREAU_QRT",
+      "origin": "raw",
+      "depends_on": [
+        "AMT_REQ_CREDIT_BUREAU_QRT"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "AMT_REQ_CREDIT_BUREAU_YEAR",
+      "origin": "raw",
+      "depends_on": [
+        "AMT_REQ_CREDIT_BUREAU_YEAR"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FE_ANNUITY_TO_INCOME",
+      "origin": "human_app",
+      "depends_on": [
+        "AMT_ANNUITY",
+        "AMT_INCOME_TOTAL"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "FE_CREDIT_TO_INCOME",
+      "origin": "human_app",
+      "depends_on": [
+        "AMT_CREDIT",
+        "AMT_INCOME_TOTAL"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "FE_CREDIT_TO_GOODS",
+      "origin": "human_app",
+      "depends_on": [
+        "AMT_CREDIT",
+        "AMT_GOODS_PRICE"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "FE_ANNUITY_TO_CREDIT",
+      "origin": "human_app",
+      "depends_on": [
+        "AMT_ANNUITY",
+        "AMT_CREDIT"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "FE_INCOME_PER_PERSON",
+      "origin": "human_app",
+      "depends_on": [
+        "AMT_INCOME_TOTAL",
+        "CNT_FAM_MEMBERS"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "FE_GOODS_PRICE_GAP",
+      "origin": "human_app",
+      "depends_on": [
+        "AMT_CREDIT",
+        "AMT_GOODS_PRICE"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "FE_EMPLOYMENT_TO_AGE",
+      "origin": "human_app",
+      "depends_on": [
+        "DAYS_EMPLOYED",
+        "DAYS_BIRTH"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "FE_WORKING_SINCE_AGE",
+      "origin": "human_app",
+      "depends_on": [
+        "DAYS_EMPLOYED",
+        "DAYS_BIRTH"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "FE_DOCS_SUBMITTED",
+      "origin": "human_app",
+      "depends_on": [
+        "FLAG_DOCUMENT_2",
+        "FLAG_DOCUMENT_3",
+        "FLAG_DOCUMENT_4",
+        "FLAG_DOCUMENT_5",
+        "FLAG_DOCUMENT_6",
+        "FLAG_DOCUMENT_7",
+        "FLAG_DOCUMENT_8",
+        "FLAG_DOCUMENT_9",
+        "FLAG_DOCUMENT_10",
+        "FLAG_DOCUMENT_11",
+        "FLAG_DOCUMENT_12",
+        "FLAG_DOCUMENT_13",
+        "FLAG_DOCUMENT_14",
+        "FLAG_DOCUMENT_15",
+        "FLAG_DOCUMENT_16",
+        "FLAG_DOCUMENT_17",
+        "FLAG_DOCUMENT_18",
+        "FLAG_DOCUMENT_19",
+        "FLAG_DOCUMENT_20",
+        "FLAG_DOCUMENT_21"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FE_ENQUIRY_TOTAL",
+      "origin": "human_app",
+      "depends_on": [
+        "AMT_REQ_CREDIT_BUREAU_HOUR",
+        "AMT_REQ_CREDIT_BUREAU_DAY",
+        "AMT_REQ_CREDIT_BUREAU_WEEK",
+        "AMT_REQ_CREDIT_BUREAU_MON",
+        "AMT_REQ_CREDIT_BUREAU_QRT",
+        "AMT_REQ_CREDIT_BUREAU_YEAR"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FE_EXT_SOURCE_MEAN",
+      "origin": "human_app",
+      "depends_on": [
+        "EXT_SOURCE_1",
+        "EXT_SOURCE_2",
+        "EXT_SOURCE_3"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "FE_EXT_SOURCE_MIN",
+      "origin": "human_app",
+      "depends_on": [
+        "EXT_SOURCE_1",
+        "EXT_SOURCE_2",
+        "EXT_SOURCE_3"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "FE_EXT_SOURCE_MAX",
+      "origin": "human_app",
+      "depends_on": [
+        "EXT_SOURCE_1",
+        "EXT_SOURCE_2",
+        "EXT_SOURCE_3"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "FE_EXT_SOURCE_STD",
+      "origin": "human_app",
+      "depends_on": [
+        "EXT_SOURCE_1",
+        "EXT_SOURCE_2",
+        "EXT_SOURCE_3"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "FE_EXT_MEAN_ANNUITY",
+      "origin": "human_app",
+      "depends_on": [
+        "EXT_SOURCE_1",
+        "EXT_SOURCE_2",
+        "EXT_SOURCE_3",
+        "AMT_ANNUITY"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "FE_EXT_MEAN_CREDIT",
+      "origin": "human_app",
+      "depends_on": [
+        "EXT_SOURCE_1",
+        "EXT_SOURCE_2",
+        "EXT_SOURCE_3",
+        "AMT_CREDIT"
+      ],
+      "editable_via_recompute": true
+    },
+    {
+      "name": "BUREAU_DAYS_CREDIT_MIN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_DAYS_CREDIT_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_DAYS_CREDIT_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_DAYS_CREDIT_STD",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_CREDIT_DAY_OVERDUE_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_DAYS_CREDIT_ENDDATE_MIN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_DAYS_CREDIT_ENDDATE_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_DAYS_CREDIT_ENDDATE_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_AMT_CREDIT_MAX_OVERDUE_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_CNT_CREDIT_PROLONG_SUM",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_AMT_CREDIT_SUM_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_AMT_CREDIT_SUM_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_AMT_CREDIT_SUM_SUM",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_AMT_CREDIT_SUM_DEBT_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_AMT_CREDIT_SUM_DEBT_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_AMT_CREDIT_SUM_LIMIT_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_AMT_CREDIT_SUM_OVERDUE_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_DAYS_CREDIT_UPDATE_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_DAYS_CREDIT_UPDATE_MIN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_AMT_ANNUITY_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_AMT_ANNUITY_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_AMT_ANNUITY_SUM",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_BB_STATUS_MEAN_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_BB_MONTHS_COUNT_SUM",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_BB_MONTHS_COUNT_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_TOTAL_LOANS",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_ACTIVE_LOANS",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_CREDIT_TYPES",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_IS_ACTIVE_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "BUREAU_UTILIZATION",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "INSTAL_COUNT",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "INSTAL_PAYMENT_RATIO_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "INSTAL_PAYMENT_RATIO_MIN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "INSTAL_PAYMENT_DIFF_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "INSTAL_PAYMENT_DIFF_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "INSTAL_DAYS_LATE_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "INSTAL_DAYS_LATE_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "INSTAL_DAYS_LATE_STD",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "INSTAL_LATE_COUNT",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "INSTAL_LATE_RATE",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "INSTAL_UNDERPAID_RATE",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "INSTAL_AMT_PAID_SUM",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "INSTAL_UNIQUE_LOANS",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "INSTAL_TOTAL_COVERAGE",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "PREV_COUNT",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "PREV_APPROVED_COUNT",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "PREV_REFUSED_COUNT",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "PREV_CANCELLED_COUNT",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "PREV_APPROVAL_RATE",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "PREV_DAYS_DEC_MIN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "PREV_DAYS_DEC_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "PREV_AMT_CREDIT_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "PREV_AMT_CREDIT_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "PREV_AMT_ANNUITY_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "PREV_AMT_ANNUITY_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "PREV_RATE_DOWN_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "PREV_AMT_APPLIED_CREDIT",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "PREV_UNIQUE_TYPES",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "CC_COUNT",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "CC_BALANCE_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "CC_BALANCE_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "CC_UTILIZATION_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "CC_UTILIZATION_MAX",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "CC_DRAWING_RATIO_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "CC_OVERDRAWN_RATE",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "CC_OVERDRAWN_COUNT",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "CC_DPD_DEF_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "CC_DPD_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "CC_TOTAL_DRAWINGS",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "POS_COUNT",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "POS_MONTHS_BALANCE_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "POS_CNT_INSTALMENT_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "POS_DPD_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "POS_DPD_DEF_MEAN",
+      "origin": "human_aux",
+      "depends_on": [],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_TYPE_SUITE_Family",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_TYPE_SUITE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_TYPE_SUITE_Group_of_people",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_TYPE_SUITE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_TYPE_SUITE_Other_A",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_TYPE_SUITE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_TYPE_SUITE_Other_B",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_TYPE_SUITE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_TYPE_SUITE_Spouse_partner",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_TYPE_SUITE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_TYPE_SUITE_Unaccompanied",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_TYPE_SUITE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_TYPE_SUITE_nan",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_TYPE_SUITE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_INCOME_TYPE_Commercial_associate",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_INCOME_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_INCOME_TYPE_Maternity_leave",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_INCOME_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_INCOME_TYPE_State_servant",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_INCOME_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_INCOME_TYPE_Student",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_INCOME_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_INCOME_TYPE_Unemployed",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_INCOME_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_INCOME_TYPE_Working",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_INCOME_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_EDUCATION_TYPE_Higher_education",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_EDUCATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_EDUCATION_TYPE_Incomplete_higher",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_EDUCATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_EDUCATION_TYPE_Lower_secondary",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_EDUCATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_EDUCATION_TYPE_Secondary_secondary_special",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_EDUCATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_FAMILY_STATUS_Married",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_FAMILY_STATUS"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_FAMILY_STATUS_Separated",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_FAMILY_STATUS"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_FAMILY_STATUS_Single_not_married",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_FAMILY_STATUS"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_FAMILY_STATUS_Unknown",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_FAMILY_STATUS"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_FAMILY_STATUS_Widow",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_FAMILY_STATUS"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_HOUSING_TYPE_House_apartment",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_HOUSING_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_HOUSING_TYPE_Municipal_apartment",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_HOUSING_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_HOUSING_TYPE_Office_apartment",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_HOUSING_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_HOUSING_TYPE_Rented_apartment",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_HOUSING_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "NAME_HOUSING_TYPE_With_parents",
+      "origin": "ohe",
+      "depends_on": [
+        "NAME_HOUSING_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_Cleaning_staff",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_Cooking_staff",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_Core_staff",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_Drivers",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_HR_staff",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_High_skill_tech_staff",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_IT_staff",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_Laborers",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_Low_skill_Laborers",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_Managers",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_Medicine_staff",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_Private_service_staff",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_Realty_agents",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_Sales_staff",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_Secretaries",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_Security_staff",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_Waiters_barmen_staff",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "OCCUPATION_TYPE_nan",
+      "origin": "ohe",
+      "depends_on": [
+        "OCCUPATION_TYPE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "WEEKDAY_APPR_PROCESS_START_MONDAY",
+      "origin": "ohe",
+      "depends_on": [
+        "WEEKDAY_APPR_PROCESS_START"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "WEEKDAY_APPR_PROCESS_START_SATURDAY",
+      "origin": "ohe",
+      "depends_on": [
+        "WEEKDAY_APPR_PROCESS_START"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "WEEKDAY_APPR_PROCESS_START_SUNDAY",
+      "origin": "ohe",
+      "depends_on": [
+        "WEEKDAY_APPR_PROCESS_START"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "WEEKDAY_APPR_PROCESS_START_THURSDAY",
+      "origin": "ohe",
+      "depends_on": [
+        "WEEKDAY_APPR_PROCESS_START"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "WEEKDAY_APPR_PROCESS_START_TUESDAY",
+      "origin": "ohe",
+      "depends_on": [
+        "WEEKDAY_APPR_PROCESS_START"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "WEEKDAY_APPR_PROCESS_START_WEDNESDAY",
+      "origin": "ohe",
+      "depends_on": [
+        "WEEKDAY_APPR_PROCESS_START"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FONDKAPREMONT_MODE_org_spec_account",
+      "origin": "ohe",
+      "depends_on": [
+        "FONDKAPREMONT_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FONDKAPREMONT_MODE_reg_oper_account",
+      "origin": "ohe",
+      "depends_on": [
+        "FONDKAPREMONT_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FONDKAPREMONT_MODE_reg_oper_spec_account",
+      "origin": "ohe",
+      "depends_on": [
+        "FONDKAPREMONT_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "FONDKAPREMONT_MODE_nan",
+      "origin": "ohe",
+      "depends_on": [
+        "FONDKAPREMONT_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "HOUSETYPE_MODE_specific_housing",
+      "origin": "ohe",
+      "depends_on": [
+        "HOUSETYPE_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "HOUSETYPE_MODE_terraced_house",
+      "origin": "ohe",
+      "depends_on": [
+        "HOUSETYPE_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "HOUSETYPE_MODE_nan",
+      "origin": "ohe",
+      "depends_on": [
+        "HOUSETYPE_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "WALLSMATERIAL_MODE_Mixed",
+      "origin": "ohe",
+      "depends_on": [
+        "WALLSMATERIAL_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "WALLSMATERIAL_MODE_Monolithic",
+      "origin": "ohe",
+      "depends_on": [
+        "WALLSMATERIAL_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "WALLSMATERIAL_MODE_Others",
+      "origin": "ohe",
+      "depends_on": [
+        "WALLSMATERIAL_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "WALLSMATERIAL_MODE_Panel",
+      "origin": "ohe",
+      "depends_on": [
+        "WALLSMATERIAL_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "WALLSMATERIAL_MODE_Stone_brick",
+      "origin": "ohe",
+      "depends_on": [
+        "WALLSMATERIAL_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "WALLSMATERIAL_MODE_Wooden",
+      "origin": "ohe",
+      "depends_on": [
+        "WALLSMATERIAL_MODE"
+      ],
+      "editable_via_recompute": false
+    },
+    {
+      "name": "WALLSMATERIAL_MODE_nan",
+      "origin": "ohe",
+      "depends_on": [
+        "WALLSMATERIAL_MODE"
+      ],
+      "editable_via_recompute": false
+    }
+  ],
+  "ohe_groups": {
+    "NAME_TYPE_SUITE": [
+      "NAME_TYPE_SUITE_Family",
+      "NAME_TYPE_SUITE_Group_of_people",
+      "NAME_TYPE_SUITE_Other_A",
+      "NAME_TYPE_SUITE_Other_B",
+      "NAME_TYPE_SUITE_Spouse_partner",
+      "NAME_TYPE_SUITE_Unaccompanied",
+      "NAME_TYPE_SUITE_nan"
+    ],
+    "NAME_INCOME_TYPE": [
+      "NAME_INCOME_TYPE_Commercial_associate",
+      "NAME_INCOME_TYPE_Maternity_leave",
+      "NAME_INCOME_TYPE_State_servant",
+      "NAME_INCOME_TYPE_Student",
+      "NAME_INCOME_TYPE_Unemployed",
+      "NAME_INCOME_TYPE_Working"
+    ],
+    "NAME_EDUCATION_TYPE": [
+      "NAME_EDUCATION_TYPE_Higher_education",
+      "NAME_EDUCATION_TYPE_Incomplete_higher",
+      "NAME_EDUCATION_TYPE_Lower_secondary",
+      "NAME_EDUCATION_TYPE_Secondary_secondary_special"
+    ],
+    "NAME_FAMILY_STATUS": [
+      "NAME_FAMILY_STATUS_Married",
+      "NAME_FAMILY_STATUS_Separated",
+      "NAME_FAMILY_STATUS_Single_not_married",
+      "NAME_FAMILY_STATUS_Unknown",
+      "NAME_FAMILY_STATUS_Widow"
+    ],
+    "NAME_HOUSING_TYPE": [
+      "NAME_HOUSING_TYPE_House_apartment",
+      "NAME_HOUSING_TYPE_Municipal_apartment",
+      "NAME_HOUSING_TYPE_Office_apartment",
+      "NAME_HOUSING_TYPE_Rented_apartment",
+      "NAME_HOUSING_TYPE_With_parents"
+    ],
+    "OCCUPATION_TYPE": [
+      "OCCUPATION_TYPE_Cleaning_staff",
+      "OCCUPATION_TYPE_Cooking_staff",
+      "OCCUPATION_TYPE_Core_staff",
+      "OCCUPATION_TYPE_Drivers",
+      "OCCUPATION_TYPE_HR_staff",
+      "OCCUPATION_TYPE_High_skill_tech_staff",
+      "OCCUPATION_TYPE_IT_staff",
+      "OCCUPATION_TYPE_Laborers",
+      "OCCUPATION_TYPE_Low_skill_Laborers",
+      "OCCUPATION_TYPE_Managers",
+      "OCCUPATION_TYPE_Medicine_staff",
+      "OCCUPATION_TYPE_Private_service_staff",
+      "OCCUPATION_TYPE_Realty_agents",
+      "OCCUPATION_TYPE_Sales_staff",
+      "OCCUPATION_TYPE_Secretaries",
+      "OCCUPATION_TYPE_Security_staff",
+      "OCCUPATION_TYPE_Waiters_barmen_staff",
+      "OCCUPATION_TYPE_nan"
+    ],
+    "WEEKDAY_APPR_PROCESS_START": [
+      "WEEKDAY_APPR_PROCESS_START_MONDAY",
+      "WEEKDAY_APPR_PROCESS_START_SATURDAY",
+      "WEEKDAY_APPR_PROCESS_START_SUNDAY",
+      "WEEKDAY_APPR_PROCESS_START_THURSDAY",
+      "WEEKDAY_APPR_PROCESS_START_TUESDAY",
+      "WEEKDAY_APPR_PROCESS_START_WEDNESDAY"
+    ],
+    "FONDKAPREMONT_MODE": [
+      "FONDKAPREMONT_MODE_org_spec_account",
+      "FONDKAPREMONT_MODE_reg_oper_account",
+      "FONDKAPREMONT_MODE_reg_oper_spec_account",
+      "FONDKAPREMONT_MODE_nan"
+    ],
+    "HOUSETYPE_MODE": [
+      "HOUSETYPE_MODE_specific_housing",
+      "HOUSETYPE_MODE_terraced_house",
+      "HOUSETYPE_MODE_nan"
+    ],
+    "WALLSMATERIAL_MODE": [
+      "WALLSMATERIAL_MODE_Mixed",
+      "WALLSMATERIAL_MODE_Monolithic",
+      "WALLSMATERIAL_MODE_Others",
+      "WALLSMATERIAL_MODE_Panel",
+      "WALLSMATERIAL_MODE_Stone_brick",
+      "WALLSMATERIAL_MODE_Wooden",
+      "WALLSMATERIAL_MODE_nan"
+    ]
+  },
+  "editable_inputs": [
+    "AMT_INCOME_TOTAL",
+    "AMT_CREDIT",
+    "AMT_ANNUITY",
+    "AMT_GOODS_PRICE",
+    "DAYS_BIRTH",
+    "DAYS_EMPLOYED",
+    "DAYS_REGISTRATION",
+    "CNT_CHILDREN",
+    "CNT_FAM_MEMBERS",
+    "OWN_CAR_AGE",
+    "EXT_SOURCE_1",
+    "EXT_SOURCE_2",
+    "EXT_SOURCE_3"
+  ],
+  "note": "Aggregated auxiliary features (human_aux, llm_aux, non-row-level LLM) are held at stored values."
+}

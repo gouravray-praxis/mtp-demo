@@ -1,0 +1,233 @@
+[22:50:43]   A merged shape: (307511, 251)
+[22:52:50]   A selection: miss_drop=5 high_card=['ORGANIZATION_TYPE'] zero_var=5 after_var=299 corr_drop=58 final=241
+[22:52:51]   A features=241 equal_to_reference_order=False set=False
+[22:52:51]   diff + ['FONDKAPREMONT_MODE_org_spec_account', 'FONDKAPREMONT_MODE_reg_oper_account', 'FONDKAPREMONT_MODE_reg_oper_spec_account', 'HOUSETYPE_MODE_specific_housing', 'HOUSETYPE_MODE_terraced_house', 'NAME_EDUCATION_TYPE_Higher_education', 'NAME_EDUCATION_TYPE_Incomplete_higher', 'NAME_EDUCATION_TYPE_Lower_secondary', 'NAME_EDUCATION_TYPE_Secondary_secondary_special', 'NAME_FAMILY_STATUS_Single_not_married', 'NAME_HOUSING_TYPE_House_apartment', 'NAME_HOUSING_TYPE_Municipal_apartment', 'NAME_HOUSING_TYPE_Office_apartment', 'NAME_HOUSING_TYPE_Rented_apartment', 'NAME_HOUSING_TYPE_With_parents', 'NAME_INCOME_TYPE_Commercial_associate', 'NAME_INCOME_TYPE_Maternity_leave', 'NAME_INCOME_TYPE_State_servant', 'NAME_TYPE_SUITE_Group_of_people', 'NAME_TYPE_SUITE_Spouse_partner']  - ['FONDKAPREMONT_MODE_org spec account', 'FONDKAPREMONT_MODE_reg oper account', 'FONDKAPREMONT_MODE_reg oper spec account', 'HOUSETYPE_MODE_specific housing', 'HOUSETYPE_MODE_terraced house', 'NAME_EDUCATION_TYPE_Higher education', 'NAME_EDUCATION_TYPE_Incomplete higher', 'NAME_EDUCATION_TYPE_Lower secondary', 'NAME_EDUCATION_TYPE_Secondary / secondary special', 'NAME_FAMILY_STATUS_Single / not married', 'NAME_HOUSING_TYPE_House / apartment', 'NAME_HOUSING_TYPE_Municipal apartment', 'NAME_HOUSING_TYPE_Office apartment', 'NAME_HOUSING_TYPE_Rented apartment', 'NAME_HOUSING_TYPE_With parents', 'NAME_INCOME_TYPE_Commercial associate', 'NAME_INCOME_TYPE_Maternity leave', 'NAME_INCOME_TYPE_State servant', 'NAME_TYPE_SUITE_Group of people', 'NAME_TYPE_SUITE_Spouse, partner']
+[22:52:51] == A: CV on (307511, 241) (rss_max=5.88GB)
+[22:53:01]   A fold 1 AUC=0.78014 trees=375 t=10s
+[22:53:10]   A fold 2 AUC=0.78828 trees=374 t=19s
+[22:53:20]   A fold 3 AUC=0.78220 trees=375 t=29s
+[22:53:30]   A fold 4 AUC=0.78730 trees=373 t=38s
+[22:53:39]   A fold 5 AUC=0.78025 trees=372 t=48s
+[22:53:39]   A OOF AUC=0.78362 KS=0.42897 cv_std=0.00349
+[22:53:51]   A final fit on 307,511 rows, 375 trees, 11s
+[22:53:57]   A parquet read-back pred maxdiff=0
+[22:53:57] == A done 307s
+[22:54:21]   base shape (307511, 187)
+[22:55:00]   Groq authenticated models=11; selected=qwen/qwen3.8-27b
+[22:55:03]   [call1_app] stop | model=qwen/qwen3.8-27b | tokens=7,428 | attempts=1
+[22:55:03]   call1_app: parsed 6 (requested 6) finish=stop
+[22:55:28]   [call2_bureau] stop | model=qwen/qwen3.8-27b | tokens=3,291 | attempts=4
+[22:55:28]   call2_bureau: parsed 6 (requested 6) finish=stop
+[22:55:40]   [call3_instal] stop | model=qwen/qwen3.8-27b | tokens=2,420 | attempts=3
+[22:55:40]   call3_instal: parsed 5 (requested 5) finish=stop
+[22:56:56]   base shape (307511, 187)
+[22:57:34]   Groq authenticated models=11; selected=qwen/qwen3.8-27b
+[22:57:34]   [call1_app] cache hit (qwen/qwen3.8-27b)
+[22:57:34]   call1_app: parsed 6 (requested 6) finish=stop
+[22:57:34]   [call2_bureau] cache hit (qwen/qwen3.8-27b)
+[22:57:34]   call2_bureau: parsed 6 (requested 6) finish=stop
+[22:57:34]   [call3_instal] cache hit (qwen/qwen3.8-27b)
+[22:57:34]   call3_instal: parsed 5 (requested 5) finish=stop
+[22:57:37]   [call4_prev] stop | model=qwen/qwen3.8-27b | tokens=3,840 | attempts=1
+[22:57:37]   call4_prev: parsed 5 (requested 5) finish=stop
+[22:58:21]   [call5_cc] stop | model=qwen/qwen3.8-27b | tokens=3,355 | attempts=3
+[22:58:21]   call5_cc: parsed 5 (requested 5) finish=stop
+[22:59:26]   [call6_pos] stop | model=qwen/qwen3.8-27b | tokens=2,245 | attempts=4
+[22:59:26]   call6_pos: parsed 5 (requested 5) finish=stop
+[23:00:15]   [ 1/32] [application  ] social_circle_def_30_rate: passed
+[23:00:15]   [ 2/32] [application  ] social_circle_def_60_rate: passed
+[23:00:15]   [ 3/32] [application  ] ext_source_dispersion: passed
+[23:00:15]   [ 4/32] [application  ] address_mismatch_count: passed
+[23:00:15]   [ 5/32] [application  ] enquiry_acceleration_ratio: passed
+[23:00:15]   [ 6/32] [application  ] building_age_vs_client_age: passed
+[23:00:15]   [ 7/32] [bureau       ] bureau_active_credit_count: passed
+[23:00:15]   [ 8/32] [bureau       ] bureau_debt_to_limit_ratio: passed
+[23:00:15]   [ 9/32] [bureau       ] bureau_max_overdue_amount: passed
+[23:00:15]   [10/32] [bureau       ] bureau_balance_dpd30_plus_count: passed
+[23:00:15]   [11/32] [bureau       ] bureau_balance_recent_dpd_ratio: passed
+[23:00:15]   [12/32] [bureau       ] bureau_credit_prolong_count: passed
+[23:00:15]   [13/32] [installments ] instal_payment_volatility: security_violation (AST: disallowed syntax: Import)
+[23:00:15]   [14/32] [installments ] instal_max_overpayment: passed
+[23:00:15]   [15/32] [installments ] instal_recent_late_trend: passed
+[23:00:15]   [16/32] [installments ] instal_zero_payment_rate: passed
+[23:00:15]   [17/32] [installments ] instal_avg_gap_days: passed
+[23:00:15]   [18/32] [previous_app ] prev_rejected_amt_ratio: passed
+[23:00:15]   [19/32] [previous_app ] prev_cash_loan_avg_annuity: passed
+[23:00:15]   [20/32] [previous_app ] prev_high_interest_count: passed
+[23:00:15]   [21/32] [previous_app ] prev_recent_app_count: passed
+[23:00:15]   [22/32] [previous_app ] prev_insured_approval_ratio: passed
+[23:00:15]   [23/32] [credit_card  ] cc_utilization_trend_3m: security_violation (AST: disallowed syntax: Import)
+[23:00:15]   [24/32] [credit_card  ] cc_atm_drawings_ratio_6m: security_violation (AST: disallowed syntax: Import)
+[23:00:15]   [25/32] [credit_card  ] cc_payment_coverage_ratio: security_violation (AST: disallowed syntax: Import)
+[23:00:15]   [26/32] [credit_card  ] cc_balance_volatility: security_violation (AST: disallowed syntax: Import)
+[23:00:15]   [27/32] [credit_card  ] cc_dpd_def_max_6m: security_violation (AST: disallowed syntax: Import)
+[23:00:16]   [28/32] [pos_cash     ] pos_max_dpd_def: passed
+[23:00:16]   [29/32] [pos_cash     ] pos_active_contract_ratio: passed
+[23:00:16]   [30/32] [pos_cash     ] pos_future_instalment_mean: passed
+[23:00:16]   [31/32] [pos_cash     ] pos_dpd_def_std: passed
+[23:00:16]   [32/32] [pos_cash     ] pos_recent_dpd_def: security_violation (Found: os.)
+[23:00:16]   gate: proposed=32 passed=25 failed=7
+[23:00:16]   row-level social_circle_def_30_rate: True {'full_frame_equal': True, 'single_row_equal_25': True}
+[23:00:17]   row-level social_circle_def_60_rate: True {'full_frame_equal': True, 'single_row_equal_25': True}
+[23:00:17]   row-level ext_source_dispersion: True {'full_frame_equal': True, 'single_row_equal_25': True}
+[23:00:17]   row-level address_mismatch_count: True {'full_frame_equal': True, 'single_row_equal_25': True}
+[23:00:17]   row-level enquiry_acceleration_ratio: True {'full_frame_equal': True, 'single_row_equal_25': True}
+[23:00:18]   row-level building_age_vs_client_age: True {'full_frame_equal': True, 'single_row_equal_25': True}
+[23:01:08]   base shape (307511, 187)
+[23:01:46]   Groq authenticated models=11; selected=qwen/qwen3.8-27b
+[23:01:46]   [call1_app] cache hit (qwen/qwen3.8-27b)
+[23:01:46]   call1_app: parsed 6 (requested 6) finish=stop
+[23:01:46]   [call2_bureau] cache hit (qwen/qwen3.8-27b)
+[23:01:46]   call2_bureau: parsed 6 (requested 6) finish=stop
+[23:01:46]   [call3_instal] cache hit (qwen/qwen3.8-27b)
+[23:01:46]   call3_instal: parsed 5 (requested 5) finish=stop
+[23:01:46]   [call4_prev] cache hit (qwen/qwen3.8-27b)
+[23:01:46]   call4_prev: parsed 5 (requested 5) finish=stop
+[23:01:46]   [call5_cc] cache hit (qwen/qwen3.8-27b)
+[23:01:46]   call5_cc: parsed 5 (requested 5) finish=stop
+[23:01:46]   [call6_pos] cache hit (qwen/qwen3.8-27b)
+[23:01:46]   call6_pos: parsed 5 (requested 5) finish=stop
+[23:02:44]   [ 1/32] [application  ] social_circle_def_30_rate: passed
+[23:02:44]   [ 2/32] [application  ] social_circle_def_60_rate: passed
+[23:02:44]   [ 3/32] [application  ] ext_source_dispersion: passed
+[23:02:44]   [ 4/32] [application  ] address_mismatch_count: passed
+[23:02:44]   [ 5/32] [application  ] enquiry_acceleration_ratio: passed
+[23:02:44]   [ 6/32] [application  ] building_age_vs_client_age: passed
+[23:02:44]   [ 7/32] [bureau       ] bureau_active_credit_count: passed
+[23:02:44]   [ 8/32] [bureau       ] bureau_debt_to_limit_ratio: passed
+[23:02:44]   [ 9/32] [bureau       ] bureau_max_overdue_amount: passed
+[23:02:44]   [10/32] [bureau       ] bureau_balance_dpd30_plus_count: passed
+[23:02:44]   [11/32] [bureau       ] bureau_balance_recent_dpd_ratio: passed
+[23:02:44]   [12/32] [bureau       ] bureau_credit_prolong_count: passed
+[23:02:44]   [13/32] [installments ] instal_payment_volatility: passed
+[23:02:44]   [14/32] [installments ] instal_max_overpayment: passed
+[23:02:44]   [15/32] [installments ] instal_recent_late_trend: passed
+[23:02:44]   [16/32] [installments ] instal_zero_payment_rate: passed
+[23:02:44]   [17/32] [installments ] instal_avg_gap_days: passed
+[23:02:44]   [18/32] [previous_app ] prev_rejected_amt_ratio: passed
+[23:02:44]   [19/32] [previous_app ] prev_cash_loan_avg_annuity: passed
+[23:02:44]   [20/32] [previous_app ] prev_high_interest_count: passed
+[23:02:45]   [21/32] [previous_app ] prev_recent_app_count: passed
+[23:02:45]   [22/32] [previous_app ] prev_insured_approval_ratio: passed
+[23:02:45]   [23/32] [credit_card  ] cc_utilization_trend_3m: constant (zero unique values)
+[23:02:45]   [24/32] [credit_card  ] cc_atm_drawings_ratio_6m: constant (zero unique values)
+[23:02:45]   [25/32] [credit_card  ] cc_payment_coverage_ratio: constant (zero unique values)
+[23:02:45]   [26/32] [credit_card  ] cc_balance_volatility: constant (zero unique values)
+[23:02:45]   [27/32] [credit_card  ] cc_dpd_def_max_6m: constant (zero unique values)
+[23:02:45]   [28/32] [pos_cash     ] pos_max_dpd_def: passed
+[23:02:45]   [29/32] [pos_cash     ] pos_active_contract_ratio: passed
+[23:02:45]   [30/32] [pos_cash     ] pos_future_instalment_mean: passed
+[23:02:45]   [31/32] [pos_cash     ] pos_dpd_def_std: passed
+[23:02:45]   [32/32] [pos_cash     ] pos_recent_dpd_def: security_violation (Found: os.)
+[23:02:45]   gate: proposed=32 passed=26 failed=6
+[23:02:46]   row-level social_circle_def_30_rate: True {'full_frame_equal': True, 'single_row_equal_25': True}
+[23:02:46]   row-level social_circle_def_60_rate: True {'full_frame_equal': True, 'single_row_equal_25': True}
+[23:02:46]   row-level ext_source_dispersion: True {'full_frame_equal': True, 'single_row_equal_25': True}
+[23:02:47]   row-level address_mismatch_count: True {'full_frame_equal': True, 'single_row_equal_25': True}
+[23:02:47]   row-level enquiry_acceleration_ratio: True {'full_frame_equal': True, 'single_row_equal_25': True}
+[23:02:47]   row-level building_age_vs_client_age: True {'full_frame_equal': True, 'single_row_equal_25': True}
+[23:07:49]   A' human df (307511, 287)
+[23:07:50]   B feature sel: start=212 miss_drop=0 nzv_drop=21 final=191
+[23:07:50] == B: CV on (307511, 191) (rss_max=6.54GB)
+[23:07:56]   B fold 1 AUC=0.76906 trees=375 t=6s
+[23:08:03]   B fold 2 AUC=0.77807 trees=360 t=13s
+[23:08:09]   B fold 3 AUC=0.77278 trees=367 t=19s
+[23:08:16]   B fold 4 AUC=0.77827 trees=375 t=26s
+[23:08:22]   B fold 5 AUC=0.76996 trees=374 t=32s
+[23:08:22]   B OOF AUC=0.77360 KS=0.41214 cv_std=0.00391
+[23:08:28]   B final fit on 307,511 rows, 375 trees, 6s
+[23:08:33]   B parquet read-back pred maxdiff=0
+[23:08:35]   C feature sel: start=311 miss_drop=0 nzv_drop=22 final=289
+[23:08:35] == C: CV on (307511, 289) (rss_max=6.54GB)
+[23:08:47]   C fold 1 AUC=0.78297 trees=375 t=12s
+[23:08:59]   C fold 2 AUC=0.78993 trees=375 t=24s
+[23:09:11]   C fold 3 AUC=0.78416 trees=375 t=36s
+[23:09:23]   C fold 4 AUC=0.78962 trees=372 t=48s
+[23:09:35]   C fold 5 AUC=0.78241 trees=375 t=60s
+[23:09:35]   C OOF AUC=0.78580 KS=0.4319 cv_std=0.00328
+[23:09:48]   C final fit on 307,511 rows, 375 trees, 12s
+[23:09:55]   C parquet read-back pred maxdiff=0
+[23:09:55] == BC done 531s
+[23:10:11]   schemas rewritten
+[23:10:23]   audit social_circle_def_30_rate: {'feature_name': 'social_circle_def_30_rate', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:23]   audit social_circle_def_60_rate: {'feature_name': 'social_circle_def_60_rate', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:23]   audit ext_source_dispersion: {'feature_name': 'ext_source_dispersion', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:23]   audit address_mismatch_count: {'feature_name': 'address_mismatch_count', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:23]   audit enquiry_acceleration_ratio: {'feature_name': 'enquiry_acceleration_ratio', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:23]   audit building_age_vs_client_age: {'feature_name': 'building_age_vs_client_age', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:25]   audit bureau_active_credit_count: {'feature_name': 'bureau_active_credit_count', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:25]   audit bureau_debt_to_limit_ratio: {'feature_name': 'bureau_debt_to_limit_ratio', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:26]   audit bureau_max_overdue_amount: {'feature_name': 'bureau_max_overdue_amount', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:26]   audit bureau_credit_prolong_count: {'feature_name': 'bureau_credit_prolong_count', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:34]   audit bureau_balance_dpd30_plus_count: {'feature_name': 'bureau_balance_dpd30_plus_count', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:37]   audit bureau_balance_recent_dpd_ratio: {'feature_name': 'bureau_balance_recent_dpd_ratio', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:48]   audit instal_payment_volatility: {'feature_name': 'instal_payment_volatility', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:48]   audit instal_max_overpayment: {'feature_name': 'instal_max_overpayment', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:54]   audit instal_recent_late_trend: {'feature_name': 'instal_recent_late_trend', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:10:59]   audit instal_avg_gap_days: {'feature_name': 'instal_avg_gap_days', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:11:04]   audit pos_max_dpd_def: {'feature_name': 'pos_max_dpd_def', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:11:05]   audit pos_active_contract_ratio: {'feature_name': 'pos_active_contract_ratio', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:11:05]   audit pos_future_instalment_mean: {'feature_name': 'pos_future_instalment_mean', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:11:06]   audit pos_dpd_def_std: {'feature_name': 'pos_dpd_def_std', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:11:12]   audit prev_rejected_amt_ratio: {'feature_name': 'prev_rejected_amt_ratio', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:11:12]   audit prev_cash_loan_avg_annuity: {'feature_name': 'prev_cash_loan_avg_annuity', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:11:12]   audit prev_high_interest_count: {'feature_name': 'prev_high_interest_count', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:11:12]   audit prev_recent_app_count: {'feature_name': 'prev_recent_app_count', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:11:12]   audit prev_insured_approval_ratio: {'feature_name': 'prev_insured_approval_ratio', 'index_unique': True, 'index_in_customer_ids': 1.0, 'coverage_of_customers': 1.0, 'matrix_equal': {'B': True, 'C': True}, 'passed': True}
+[23:11:15]   scored table (307511, 9)
+[23:11:15]   [OK] scored_ids_unique 307511
+[23:11:15]   [OK] raw_inputs_ids_match_scored 
+[23:11:17]   [OK] fe_formulas_A_equal_Aprime_all_rows 
+[23:11:17]   [OK] A_columns_order_eq_model 241
+[23:11:17]   [OK] A_no_target_in_features 
+[23:11:17]   [OK] A_float64 
+[23:11:17]   [OK] A_rows_307511 307511
+[23:11:17]   [OK] A_schema_matches_names 
+[23:11:17]   [OK] A_ids_unique_and_order_eq_scored 
+[23:11:17]   [OK] A_no_null_oof_pred 
+[23:11:18]   [OK] A_full_parquet_pred_parity_batched rows=307511 maxdiff=0
+[23:11:18]   [OK] A_recompute_identity_all_rows_vectorised 65 app + 0 row-level LLM features; bad=[]
+[23:11:23]   [OK] A_recompute_identity_selected_customers 63 ids incl. ['DAYS_EMPLOYED_365243', 'EXT_SOURCE_1_null', 'AMT_GOODS_PRICE_null', 'AMT_ANNUITY_null', 'OWN_CAR_AGE_null', 'CNT_FAM_MEMBERS_null', 'all_EXT_null', 'cat_NAME_CONTRACT_TYPE', 'cat_NAME_INCOME_TYPE_Commercial_associate', 'cat_NAME_INCOME_TYPE_Maternity_leave', 'cat_NAME_INCOME_TYPE_Pensioner', 'cat_NAME_INCOME_TYPE_State_servant', 'cat_NAME_INCOME_TYPE_Student']; mismatches=[]
+[23:11:23]   [OK] A_no_edit_pred_matches_scored maxdiff=0
+[23:11:23]   [OK] A_edit_AMT_CREDIT_propagates changed=['AMT_CREDIT', 'FE_CREDIT_TO_INCOME', 'FE_CREDIT_TO_GOODS', 'FE_ANNUITY_TO_CREDIT', 'FE_GOODS_PRICE_GAP', 'FE_EXT_MEAN_CREDIT'] expected_present=['FE_CREDIT_TO_INCOME', 'FE_CREDIT_TO_GOODS', 'FE_ANNUITY_TO_CREDIT']
+[23:11:23]   [OK] A_edit_AMT_GOODS_PRICE_propagates changed=['FE_CREDIT_TO_GOODS', 'FE_GOODS_PRICE_GAP'] expected_present=['FE_CREDIT_TO_GOODS', 'FE_GOODS_PRICE_GAP']
+[23:11:23]   [OK] A_edit_AMT_INCOME_TOTAL_propagates changed=['AMT_INCOME_TOTAL', 'FE_ANNUITY_TO_INCOME', 'FE_CREDIT_TO_INCOME', 'FE_INCOME_PER_PERSON'] expected_present=['FE_ANNUITY_TO_INCOME', 'FE_CREDIT_TO_INCOME', 'FE_INCOME_PER_PERSON']
+[23:11:23]   [OK] A_edit_EXT_SOURCE_2_propagates changed=['EXT_SOURCE_2', 'FE_EXT_SOURCE_MEAN', 'FE_EXT_SOURCE_MIN', 'FE_EXT_SOURCE_STD', 'FE_EXT_MEAN_ANNUITY', 'FE_EXT_MEAN_CREDIT'] expected_present=['FE_EXT_SOURCE_MEAN', 'EXT_SOURCE_2']
+[23:11:23]   [OK] A_edit_DAYS_EMPLOYED_propagates changed=['DAYS_EMPLOYED', 'FE_EMPLOYMENT_TO_AGE', 'FE_WORKING_SINCE_AGE'] expected_present=['FE_EMPLOYMENT_TO_AGE']
+[23:11:23]   [OK] A_edit_changes_prediction 0.475975->0.433623
+[23:11:23]   [OK] B_columns_order_eq_model 191
+[23:11:23]   [OK] B_no_target_in_features 
+[23:11:23]   [OK] B_float64 
+[23:11:23]   [OK] B_rows_307511 307511
+[23:11:23]   [OK] B_schema_matches_names 
+[23:11:23]   [OK] B_ids_unique_and_order_eq_scored 
+[23:11:23]   [OK] B_no_null_oof_pred 
+[23:11:24]   [OK] B_full_parquet_pred_parity_batched rows=307511 maxdiff=0
+[23:11:26]   [OK] B_recompute_identity_all_rows_vectorised 40 app + 6 row-level LLM features; bad=[]
+[23:11:30]   [OK] B_recompute_identity_selected_customers 63 ids incl. ['DAYS_EMPLOYED_365243', 'EXT_SOURCE_1_null', 'AMT_GOODS_PRICE_null', 'AMT_ANNUITY_null', 'OWN_CAR_AGE_null', 'CNT_FAM_MEMBERS_null', 'all_EXT_null', 'cat_NAME_CONTRACT_TYPE', 'cat_NAME_INCOME_TYPE_Commercial_associate', 'cat_NAME_INCOME_TYPE_Maternity_leave', 'cat_NAME_INCOME_TYPE_Pensioner', 'cat_NAME_INCOME_TYPE_State_servant', 'cat_NAME_INCOME_TYPE_Student']; mismatches=[]
+[23:11:30]   [OK] B_no_edit_pred_matches_scored maxdiff=0
+[23:11:30]   [OK] B_edit_AMT_CREDIT_propagates changed=['AMT_CREDIT'] expected_present=[]
+[23:11:30]   [OK] B_edit_AMT_GOODS_PRICE_propagates changed=['AMT_GOODS_PRICE'] expected_present=[]
+[23:11:31]   [OK] B_edit_AMT_INCOME_TOTAL_propagates changed=['AMT_INCOME_TOTAL'] expected_present=[]
+[23:11:31]   [OK] B_edit_EXT_SOURCE_2_propagates changed=['EXT_SOURCE_2', 'ext_source_dispersion'] expected_present=['EXT_SOURCE_2']
+[23:11:31]   [OK] B_edit_DAYS_EMPLOYED_propagates changed=['DAYS_EMPLOYED', 'DAYS_EMPLOYED_ANOM', 'EMPLOYMENT_YEARS'] expected_present=['DAYS_EMPLOYED_ANOM', 'EMPLOYMENT_YEARS']
+[23:11:31]   [OK] B_edit_changes_prediction 0.319697->0.388745
+[23:11:31]   [OK] C_columns_order_eq_model 289
+[23:11:31]   [OK] C_no_target_in_features 
+[23:11:31]   [OK] C_float64 
+[23:11:31]   [OK] C_rows_307511 307511
+[23:11:31]   [OK] C_schema_matches_names 
+[23:11:31]   [OK] C_ids_unique_and_order_eq_scored 
+[23:11:31]   [OK] C_no_null_oof_pred 
+[23:11:32]   [OK] C_full_parquet_pred_parity_batched rows=307511 maxdiff=0
+[23:11:34]   [OK] C_recompute_identity_all_rows_vectorised 60 app + 6 row-level LLM features; bad=[]
+[23:11:40]   [OK] C_recompute_identity_selected_customers 63 ids incl. ['DAYS_EMPLOYED_365243', 'EXT_SOURCE_1_null', 'AMT_GOODS_PRICE_null', 'AMT_ANNUITY_null', 'OWN_CAR_AGE_null', 'CNT_FAM_MEMBERS_null', 'all_EXT_null', 'cat_NAME_CONTRACT_TYPE', 'cat_NAME_INCOME_TYPE_Commercial_associate', 'cat_NAME_INCOME_TYPE_Maternity_leave', 'cat_NAME_INCOME_TYPE_Pensioner', 'cat_NAME_INCOME_TYPE_State_servant', 'cat_NAME_INCOME_TYPE_Student']; mismatches=[]
+[23:11:40]   [OK] C_no_edit_pred_matches_scored maxdiff=0
+[23:11:40]   [OK] C_edit_AMT_CREDIT_propagates changed=['AMT_CREDIT', 'FE_CREDIT_TO_INCOME', 'FE_CREDIT_TO_GOODS', 'FE_ANNUITY_TO_CREDIT', 'FE_GOODS_PRICE_GAP', 'FE_LOAN_TENOR_MONTHS', 'FE_EXT_MEAN_CREDIT'] expected_present=['FE_CREDIT_TO_INCOME', 'FE_CREDIT_TO_GOODS', 'FE_ANNUITY_TO_CREDIT']
+[23:11:40]   [OK] C_edit_AMT_GOODS_PRICE_propagates changed=['AMT_GOODS_PRICE', 'FE_CREDIT_TO_GOODS', 'FE_GOODS_PRICE_GAP'] expected_present=['FE_CREDIT_TO_GOODS', 'FE_GOODS_PRICE_GAP']
+[23:11:40]   [OK] C_edit_AMT_INCOME_TOTAL_propagates changed=['AMT_INCOME_TOTAL', 'FE_ANNUITY_TO_INCOME', 'FE_CREDIT_TO_INCOME', 'FE_INCOME_PER_PERSON'] expected_present=['FE_ANNUITY_TO_INCOME', 'FE_CREDIT_TO_INCOME', 'FE_INCOME_PER_PERSON']
+[23:11:40]   [OK] C_edit_EXT_SOURCE_2_propagates changed=['EXT_SOURCE_2', 'FE_EXT_SOURCE_MEAN', 'FE_EXT_SOURCE_MIN', 'FE_EXT_SOURCE_STD', 'FE_EXT_SOURCE_PRODUCT', 'FE_EXT_MEAN_ANNUITY', 'FE_EXT_MEAN_CREDIT', 'ext_source_dispersion'] expected_present=['FE_EXT_SOURCE_MEAN', 'EXT_SOURCE_2']
+[23:11:40]   [OK] C_edit_DAYS_EMPLOYED_propagates changed=['DAYS_EMPLOYED', 'DAYS_EMPLOYED_ANOM', 'EMPLOYMENT_YEARS', 'FE_EMPLOYMENT_TO_AGE', 'FE_WORKING_SINCE_AGE'] expected_present=['DAYS_EMPLOYED_ANOM', 'EMPLOYMENT_YEARS', 'FE_EMPLOYMENT_TO_AGE']
+[23:11:40]   [OK] C_edit_changes_prediction 0.362644->0.278237
+[23:11:42]   [OK] secret_scan_package []
+[23:11:45]   final_results.json status=complete

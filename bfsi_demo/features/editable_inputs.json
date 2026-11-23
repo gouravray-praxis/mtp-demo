@@ -1,0 +1,1362 @@
+[
+  {
+    "name": "AMT_INCOME_TOTAL",
+    "label": "Annual income",
+    "group": "Loan and income",
+    "kind": "numeric",
+    "nullable": false,
+    "min": 45000.0,
+    "max": 630000.0,
+    "step": 1000.0,
+    "unit": "currency"
+  },
+  {
+    "name": "AMT_CREDIT",
+    "label": "Credit amount",
+    "group": "Loan and income",
+    "kind": "numeric",
+    "nullable": false,
+    "min": 61263.0,
+    "max": 2022565.5,
+    "step": 1000.0,
+    "unit": "currency"
+  },
+  {
+    "name": "AMT_ANNUITY",
+    "label": "Loan annuity",
+    "group": "Loan and income",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 5253.705,
+    "max": 79758.0,
+    "step": 1000.0,
+    "unit": "currency"
+  },
+  {
+    "name": "AMT_GOODS_PRICE",
+    "label": "Goods price",
+    "group": "Loan and income",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 54000.0,
+    "max": 1800000.0,
+    "step": 1000.0,
+    "unit": "currency"
+  },
+  {
+    "name": "NAME_CONTRACT_TYPE",
+    "label": "Contract type",
+    "group": "Loan and income",
+    "kind": "binary",
+    "options": [
+      "Cash loans",
+      "Revolving loans"
+    ],
+    "nullable": true
+  },
+  {
+    "name": "NAME_INCOME_TYPE",
+    "label": "Income type",
+    "group": "Loan and income",
+    "kind": "categorical",
+    "options": [
+      "Businessman",
+      "Commercial associate",
+      "Maternity leave",
+      "Pensioner",
+      "State servant",
+      "Student",
+      "Unemployed",
+      "Working"
+    ],
+    "nullable": true
+  },
+  {
+    "name": "CODE_GENDER",
+    "label": "Gender",
+    "group": "Personal and family",
+    "kind": "binary",
+    "options": [
+      "F",
+      "M"
+    ],
+    "nullable": true
+  },
+  {
+    "name": "DAYS_BIRTH",
+    "label": "Age",
+    "group": "Personal and family",
+    "kind": "numeric",
+    "nullable": false,
+    "min": -24713.0,
+    "max": -8080.0,
+    "step": 1.0,
+    "unit": "days"
+  },
+  {
+    "name": "CNT_CHILDREN",
+    "label": "Children",
+    "group": "Personal and family",
+    "kind": "numeric",
+    "nullable": false,
+    "min": 0.0,
+    "max": 3.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "CNT_FAM_MEMBERS",
+    "label": "Family members",
+    "group": "Personal and family",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 1.0,
+    "max": 5.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "NAME_FAMILY_STATUS",
+    "label": "Family status",
+    "group": "Personal and family",
+    "kind": "categorical",
+    "options": [
+      "Civil marriage",
+      "Married",
+      "Separated",
+      "Single / not married",
+      "Unknown",
+      "Widow"
+    ],
+    "nullable": true
+  },
+  {
+    "name": "NAME_EDUCATION_TYPE",
+    "label": "Education",
+    "group": "Personal and family",
+    "kind": "categorical",
+    "options": [
+      "Academic degree",
+      "Higher education",
+      "Incomplete higher",
+      "Lower secondary",
+      "Secondary / secondary special"
+    ],
+    "nullable": true
+  },
+  {
+    "name": "NAME_HOUSING_TYPE",
+    "label": "Housing type",
+    "group": "Personal and family",
+    "kind": "categorical",
+    "options": [
+      "Co-op apartment",
+      "House / apartment",
+      "Municipal apartment",
+      "Office apartment",
+      "Rented apartment",
+      "With parents"
+    ],
+    "nullable": true
+  },
+  {
+    "name": "OCCUPATION_TYPE",
+    "label": "Occupation",
+    "group": "Personal and family",
+    "kind": "categorical",
+    "options": [
+      "Accountants",
+      "Cleaning staff",
+      "Cooking staff",
+      "Core staff",
+      "Drivers",
+      "HR staff",
+      "High skill tech staff",
+      "IT staff",
+      "Laborers",
+      "Low-skill Laborers",
+      "Managers",
+      "Medicine staff",
+      "Private service staff",
+      "Realty agents",
+      "Sales staff",
+      "Secretaries",
+      "Security staff",
+      "Waiters/barmen staff"
+    ],
+    "nullable": true
+  },
+  {
+    "name": "DAYS_EMPLOYED",
+    "label": "Years employed",
+    "group": "Employment",
+    "kind": "numeric",
+    "nullable": false,
+    "min": -12540.0,
+    "max": -97.0,
+    "step": 1.0,
+    "unit": "days"
+  },
+  {
+    "name": "FLAG_EMP_PHONE",
+    "label": "Flag Emp Phone",
+    "group": "Employment",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_WORK_PHONE",
+    "label": "Flag Work Phone",
+    "group": "Employment",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_CONT_MOBILE",
+    "label": "Flag Cont Mobile",
+    "group": "Employment",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_MOBIL",
+    "label": "Flag Mobil",
+    "group": "Contact and region",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_PHONE",
+    "label": "Flag Phone",
+    "group": "Contact and region",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_EMAIL",
+    "label": "Flag Email",
+    "group": "Contact and region",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "DAYS_REGISTRATION",
+    "label": "Years since registration change",
+    "group": "Contact and region",
+    "kind": "numeric",
+    "nullable": false,
+    "min": -14743.45,
+    "max": -20.0,
+    "step": 1.0,
+    "unit": "days"
+  },
+  {
+    "name": "DAYS_ID_PUBLISH",
+    "label": "Years since ID change",
+    "group": "Contact and region",
+    "kind": "numeric",
+    "nullable": false,
+    "min": -5669.0,
+    "max": -25.0,
+    "step": 1.0,
+    "unit": "days"
+  },
+  {
+    "name": "DAYS_LAST_PHONE_CHANGE",
+    "label": "Years since last phone change",
+    "group": "Contact and region",
+    "kind": "numeric",
+    "nullable": true,
+    "min": -3297.0,
+    "max": 0.0,
+    "step": 1.0,
+    "unit": "days"
+  },
+  {
+    "name": "REGION_POPULATION_RELATIVE",
+    "label": "Region population (relative)",
+    "group": "Contact and region",
+    "kind": "numeric",
+    "nullable": false,
+    "min": 0.002042,
+    "max": 0.072508,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "REGION_RATING_CLIENT",
+    "label": "Region rating",
+    "group": "Contact and region",
+    "kind": "numeric",
+    "nullable": false,
+    "min": 1.0,
+    "max": 3.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "REGION_RATING_CLIENT_W_CITY",
+    "label": "Region rating (with city)",
+    "group": "Contact and region",
+    "kind": "numeric",
+    "nullable": false,
+    "min": 1.0,
+    "max": 3.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "REG_REGION_NOT_LIVE_REGION",
+    "label": "Reg Region Not Live Region",
+    "group": "Contact and region",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "REG_REGION_NOT_WORK_REGION",
+    "label": "Reg Region Not Work Region",
+    "group": "Contact and region",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "LIVE_REGION_NOT_WORK_REGION",
+    "label": "Live Region Not Work Region",
+    "group": "Contact and region",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "REG_CITY_NOT_LIVE_CITY",
+    "label": "Reg City Not Live City",
+    "group": "Contact and region",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "REG_CITY_NOT_WORK_CITY",
+    "label": "Reg City Not Work City",
+    "group": "Contact and region",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "LIVE_CITY_NOT_WORK_CITY",
+    "label": "Live City Not Work City",
+    "group": "Contact and region",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "EXT_SOURCE_1",
+    "label": "External score 1",
+    "group": "External scores",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.06336010781911415,
+    "max": 0.9035397062169195,
+    "step": 0.01,
+    "unit": "score"
+  },
+  {
+    "name": "EXT_SOURCE_2",
+    "label": "External score 2",
+    "group": "External scores",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.013270434251798201,
+    "max": 0.7911604672206513,
+    "step": 0.01,
+    "unit": "score"
+  },
+  {
+    "name": "EXT_SOURCE_3",
+    "label": "External score 3",
+    "group": "External scores",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0395105215047467,
+    "max": 0.8463780633178121,
+    "step": 0.01,
+    "unit": "score"
+  },
+  {
+    "name": "AMT_REQ_CREDIT_BUREAU_HOUR",
+    "label": "Amt Req Credit Bureau Hour",
+    "group": "Credit bureau enquiries",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "AMT_REQ_CREDIT_BUREAU_DAY",
+    "label": "Amt Req Credit Bureau Day",
+    "group": "Credit bureau enquiries",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "AMT_REQ_CREDIT_BUREAU_WEEK",
+    "label": "Amt Req Credit Bureau Week",
+    "group": "Credit bureau enquiries",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "AMT_REQ_CREDIT_BUREAU_MON",
+    "label": "Amt Req Credit Bureau Mon",
+    "group": "Credit bureau enquiries",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 6.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "AMT_REQ_CREDIT_BUREAU_QRT",
+    "label": "Amt Req Credit Bureau Qrt",
+    "group": "Credit bureau enquiries",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 3.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "AMT_REQ_CREDIT_BUREAU_YEAR",
+    "label": "Amt Req Credit Bureau Year",
+    "group": "Credit bureau enquiries",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 8.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "OBS_30_CNT_SOCIAL_CIRCLE",
+    "label": "Obs 30 Cnt Social Circle",
+    "group": "Social circle",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 12.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "DEF_30_CNT_SOCIAL_CIRCLE",
+    "label": "Def 30 Cnt Social Circle",
+    "group": "Social circle",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 2.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "OBS_60_CNT_SOCIAL_CIRCLE",
+    "label": "Obs 60 Cnt Social Circle",
+    "group": "Social circle",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 12.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "DEF_60_CNT_SOCIAL_CIRCLE",
+    "label": "Def 60 Cnt Social Circle",
+    "group": "Social circle",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 2.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "FLAG_DOCUMENT_2",
+    "label": "Flag Document 2",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_3",
+    "label": "Flag Document 3",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_4",
+    "label": "Flag Document 4",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_5",
+    "label": "Flag Document 5",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_6",
+    "label": "Flag Document 6",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_7",
+    "label": "Flag Document 7",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_8",
+    "label": "Flag Document 8",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_9",
+    "label": "Flag Document 9",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_10",
+    "label": "Flag Document 10",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_11",
+    "label": "Flag Document 11",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_12",
+    "label": "Flag Document 12",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_13",
+    "label": "Flag Document 13",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_14",
+    "label": "Flag Document 14",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_15",
+    "label": "Flag Document 15",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_16",
+    "label": "Flag Document 16",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_17",
+    "label": "Flag Document 17",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_18",
+    "label": "Flag Document 18",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_19",
+    "label": "Flag Document 19",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_20",
+    "label": "Flag Document 20",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_DOCUMENT_21",
+    "label": "Flag Document 21",
+    "group": "Documents",
+    "kind": "flag",
+    "nullable": false,
+    "options": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "name": "FLAG_OWN_CAR",
+    "label": "Owns a car",
+    "group": "Property and building",
+    "kind": "binary",
+    "options": [
+      "N",
+      "Y"
+    ],
+    "nullable": true
+  },
+  {
+    "name": "OWN_CAR_AGE",
+    "label": "Car age (years)",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 65.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "FLAG_OWN_REALTY",
+    "label": "Owns realty",
+    "group": "Property and building",
+    "kind": "binary",
+    "options": [
+      "N",
+      "Y"
+    ],
+    "nullable": true
+  },
+  {
+    "name": "EMERGENCYSTATE_MODE",
+    "label": "Emergency state (building)",
+    "group": "Property and building",
+    "kind": "binary",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "nullable": true
+  },
+  {
+    "name": "FONDKAPREMONT_MODE",
+    "label": "Fondkapremont Mode",
+    "group": "Property and building",
+    "kind": "categorical",
+    "options": [
+      "not specified",
+      "org spec account",
+      "reg oper account",
+      "reg oper spec account"
+    ],
+    "nullable": true
+  },
+  {
+    "name": "HOUSETYPE_MODE",
+    "label": "Housetype Mode",
+    "group": "Property and building",
+    "kind": "categorical",
+    "options": [
+      "block of flats",
+      "specific housing",
+      "terraced house"
+    ],
+    "nullable": true
+  },
+  {
+    "name": "WALLSMATERIAL_MODE",
+    "label": "Wallsmaterial Mode",
+    "group": "Property and building",
+    "kind": "categorical",
+    "options": [
+      "Block",
+      "Mixed",
+      "Monolithic",
+      "Others",
+      "Panel",
+      "Stone, brick",
+      "Wooden"
+    ],
+    "nullable": true
+  },
+  {
+    "name": "APARTMENTS_AVG",
+    "label": "Apartments Avg",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.001,
+    "max": 0.6381,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "BASEMENTAREA_AVG",
+    "label": "Basementarea Avg",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.4845,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "YEARS_BEGINEXPLUATATION_AVG",
+    "label": "Years Beginexpluatation Avg",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.921,
+    "max": 0.9995,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "YEARS_BUILD_AVG",
+    "label": "Years Build Avg",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.3132,
+    "max": 0.9932,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "COMMONAREA_AVG",
+    "label": "Commonarea Avg",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.4898,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "ELEVATORS_AVG",
+    "label": "Elevators Avg",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.72,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "ENTRANCES_AVG",
+    "label": "Entrances Avg",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0345,
+    "max": 0.6207,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "FLOORSMAX_AVG",
+    "label": "Floorsmax Avg",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.75,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "FLOORSMIN_AVG",
+    "label": "Floorsmin Avg",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.75,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "LANDAREA_AVG",
+    "label": "Landarea Avg",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.4955799999999988,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "LIVINGAPARTMENTS_AVG",
+    "label": "Livingapartments Avg",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0008,
+    "max": 0.541077999999997,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "LIVINGAREA_AVG",
+    "label": "Livingarea Avg",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0014,
+    "max": 0.6579999999999999,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "NONLIVINGAPARTMENTS_AVG",
+    "label": "Nonlivingapartments Avg",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.2471,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "NONLIVINGAREA_AVG",
+    "label": "Nonlivingarea Avg",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.4425,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "APARTMENTS_MODE",
+    "label": "Apartments Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.6429,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "BASEMENTAREA_MODE",
+    "label": "Basementarea Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.4965824999999968,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "YEARS_BEGINEXPLUATATION_MODE",
+    "label": "Years Beginexpluatation Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.9211,
+    "max": 0.9995,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "YEARS_BUILD_MODE",
+    "label": "Years Build Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.3336,
+    "max": 0.9935,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "COMMONAREA_MODE",
+    "label": "Commonarea Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.4772,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "ELEVATORS_MODE",
+    "label": "Elevators Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.725,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "ENTRANCES_MODE",
+    "label": "Entrances Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0345,
+    "max": 0.6207,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "FLOORSMAX_MODE",
+    "label": "Floorsmax Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.7083,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "FLOORSMIN_MODE",
+    "label": "Floorsmin Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.7083,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "LANDAREA_MODE",
+    "label": "Landarea Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.5018799999999989,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "LIVINGAPARTMENTS_MODE",
+    "label": "Livingapartments Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.5826004999999932,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "LIVINGAREA_MODE",
+    "label": "Livingarea Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0011,
+    "max": 0.6688800000000046,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "NONLIVINGAPARTMENTS_MODE",
+    "label": "Nonlivingapartments Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.2296,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "NONLIVINGAREA_MODE",
+    "label": "Nonlivingarea Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.445,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "APARTMENTS_MEDI",
+    "label": "Apartments Medi",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.6443,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "BASEMENTAREA_MEDI",
+    "label": "Basementarea Medi",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.4832,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "YEARS_BEGINEXPLUATATION_MEDI",
+    "label": "Years Beginexpluatation Medi",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.9275,
+    "max": 0.9995,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "YEARS_BUILD_MEDI",
+    "label": "Years Build Medi",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.3224,
+    "max": 0.9933,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "COMMONAREA_MEDI",
+    "label": "Commonarea Medi",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.49190749999999245,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "ELEVATORS_MEDI",
+    "label": "Elevators Medi",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.72,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "ENTRANCES_MEDI",
+    "label": "Entrances Medi",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0345,
+    "max": 0.6207,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "FLOORSMAX_MEDI",
+    "label": "Floorsmax Medi",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.75,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "FLOORSMIN_MEDI",
+    "label": "Floorsmin Medi",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.75,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "LANDAREA_MEDI",
+    "label": "Landarea Medi",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.5049,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "LIVINGAPARTMENTS_MEDI",
+    "label": "Livingapartments Medi",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0009,
+    "max": 0.5489999999999999,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "LIVINGAREA_MEDI",
+    "label": "Livingarea Medi",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0014,
+    "max": 0.6725,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "NONLIVINGAPARTMENTS_MEDI",
+    "label": "Nonlivingapartments Medi",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.2484,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "NONLIVINGAREA_MEDI",
+    "label": "Nonlivingarea Medi",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0,
+    "max": 0.44690399999998043,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "TOTALAREA_MODE",
+    "label": "Totalarea Mode",
+    "group": "Property and building",
+    "kind": "numeric",
+    "nullable": true,
+    "min": 0.0008,
+    "max": 0.6253,
+    "step": 0.01,
+    "unit": "count"
+  },
+  {
+    "name": "HOUR_APPR_PROCESS_START",
+    "label": "Application hour",
+    "group": "Application process",
+    "kind": "numeric",
+    "nullable": false,
+    "min": 3.0,
+    "max": 20.0,
+    "step": 1.0,
+    "unit": "count"
+  },
+  {
+    "name": "WEEKDAY_APPR_PROCESS_START",
+    "label": "Application weekday",
+    "group": "Application process",
+    "kind": "categorical",
+    "options": [
+      "FRIDAY",
+      "MONDAY",
+      "SATURDAY",
+      "SUNDAY",
+      "THURSDAY",
+      "TUESDAY",
+      "WEDNESDAY"
+    ],
+    "nullable": true
+  },
+  {
+    "name": "NAME_TYPE_SUITE",
+    "label": "Who accompanied applicant",
+    "group": "Application process",
+    "kind": "categorical",
+    "options": [
+      "Children",
+      "Family",
+      "Group of people",
+      "Other_A",
+      "Other_B",
+      "Spouse, partner",
+      "Unaccompanied"
+    ],
+    "nullable": true
+  }
+]

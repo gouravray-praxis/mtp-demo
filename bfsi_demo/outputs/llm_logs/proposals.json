@@ -1,0 +1,324 @@
+[
+  {
+    "feature_name": "social_circle_def_30_rate",
+    "rationale": "Measures the default rate within the applicant's social circle over 30 days, indicating peer risk contagion.",
+    "source_tables": [
+      "application_train"
+    ],
+    "python_code": "def compute_social_circle_def_30_rate(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    result = app_train[['SK_ID_CURR']].copy()\n    result['social_circle_def_30_rate'] = app_train['DEF_30_CNT_SOCIAL_CIRCLE'] / (app_train['OBS_30_CNT_SOCIAL_CIRCLE'] + 1)\n    return result.set_index('SK_ID_CURR')['social_circle_def_30_rate']",
+    "source_group": "application",
+    "call": "call1_app"
+  },
+  {
+    "feature_name": "social_circle_def_60_rate",
+    "rationale": "Captures the default rate in the social circle over 60 days, reflecting longer-term peer financial instability.",
+    "source_tables": [
+      "application_train"
+    ],
+    "python_code": "def compute_social_circle_def_60_rate(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    result = app_train[['SK_ID_CURR']].copy()\n    result['social_circle_def_60_rate'] = app_train['DEF_60_CNT_SOCIAL_CIRCLE'] / (app_train['OBS_60_CNT_SOCIAL_CIRCLE'] + 1)\n    return result.set_index('SK_ID_CURR')['social_circle_def_60_rate']",
+    "source_group": "application",
+    "call": "call1_app"
+  },
+  {
+    "feature_name": "ext_source_dispersion",
+    "rationale": "Quantifies the variance between external credit scores, where high dispersion may signal inconsistent creditworthiness signals.",
+    "source_tables": [
+      "application_train"
+    ],
+    "python_code": "def compute_ext_source_dispersion(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    result = app_train[['SK_ID_CURR']].copy()\n    ext_max = app_train[['EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3']].max(axis=1)\n    ext_min = app_train[['EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3']].min(axis=1)\n    result['ext_source_dispersion'] = ext_max - ext_min\n    return result.set_index('SK_ID_CURR')['ext_source_dispersion']",
+    "source_group": "application",
+    "call": "call1_app"
+  },
+  {
+    "feature_name": "address_mismatch_count",
+    "rationale": "Counts the number of address mismatches (registration, living, working), which can indicate instability or fraud risk.",
+    "source_tables": [
+      "application_train"
+    ],
+    "python_code": "def compute_address_mismatch_count(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    result = app_train[['SK_ID_CURR']].copy()\n    result['address_mismatch_count'] = (\n        app_train['REG_REGION_NOT_LIVE_REGION'] + \n        app_train['REG_REGION_NOT_WORK_REGION'] + \n        app_train['LIVE_REGION_NOT_WORK_REGION'] + \n        app_train['REG_CITY_NOT_LIVE_CITY'] + \n        app_train['REG_CITY_NOT_WORK_CITY'] + \n        app_train['LIVE_CITY_NOT_WORK_CITY']\n    )\n    return result.set_index('SK_ID_CURR')['address_mismatch_count']",
+    "source_group": "application",
+    "call": "call1_app"
+  },
+  {
+    "feature_name": "enquiry_acceleration_ratio",
+    "rationale": "Compares recent (1 month) credit bureau enquiries to annual enquiries, highlighting sudden spikes in credit seeking behavior.",
+    "source_tables": [
+      "application_train"
+    ],
+    "python_code": "def compute_enquiry_acceleration_ratio(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    result = app_train[['SK_ID_CURR']].copy()\n    result['enquiry_acceleration_ratio'] = app_train['AMT_REQ_CREDIT_BUREAU_MON'] / (app_train['AMT_REQ_CREDIT_BUREAU_YEAR'] + 1)\n    return result.set_index('SK_ID_CURR')['enquiry_acceleration_ratio']",
+    "source_group": "application",
+    "call": "call1_app"
+  },
+  {
+    "feature_name": "building_age_vs_client_age",
+    "rationale": "Compares the age of the client's building to the client's age, potentially indicating housing stability relative to life stage.",
+    "source_tables": [
+      "application_train"
+    ],
+    "python_code": "def compute_building_age_vs_client_age(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    result = app_train[['SK_ID_CURR']].copy()\n    client_age_years = -app_train['DAYS_BIRTH'] / 365.25\n    building_age_years = app_train['YEARS_BUILD_MODE'] * 100\n    result['building_age_vs_client_age'] = building_age_years / (client_age_years + 1)\n    return result.set_index('SK_ID_CURR')['building_age_vs_client_age']",
+    "source_group": "application",
+    "call": "call1_app"
+  },
+  {
+    "feature_name": "bureau_active_credit_count",
+    "rationale": "Counts the number of currently active credit lines, indicating current leverage and potential over-indebtedness.",
+    "source_tables": [
+      "bureau"
+    ],
+    "python_code": "def compute_bureau_active_credit_count(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    bureau['is_active'] = (bureau['CREDIT_ACTIVE'] == 'Active').astype(int)\n    agg = bureau.groupby('SK_ID_CURR').agg(val=('is_active', 'sum')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('bureau_active_credit_count')",
+    "source_group": "bureau",
+    "call": "call2_bureau"
+  },
+  {
+    "feature_name": "bureau_debt_to_limit_ratio",
+    "rationale": "Measures the utilization rate of available credit limits, a strong predictor of cash flow stress and default risk.",
+    "source_tables": [
+      "bureau"
+    ],
+    "python_code": "def compute_bureau_debt_to_limit_ratio(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    bureau['debt_limit_ratio'] = bureau['AMT_CREDIT_SUM_DEBT'] / (bureau['AMT_CREDIT_SUM_LIMIT'] + 1)\n    agg = bureau.groupby('SK_ID_CURR').agg(val=('debt_limit_ratio', 'mean')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('bureau_debt_to_limit_ratio')",
+    "source_group": "bureau",
+    "call": "call2_bureau"
+  },
+  {
+    "feature_name": "bureau_max_overdue_amount",
+    "rationale": "Captures the peak historical delinquency amount, reflecting the severity of past payment failures.",
+    "source_tables": [
+      "bureau"
+    ],
+    "python_code": "def compute_bureau_max_overdue_amount(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    agg = bureau.groupby('SK_ID_CURR').agg(val=('AMT_CREDIT_MAX_OVERDUE', 'max')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('bureau_max_overdue_amount')",
+    "source_group": "bureau",
+    "call": "call2_bureau"
+  },
+  {
+    "feature_name": "bureau_balance_dpd30_plus_count",
+    "rationale": "Counts months with significant delinquency (DPD 30+), indicating persistent payment difficulties.",
+    "source_tables": [
+      "bureau_balance",
+      "bureau"
+    ],
+    "python_code": "def compute_bureau_balance_dpd30_plus_count(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    bb = bureau_bal.merge(bureau[['SK_ID_BUREAU', 'SK_ID_CURR']], on='SK_ID_BUREAU', how='left')\n    bb['is_dpd30_plus'] = bb['STATUS'].isin(['1', '2', '3', '4', '5']).astype(int)\n    agg = bb.groupby('SK_ID_CURR').agg(val=('is_dpd30_plus', 'sum')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('bureau_balance_dpd30_plus_count')",
+    "source_group": "bureau",
+    "call": "call2_bureau"
+  },
+  {
+    "feature_name": "bureau_balance_recent_dpd_ratio",
+    "rationale": "Calculates the proportion of delinquent months in the last 6 months, highlighting recent behavioral deterioration.",
+    "source_tables": [
+      "bureau_balance",
+      "bureau"
+    ],
+    "python_code": "def compute_bureau_balance_recent_dpd_ratio(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    bb = bureau_bal.merge(bureau[['SK_ID_BUREAU', 'SK_ID_CURR']], on='SK_ID_BUREAU', how='left')\n    recent = bb[bb['MONTHS_BALANCE'] >= -6]\n    recent['is_dpd'] = recent['STATUS'].isin(['1', '2', '3', '4', '5']).astype(int)\n    agg = recent.groupby('SK_ID_CURR').agg(total=('is_dpd', 'count'), dpd=('is_dpd', 'sum')).reset_index()\n    agg['val'] = agg['dpd'] / (agg['total'] + 1)\n    result = app_train[['SK_ID_CURR']].merge(agg[['SK_ID_CURR', 'val']], on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('bureau_balance_recent_dpd_ratio')",
+    "source_group": "bureau",
+    "call": "call2_bureau"
+  },
+  {
+    "feature_name": "bureau_credit_prolong_count",
+    "rationale": "Aggregates the number of credit extensions, suggesting potential liquidity issues or inability to repay on time.",
+    "source_tables": [
+      "bureau"
+    ],
+    "python_code": "def compute_bureau_credit_prolong_count(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    agg = bureau.groupby('SK_ID_CURR').agg(val=('CNT_CREDIT_PROLONG', 'sum')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('bureau_credit_prolong_count')",
+    "source_group": "bureau",
+    "call": "call2_bureau"
+  },
+  {
+    "feature_name": "instal_payment_volatility",
+    "rationale": "Measures the consistency of payment amounts relative to prescribed installments, indicating financial stability or erratic cash flow.",
+    "source_tables": [
+      "installments_payments"
+    ],
+    "python_code": "def compute_instal_payment_volatility(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    import numpy as np\n    install['payment_ratio'] = install['AMT_PAYMENT'] / (install['AMT_INSTALMENT'] + 1)\n    agg = install.groupby('SK_ID_CURR').agg(val=('payment_ratio', 'std')).reset_index()\n    agg['val'] = agg['val'].fillna(0)\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('instal_payment_volatility')",
+    "source_group": "installments",
+    "call": "call3_instal"
+  },
+  {
+    "feature_name": "instal_max_overpayment",
+    "rationale": "Captures the maximum instance of overpayment, which may indicate prepayment behavior or accounting errors affecting credit utilization.",
+    "source_tables": [
+      "installments_payments"
+    ],
+    "python_code": "def compute_instal_max_overpayment(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    install['overpayment'] = np.where(install['AMT_PAYMENT'] > install['AMT_INSTALMENT'], install['AMT_PAYMENT'] - install['AMT_INSTALMENT'], 0)\n    agg = install.groupby('SK_ID_CURR').agg(val=('overpayment', 'max')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('instal_max_overpayment')",
+    "source_group": "installments",
+    "call": "call3_instal"
+  },
+  {
+    "feature_name": "instal_recent_late_trend",
+    "rationale": "Evaluates the trend in lateness for the most recent 5 installments, highlighting recent deterioration in payment discipline.",
+    "source_tables": [
+      "installments_payments"
+    ],
+    "python_code": "def compute_instal_recent_late_trend(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    install['days_late'] = install['DAYS_ENTRY_PAYMENT'] - install['DAYS_INSTALMENT']\n    install['is_late'] = (install['days_late'] > 0).astype(int)\n    install = install.sort_values(['SK_ID_CURR', 'DAYS_INSTALMENT'], ascending=[True, False])\n    recent = install.groupby('SK_ID_CURR').head(5)\n    agg = recent.groupby('SK_ID_CURR').agg(val=('is_late', 'mean')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('instal_recent_late_trend')",
+    "source_group": "installments",
+    "call": "call3_instal"
+  },
+  {
+    "feature_name": "instal_zero_payment_rate",
+    "rationale": "Identifies the frequency of zero payments, a strong indicator of delinquency or account closure issues.",
+    "source_tables": [
+      "installments_payments"
+    ],
+    "python_code": "def compute_instal_zero_payment_rate(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    install['is_zero'] = (install['AMT_PAYMENT'] == 0).astype(int)\n    agg = install.groupby('SK_ID_CURR').agg(val=('is_zero', 'mean')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('instal_zero_payment_rate')",
+    "source_group": "installments",
+    "call": "call3_instal"
+  },
+  {
+    "feature_name": "instal_avg_gap_days",
+    "rationale": "Calculates the average gap between consecutive payment dates, reflecting the regularity of the client's payment cycle.",
+    "source_tables": [
+      "installments_payments"
+    ],
+    "python_code": "def compute_instal_avg_gap_days(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    install = install.sort_values(['SK_ID_CURR', 'DAYS_ENTRY_PAYMENT'])\n    install['gap'] = install.groupby('SK_ID_CURR')['DAYS_ENTRY_PAYMENT'].diff()\n    agg = install.groupby('SK_ID_CURR').agg(val=('gap', 'mean')).reset_index()\n    agg['val'] = agg['val'].fillna(0)\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('instal_avg_gap_days')",
+    "source_group": "installments",
+    "call": "call3_instal"
+  },
+  {
+    "feature_name": "prev_rejected_amt_ratio",
+    "rationale": "Measures the proportion of previous credit applications that were rejected, indicating a history of credit denial which is a strong predictor of future default.",
+    "source_tables": [
+      "previous_application"
+    ],
+    "python_code": "def compute_prev_rejected_amt_ratio(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    prev_app['is_rejected'] = (prev_app['NAME_CONTRACT_STATUS'] == 'Refused').astype(int)\n    agg = prev_app.groupby('SK_ID_CURR').agg(\n        rejected_count=('is_rejected', 'sum'),\n        total_count=('SK_ID_PREV', 'count')\n    ).reset_index()\n    agg['prev_rejected_amt_ratio'] = agg['rejected_count'] / (agg['total_count'] + 1)\n    result = app_train[['SK_ID_CURR']].merge(agg[['SK_ID_CURR', 'prev_rejected_amt_ratio']], on='SK_ID_CURR', how='left')\n    result['prev_rejected_amt_ratio'] = result['prev_rejected_amt_ratio'].fillna(0)\n    return result.set_index('SK_ID_CURR')['prev_rejected_amt_ratio'].rename('prev_rejected_amt_ratio')",
+    "source_group": "previous_app",
+    "call": "call4_prev"
+  },
+  {
+    "feature_name": "prev_cash_loan_avg_annuity",
+    "rationale": "Captures the average annuity for cash loans, as higher cash loan obligations relative to income can strain cash flow and increase default risk.",
+    "source_tables": [
+      "previous_application"
+    ],
+    "python_code": "def compute_prev_cash_loan_avg_annuity(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    cash_loans = prev_app[prev_app['NAME_CONTRACT_TYPE'] == 'Cash loans']\n    agg = cash_loans.groupby('SK_ID_CURR').agg(\n        avg_annuity=('AMT_ANNUITY', 'mean')\n    ).reset_index()\n    agg['prev_cash_loan_avg_annuity'] = agg['avg_annuity'].fillna(0)\n    result = app_train[['SK_ID_CURR']].merge(agg[['SK_ID_CURR', 'prev_cash_loan_avg_annuity']], on='SK_ID_CURR', how='left')\n    result['prev_cash_loan_avg_annuity'] = result['prev_cash_loan_avg_annuity'].fillna(0)\n    return result.set_index('SK_ID_CURR')['prev_cash_loan_avg_annuity'].rename('prev_cash_loan_avg_annuity')",
+    "source_group": "previous_app",
+    "call": "call4_prev"
+  },
+  {
+    "feature_name": "prev_high_interest_count",
+    "rationale": "Counts previous applications with high interest rates, suggesting the client may have been deemed higher risk by the lender in the past.",
+    "source_tables": [
+      "previous_application"
+    ],
+    "python_code": "def compute_prev_high_interest_count(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    prev_app['is_high_interest'] = (prev_app['NAME_YIELD_GROUP'] == 'high').astype(int)\n    agg = prev_app.groupby('SK_ID_CURR').agg(\n        high_interest_count=('is_high_interest', 'sum')\n    ).reset_index()\n    agg['prev_high_interest_count'] = agg['high_interest_count'].fillna(0)\n    result = app_train[['SK_ID_CURR']].merge(agg[['SK_ID_CURR', 'prev_high_interest_count']], on='SK_ID_CURR', how='left')\n    result['prev_high_interest_count'] = result['prev_high_interest_count'].fillna(0)\n    return result.set_index('SK_ID_CURR')['prev_high_interest_count'].rename('prev_high_interest_count')",
+    "source_group": "previous_app",
+    "call": "call4_prev"
+  },
+  {
+    "feature_name": "prev_recent_app_count",
+    "rationale": "Counts applications made within the last 180 days, as frequent recent applications may indicate financial distress or over-leveraging.",
+    "source_tables": [
+      "previous_application"
+    ],
+    "python_code": "def compute_prev_recent_app_count(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    prev_app['is_recent'] = (prev_app['DAYS_DECISION'] > -180).astype(int)\n    agg = prev_app.groupby('SK_ID_CURR').agg(\n        recent_count=('is_recent', 'sum')\n    ).reset_index()\n    agg['prev_recent_app_count'] = agg['recent_count'].fillna(0)\n    result = app_train[['SK_ID_CURR']].merge(agg[['SK_ID_CURR', 'prev_recent_app_count']], on='SK_ID_CURR', how='left')\n    result['prev_recent_app_count'] = result['prev_recent_app_count'].fillna(0)\n    return result.set_index('SK_ID_CURR')['prev_recent_app_count'].rename('prev_recent_app_count')",
+    "source_group": "previous_app",
+    "call": "call4_prev"
+  },
+  {
+    "feature_name": "prev_insured_approval_ratio",
+    "rationale": "Measures the ratio of approved applications where insurance was requested, as insurance uptake can be a proxy for risk mitigation behavior or lender requirements.",
+    "source_tables": [
+      "previous_application"
+    ],
+    "python_code": "def compute_prev_insured_approval_ratio(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    prev_app['is_approved'] = (prev_app['NAME_CONTRACT_STATUS'] == 'Approved').astype(int)\n    prev_app['is_insured_approved'] = ((prev_app['NAME_CONTRACT_STATUS'] == 'Approved') & (prev_app['NFLAG_INSURED_ON_APPROVAL'] == 1)).astype(int)\n    agg = prev_app.groupby('SK_ID_CURR').agg(\n        approved_count=('is_approved', 'sum'),\n        insured_approved_count=('is_insured_approved', 'sum')\n    ).reset_index()\n    agg['prev_insured_approval_ratio'] = agg['insured_approved_count'] / (agg['approved_count'] + 1)\n    result = app_train[['SK_ID_CURR']].merge(agg[['SK_ID_CURR', 'prev_insured_approval_ratio']], on='SK_ID_CURR', how='left')\n    result['prev_insured_approval_ratio'] = result['prev_insured_approval_ratio'].fillna(0)\n    return result.set_index('SK_ID_CURR')['prev_insured_approval_ratio'].rename('prev_insured_approval_ratio')",
+    "source_group": "previous_app",
+    "call": "call4_prev"
+  },
+  {
+    "feature_name": "cc_utilization_trend_3m",
+    "rationale": "Captures the momentum of credit utilization over the last 3 months, indicating whether the borrower is increasing or decreasing their reliance on revolving credit.",
+    "source_tables": [
+      "credit_card_balance"
+    ],
+    "python_code": "def compute_cc_utilization_trend_3m(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    import numpy as np\n    cc = cc_bal.copy()\n    cc['utilization'] = cc['AMT_BALANCE'] / (cc['AMT_CREDIT_LIMIT_ACTUAL'] + 1)\n    cc = cc.sort_values(['SK_ID_PREV', 'MONTHS_BALANCE'])\n    cc['util_lag1'] = cc.groupby('SK_ID_PREV')['utilization'].shift(1)\n    cc['util_lag2'] = cc.groupby('SK_ID_PREV')['utilization'].shift(2)\n    cc['trend'] = cc['utilization'] - cc['util_lag2']\n    cc = cc[cc['MONTHS_BALANCE'].between(-3, -1)]\n    agg = cc.groupby('SK_ID_PREV')['trend'].mean().reset_index()\n    agg = agg.rename(columns={'SK_ID_PREV': 'SK_ID_CURR'})\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['cc_utilization_trend_3m'] = result['trend'].fillna(0)\n    return result.set_index('SK_ID_CURR')['cc_utilization_trend_3m']",
+    "source_group": "credit_card",
+    "call": "call5_cc"
+  },
+  {
+    "feature_name": "cc_atm_drawings_ratio_6m",
+    "rationale": "Measures the proportion of cash withdrawals from total drawings in the last 6 months, a strong indicator of liquidity stress or cash-flow issues.",
+    "source_tables": [
+      "credit_card_balance"
+    ],
+    "python_code": "def compute_cc_atm_drawings_ratio_6m(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    import numpy as np\n    cc = cc_bal.copy()\n    cc = cc[cc['MONTHS_BALANCE'].between(-6, -1)]\n    agg = cc.groupby('SK_ID_PREV').agg(\n        atm_sum=('AMT_DRAWINGS_ATM_CURRENT', 'sum'),\n        total_drawings_sum=('AMT_DRAWINGS_CURRENT', 'sum')\n    ).reset_index()\n    agg['ratio'] = agg['atm_sum'] / (agg['total_drawings_sum'] + 1)\n    agg = agg.rename(columns={'SK_ID_PREV': 'SK_ID_CURR'})\n    result = app_train[['SK_ID_CURR']].merge(agg[['SK_ID_CURR', 'ratio']], on='SK_ID_CURR', how='left')\n    result['cc_atm_drawings_ratio_6m'] = result['ratio'].fillna(0)\n    return result.set_index('SK_ID_CURR')['cc_atm_drawings_ratio_6m']",
+    "source_group": "credit_card",
+    "call": "call5_cc"
+  },
+  {
+    "feature_name": "cc_payment_coverage_ratio",
+    "rationale": "Evaluates the borrower's ability to cover their minimum required installments with actual payments, highlighting potential payment delinquency risk.",
+    "source_tables": [
+      "credit_card_balance"
+    ],
+    "python_code": "def compute_cc_payment_coverage_ratio(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    import numpy as np\n    cc = cc_bal.copy()\n    cc = cc[cc['MONTHS_BALANCE'].between(-6, -1)]\n    agg = cc.groupby('SK_ID_PREV').agg(\n        payment_sum=('AMT_PAYMENT_CURRENT', 'sum'),\n        min_inst_sum=('AMT_INST_MIN_REGULARITY', 'sum')\n    ).reset_index()\n    agg['coverage'] = agg['payment_sum'] / (agg['min_inst_sum'] + 1)\n    agg = agg.rename(columns={'SK_ID_PREV': 'SK_ID_CURR'})\n    result = app_train[['SK_ID_CURR']].merge(agg[['SK_ID_CURR', 'coverage']], on='SK_ID_CURR', how='left')\n    result['cc_payment_coverage_ratio'] = result['coverage'].fillna(0)\n    return result.set_index('SK_ID_CURR')['cc_payment_coverage_ratio']",
+    "source_group": "credit_card",
+    "call": "call5_cc"
+  },
+  {
+    "feature_name": "cc_balance_volatility",
+    "rationale": "Quantifies the instability of the credit card balance over time, where high volatility suggests erratic spending or income patterns.",
+    "source_tables": [
+      "credit_card_balance"
+    ],
+    "python_code": "def compute_cc_balance_volatility(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    import numpy as np\n    cc = cc_bal.copy()\n    cc = cc[cc['MONTHS_BALANCE'].between(-6, -1)]\n    agg = cc.groupby('SK_ID_PREV')['AMT_BALANCE'].std().reset_index()\n    agg = agg.rename(columns={'SK_ID_PREV': 'SK_ID_CURR', 'AMT_BALANCE': 'volatility'})\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['cc_balance_volatility'] = result['volatility'].fillna(0)\n    return result.set_index('SK_ID_CURR')['cc_balance_volatility']",
+    "source_group": "credit_card",
+    "call": "call5_cc"
+  },
+  {
+    "feature_name": "cc_dpd_def_max_6m",
+    "rationale": "Identifies the maximum days past due (with tolerance) in the last 6 months, serving as a direct proxy for recent credit delinquency severity.",
+    "source_tables": [
+      "credit_card_balance"
+    ],
+    "python_code": "def compute_cc_dpd_def_max_6m(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    import numpy as np\n    cc = cc_bal.copy()\n    cc = cc[cc['MONTHS_BALANCE'].between(-6, -1)]\n    agg = cc.groupby('SK_ID_PREV')['SK_DPD_DEF'].max().reset_index()\n    agg = agg.rename(columns={'SK_ID_PREV': 'SK_ID_CURR', 'SK_DPD_DEF': 'max_dpd'})\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['cc_dpd_def_max_6m'] = result['max_dpd'].fillna(0)\n    return result.set_index('SK_ID_CURR')['cc_dpd_def_max_6m']",
+    "source_group": "credit_card",
+    "call": "call5_cc"
+  },
+  {
+    "feature_name": "pos_max_dpd_def",
+    "rationale": "Captures the maximum severity of payment delinquency (with tolerance) across all POS/Cash loans, indicating peak financial stress.",
+    "source_tables": [
+      "POS_CASH_balance"
+    ],
+    "python_code": "def compute_pos_max_dpd_def(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    agg = pos_cash.groupby('SK_ID_CURR').agg(val=('SK_DPD_DEF', 'max')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('pos_max_dpd_def')",
+    "source_group": "pos_cash",
+    "call": "call6_pos"
+  },
+  {
+    "feature_name": "pos_active_contract_ratio",
+    "rationale": "Measures the proportion of time POS/Cash loans were active, reflecting ongoing debt burden and repayment commitment.",
+    "source_tables": [
+      "POS_CASH_balance"
+    ],
+    "python_code": "def compute_pos_active_contract_ratio(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    pos_cash['is_active'] = (pos_cash['NAME_CONTRACT_STATUS'] == 'Active').astype(int)\n    agg = pos_cash.groupby('SK_ID_CURR').agg(active_count=('is_active', 'sum'), total_count=('is_active', 'count')).reset_index()\n    agg['val'] = agg['active_count'] / (agg['total_count'] + 1)\n    result = app_train[['SK_ID_CURR']].merge(agg[['SK_ID_CURR', 'val']], on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('pos_active_contract_ratio')",
+    "source_group": "pos_cash",
+    "call": "call6_pos"
+  },
+  {
+    "feature_name": "pos_future_instalment_mean",
+    "rationale": "Indicates the average remaining installment count, serving as a proxy for the future cash flow commitment of the borrower.",
+    "source_tables": [
+      "POS_CASH_balance"
+    ],
+    "python_code": "def compute_pos_future_instalment_mean(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    agg = pos_cash.groupby('SK_ID_CURR').agg(val=('CNT_INSTALMENT_FUTURE', 'mean')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('pos_future_instalment_mean')",
+    "source_group": "pos_cash",
+    "call": "call6_pos"
+  },
+  {
+    "feature_name": "pos_dpd_def_std",
+    "rationale": "Quantifies the volatility in delinquency behavior, where high variance suggests inconsistent repayment habits and higher risk.",
+    "source_tables": [
+      "POS_CASH_balance"
+    ],
+    "python_code": "def compute_pos_dpd_def_std(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    agg = pos_cash.groupby('SK_ID_CURR').agg(val=('SK_DPD_DEF', 'std')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('pos_dpd_def_std')",
+    "source_group": "pos_cash",
+    "call": "call6_pos"
+  },
+  {
+    "feature_name": "pos_recent_dpd_def",
+    "rationale": "Focuses on the most recent month's delinquency status, as recent payment behavior is a strong predictor of immediate default risk.",
+    "source_tables": [
+      "POS_CASH_balance"
+    ],
+    "python_code": "def compute_pos_recent_dpd_def(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    pos_cash = pos_cash.copy()\n    pos_cash['is_recent'] = (pos_cash['MONTHS_BALANCE'] == -1).astype(int)\n    agg = pos_cash.groupby('SK_ID_CURR').agg(val=('SK_DPD_DEF', 'max')).reset_index()\n    # Note: This simple max might not strictly be 'recent' if multiple -1 exist or if we want the specific row.\n    # Better approach: Filter for -1 first, then aggregate.\n    recent_pos = pos_cash[pos_cash['MONTHS_BALANCE'] == -1]\n    agg = recent_pos.groupby('SK_ID_CURR').agg(val=('SK_DPD_DEF', 'max')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('pos_recent_dpd_def')",
+    "source_group": "pos_cash",
+    "call": "call6_pos"
+  }
+]

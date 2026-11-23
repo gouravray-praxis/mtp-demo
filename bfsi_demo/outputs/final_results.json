@@ -1,0 +1,874 @@
+{
+  "execution_status": "complete",
+  "artifacts_sha256": {
+    "models": {
+      "A": {
+        "pkl": "9c7322be68d95ffb5f55132495cb716a7afe6f31b8091af016979a6b159173fb",
+        "txt": "cb286a8d76730b81e49446020fb091e27e939ea1df9aee61f1b97194a46a941e"
+      },
+      "B": {
+        "pkl": "6b365a648209b8ffd0f40fa2b173a97693670ec793b280b1f6d49a2413641d1e",
+        "txt": "5b4f4929c29733cef1377424443dd106c968be231cd5236150ae69c9056c9884"
+      },
+      "C": {
+        "pkl": "ca3e99ebf105c04a66523135e54e22ae5ac392947f9343fabae14e51189a2653",
+        "txt": "1d72cfd624b25278feb8b46c5b5eadd302394af196481420cf715df83fda8df1"
+      }
+    },
+    "features": {
+      "A": "accff9ad9dbdad582cf4504cc92c1a9667841d7403f73095f8a791d2aba9ecdf",
+      "B": "3dad2885d003dee28e56e39273db4cda14e9d4e7318573da03eb63e66d43ae1d",
+      "C": "f7bf554c2109b5af1335ea5e179840ebdb2933d4fb71c9f70d71bb74f9af1708"
+    }
+  },
+  "run": {
+    "finished_at_utc": "2026-11-11T17:41:45Z",
+    "finished_at_local": "2026-11-11 23:11:45 Asia/Kolkata (UTC+05:30)",
+    "stage_times_s": {
+      "A": 307.1,
+      "BC": 531.4
+    },
+    "peak_rss_gb": {
+      "A": 5.88,
+      "BC": 6.54
+    },
+    "python": "3.11.18",
+    "seed": 42,
+    "n_folds": 5,
+    "params": {
+      "n_estimators": 375,
+      "learning_rate": 0.06520428345169353,
+      "num_leaves": 73,
+      "max_depth": 4,
+      "min_child_samples": 39,
+      "subsample": 0.9009025593333467,
+      "colsample_bytree": 0.5646949393948328,
+      "reg_alpha": 0.09479741965476791,
+      "reg_lambda": 0.8690655078595865,
+      "min_split_gain": 0.04971641436663787,
+      "objective": "binary",
+      "metric": "auc",
+      "verbosity": -1,
+      "boosting_type": "gbdt",
+      "random_state": 42,
+      "n_jobs": -1,
+      "scale_pos_weight": 11.387150050352467
+    },
+    "scores": "raw uncalibrated LightGBM probabilities (scale_pos_weight-weighted); oof_* = out-of-fold CV, pred_* = final all-data model (in-sample)"
+  },
+  "data": {
+    "source": "Kaggle competition home-credit-default-risk (official API)",
+    "rows_train": 307511,
+    "positive_rate": 0.08073,
+    "sha256": {
+      "app_train": "52e96b895b1112e1c853f670e58372719c8441c5ed1c57ac2f7fad559d784f5f",
+      "app_test": "a36161331d839150a67b6216d4de066f543a3b01a34061507d40e76612e0dec8",
+      "bureau": "9d799143423f280720cf51c1bfbbab2a0422da8ff2763335bb30bf43155494f7",
+      "bureau_bal": "33e09f06174c26f0be6b8b7398886c69e7bf0abbb29b4122f7841ffe545729a9",
+      "prev_app": "5046cd657ee04df2eaa6dc8308ae86be6b3b1763674a3f63574886a2f2896505",
+      "install": "428c2e2496e4d6d697ee8270e98497e5213c41be16d882eed1bc95b133726797",
+      "cc_bal": "a9cdc48900d55131c90f3128b991859aeb94ca1326fb5f4d1624b9fd03782247",
+      "pos_cash": "0e13bc573ffa8fc29b3f00d975e557143193a405d675b0e4694b06fbdffcb0cd",
+      "col_desc": "eef7665398228a80f7367c9258220c5fbe1038f3f54094244f354d54e2d4fb03"
+    }
+  },
+  "llm": {
+    "model": "qwen/qwen3.8-27b",
+    "authenticated_models": [
+      "allam-2-7b",
+      "canopylabs/orpheus-arabic-saudi",
+      "canopylabs/orpheus-v1-english",
+      "meta-llama/llama-prompt-guard-2-22m",
+      "meta-llama/llama-prompt-guard-2-86m",
+      "openai/gpt-oss-120b",
+      "openai/gpt-oss-20b",
+      "openai/gpt-oss-safeguard-20b",
+      "qwen/qwen3.8-27b",
+      "whisper-large-v3",
+      "whisper-large-v3-turbo"
+    ],
+    "calls": [
+      {
+        "label": "call1_app",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_sha16": "8487f736142b5304",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 6257,
+          "completion_tokens": 1171,
+          "total_tokens": 7428
+        },
+        "attempts": [
+          {
+            "attempt": 1,
+            "ok": true,
+            "finish_reason": "stop",
+            "s": 3.31
+          }
+        ],
+        "cached": true,
+        "elapsed_s": 3.31
+      },
+      {
+        "label": "call2_bureau",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_sha16": "4cb65536ac5ce802",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 1858,
+          "completion_tokens": 1433,
+          "total_tokens": 3291
+        },
+        "attempts": [
+          {
+            "attempt": 1,
+            "ok": false,
+            "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_deman",
+            "s": 0.05
+          },
+          {
+            "attempt": 2,
+            "ok": false,
+            "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_deman",
+            "s": 0.05
+          },
+          {
+            "attempt": 3,
+            "ok": false,
+            "error": "RateLimitError: Error code: 429 - {'error': {'message': \"Request too large for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_demand",
+            "s": 0.14
+          },
+          {
+            "attempt": 4,
+            "ok": true,
+            "finish_reason": "stop",
+            "s": 3.57
+          }
+        ],
+        "cached": true,
+        "elapsed_s": 3.57
+      },
+      {
+        "label": "call3_instal",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_sha16": "e131098424e9c0fe",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 1214,
+          "completion_tokens": 1206,
+          "total_tokens": 2420
+        },
+        "attempts": [
+          {
+            "attempt": 1,
+            "ok": false,
+            "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_deman",
+            "s": 0.05
+          },
+          {
+            "attempt": 2,
+            "ok": false,
+            "error": "RateLimitError: Error code: 429 - {'error': {'message': \"Request too large for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_demand",
+            "s": 0.05
+          },
+          {
+            "attempt": 3,
+            "ok": true,
+            "finish_reason": "stop",
+            "s": 2.88
+          }
+        ],
+        "cached": true,
+        "elapsed_s": 2.88
+      },
+      {
+        "label": "call4_prev",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_sha16": "c99bf0dcb927f022",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 2392,
+          "completion_tokens": 1448,
+          "total_tokens": 3840
+        },
+        "attempts": [
+          {
+            "attempt": 1,
+            "ok": true,
+            "finish_reason": "stop",
+            "s": 3.1
+          }
+        ],
+        "cached": true,
+        "elapsed_s": 3.1
+      },
+      {
+        "label": "call5_cc",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_sha16": "516c74629f3f50ae",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 1809,
+          "completion_tokens": 1546,
+          "total_tokens": 3355
+        },
+        "attempts": [
+          {
+            "attempt": 1,
+            "ok": false,
+            "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_deman",
+            "s": 0.05,
+            "wait_s": 20
+          },
+          {
+            "attempt": 2,
+            "ok": false,
+            "error": "RateLimitError: Error code: 429 - {'error': {'message': \"Request too large for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_demand",
+            "s": 0.11,
+            "wait_s": 20
+          },
+          {
+            "attempt": 3,
+            "ok": true,
+            "finish_reason": "stop",
+            "s": 3.8
+          }
+        ],
+        "cached": true,
+        "elapsed_s": 3.8
+      },
+      {
+        "label": "call6_pos",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_sha16": "2008f22e630b4a38",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 1082,
+          "completion_tokens": 1163,
+          "total_tokens": 2245
+        },
+        "attempts": [
+          {
+            "attempt": 1,
+            "ok": false,
+            "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_deman",
+            "s": 0.07,
+            "wait_s": 20
+          },
+          {
+            "attempt": 2,
+            "ok": false,
+            "error": "RateLimitError: Error code: 429 - {'error': {'message': \"Request too large for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_demand",
+            "s": 0.13,
+            "wait_s": 20
+          },
+          {
+            "attempt": 3,
+            "ok": false,
+            "error": "RateLimitError: Error code: 429 - {'error': {'message': \"Request too large for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_demand",
+            "s": 0.12,
+            "wait_s": 20
+          },
+          {
+            "attempt": 4,
+            "ok": true,
+            "finish_reason": "stop",
+            "s": 4.09
+          }
+        ],
+        "cached": true,
+        "elapsed_s": 4.09
+      }
+    ],
+    "n_proposed": 32
+  },
+  "gate": {
+    "proposed": 32,
+    "passed": 26,
+    "failed": 6,
+    "by_type": {
+      "passed": 26,
+      "constant": 5,
+      "security_violation": 1
+    }
+  },
+  "pipelines": {
+    "A": {
+      "oof_auc": 0.78362,
+      "ks": 0.42897,
+      "gini": 0.56723,
+      "brier": 0.18035,
+      "avg_precision": 0.27567,
+      "lift_top_decile": 3.677,
+      "cv_mean": 0.78363,
+      "cv_std": 0.00349,
+      "fold_aucs": [
+        0.78014,
+        0.78828,
+        0.7822,
+        0.7873,
+        0.78025
+      ],
+      "best_iterations": [
+        375,
+        374,
+        375,
+        373,
+        372
+      ],
+      "n_features": 241,
+      "cv_time_s": 48.4,
+      "parquet_readback_pred_maxdiff": 0.0,
+      "final_fit_trees": 375
+    },
+    "B": {
+      "oof_auc": 0.7736,
+      "ks": 0.41214,
+      "gini": 0.54721,
+      "brier": 0.18559,
+      "avg_precision": 0.26187,
+      "lift_top_decile": 3.5485,
+      "cv_mean": 0.77363,
+      "cv_std": 0.00391,
+      "fold_aucs": [
+        0.76906,
+        0.77807,
+        0.77278,
+        0.77827,
+        0.76996
+      ],
+      "best_iterations": [
+        375,
+        360,
+        367,
+        375,
+        374
+      ],
+      "n_features": 191,
+      "cv_time_s": 32.3,
+      "parquet_readback_pred_maxdiff": 0.0,
+      "final_fit_trees": 375,
+      "n_llm_features": 25,
+      "llm_features": [
+        "social_circle_def_30_rate",
+        "social_circle_def_60_rate",
+        "ext_source_dispersion",
+        "address_mismatch_count",
+        "enquiry_acceleration_ratio",
+        "building_age_vs_client_age",
+        "bureau_active_credit_count",
+        "bureau_debt_to_limit_ratio",
+        "bureau_max_overdue_amount",
+        "bureau_balance_dpd30_plus_count",
+        "bureau_balance_recent_dpd_ratio",
+        "bureau_credit_prolong_count",
+        "instal_payment_volatility",
+        "instal_max_overpayment",
+        "instal_recent_late_trend",
+        "instal_avg_gap_days",
+        "prev_rejected_amt_ratio",
+        "prev_cash_loan_avg_annuity",
+        "prev_high_interest_count",
+        "prev_recent_app_count",
+        "prev_insured_approval_ratio",
+        "pos_max_dpd_def",
+        "pos_active_contract_ratio",
+        "pos_future_instalment_mean",
+        "pos_dpd_def_std"
+      ]
+    },
+    "C": {
+      "oof_auc": 0.7858,
+      "ks": 0.4319,
+      "gini": 0.57161,
+      "brier": 0.17925,
+      "avg_precision": 0.27931,
+      "lift_top_decile": 3.7128,
+      "cv_mean": 0.78582,
+      "cv_std": 0.00328,
+      "fold_aucs": [
+        0.78297,
+        0.78993,
+        0.78416,
+        0.78962,
+        0.78241
+      ],
+      "best_iterations": [
+        375,
+        375,
+        375,
+        372,
+        375
+      ],
+      "n_features": 289,
+      "cv_time_s": 60.4,
+      "parquet_readback_pred_maxdiff": 0.0,
+      "final_fit_trees": 375,
+      "n_llm_features": 25,
+      "llm_features": [
+        "social_circle_def_30_rate",
+        "social_circle_def_60_rate",
+        "ext_source_dispersion",
+        "address_mismatch_count",
+        "enquiry_acceleration_ratio",
+        "building_age_vs_client_age",
+        "bureau_active_credit_count",
+        "bureau_debt_to_limit_ratio",
+        "bureau_max_overdue_amount",
+        "bureau_balance_dpd30_plus_count",
+        "bureau_balance_recent_dpd_ratio",
+        "bureau_credit_prolong_count",
+        "instal_payment_volatility",
+        "instal_max_overpayment",
+        "instal_recent_late_trend",
+        "instal_avg_gap_days",
+        "prev_rejected_amt_ratio",
+        "prev_cash_loan_avg_annuity",
+        "prev_high_interest_count",
+        "prev_recent_app_count",
+        "prev_insured_approval_ratio",
+        "pos_max_dpd_def",
+        "pos_active_contract_ratio",
+        "pos_future_instalment_mean",
+        "pos_dpd_def_std"
+      ],
+      "n_human_features": 264
+    }
+  },
+  "row_level_llm_features": [
+    "social_circle_def_30_rate",
+    "social_circle_def_60_rate",
+    "ext_source_dispersion",
+    "address_mismatch_count",
+    "enquiry_acceleration_ratio",
+    "building_age_vs_client_age"
+  ],
+  "checks": [
+    {
+      "name": "scored_ids_unique",
+      "passed": true,
+      "detail": "307511"
+    },
+    {
+      "name": "raw_inputs_ids_match_scored",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fe_formulas_A_equal_Aprime_all_rows",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A_columns_order_eq_model",
+      "passed": true,
+      "detail": "241"
+    },
+    {
+      "name": "A_no_target_in_features",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A_float64",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A_rows_307511",
+      "passed": true,
+      "detail": "307511"
+    },
+    {
+      "name": "A_schema_matches_names",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A_ids_unique_and_order_eq_scored",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A_no_null_oof_pred",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A_full_parquet_pred_parity_batched",
+      "passed": true,
+      "detail": "rows=307511 maxdiff=0"
+    },
+    {
+      "name": "A_recompute_identity_all_rows_vectorised",
+      "passed": true,
+      "detail": "65 app + 0 row-level LLM features; bad=[]"
+    },
+    {
+      "name": "A_recompute_identity_selected_customers",
+      "passed": true,
+      "detail": "63 ids incl. ['DAYS_EMPLOYED_365243', 'EXT_SOURCE_1_null', 'AMT_GOODS_PRICE_null', 'AMT_ANNUITY_null', 'OWN_CAR_AGE_null', 'CNT_FAM_MEMBERS_null', 'all_EXT_null', 'cat_NAME_CONTRACT_TYPE', 'cat_NAME_INCOME_TYPE_Commercial_associate', 'cat_NAME_INCOME_TYPE_Maternity_leave', 'cat_NAME_INCOME_TYPE_Pens"
+    },
+    {
+      "name": "A_no_edit_pred_matches_scored",
+      "passed": true,
+      "detail": "maxdiff=0"
+    },
+    {
+      "name": "A_edit_AMT_CREDIT_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_CREDIT', 'FE_CREDIT_TO_INCOME', 'FE_CREDIT_TO_GOODS', 'FE_ANNUITY_TO_CREDIT', 'FE_GOODS_PRICE_GAP', 'FE_EXT_MEAN_CREDIT'] expected_present=['FE_CREDIT_TO_INCOME', 'FE_CREDIT_TO_GOODS', 'FE_ANNUITY_TO_CREDIT']"
+    },
+    {
+      "name": "A_edit_AMT_GOODS_PRICE_propagates",
+      "passed": true,
+      "detail": "changed=['FE_CREDIT_TO_GOODS', 'FE_GOODS_PRICE_GAP'] expected_present=['FE_CREDIT_TO_GOODS', 'FE_GOODS_PRICE_GAP']"
+    },
+    {
+      "name": "A_edit_AMT_INCOME_TOTAL_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_INCOME_TOTAL', 'FE_ANNUITY_TO_INCOME', 'FE_CREDIT_TO_INCOME', 'FE_INCOME_PER_PERSON'] expected_present=['FE_ANNUITY_TO_INCOME', 'FE_CREDIT_TO_INCOME', 'FE_INCOME_PER_PERSON']"
+    },
+    {
+      "name": "A_edit_EXT_SOURCE_2_propagates",
+      "passed": true,
+      "detail": "changed=['EXT_SOURCE_2', 'FE_EXT_SOURCE_MEAN', 'FE_EXT_SOURCE_MIN', 'FE_EXT_SOURCE_STD', 'FE_EXT_MEAN_ANNUITY', 'FE_EXT_MEAN_CREDIT'] expected_present=['FE_EXT_SOURCE_MEAN', 'EXT_SOURCE_2']"
+    },
+    {
+      "name": "A_edit_DAYS_EMPLOYED_propagates",
+      "passed": true,
+      "detail": "changed=['DAYS_EMPLOYED', 'FE_EMPLOYMENT_TO_AGE', 'FE_WORKING_SINCE_AGE'] expected_present=['FE_EMPLOYMENT_TO_AGE']"
+    },
+    {
+      "name": "A_edit_changes_prediction",
+      "passed": true,
+      "detail": "0.475975->0.433623"
+    },
+    {
+      "name": "B_columns_order_eq_model",
+      "passed": true,
+      "detail": "191"
+    },
+    {
+      "name": "B_no_target_in_features",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "B_float64",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "B_rows_307511",
+      "passed": true,
+      "detail": "307511"
+    },
+    {
+      "name": "B_schema_matches_names",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "B_ids_unique_and_order_eq_scored",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "B_no_null_oof_pred",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "B_full_parquet_pred_parity_batched",
+      "passed": true,
+      "detail": "rows=307511 maxdiff=0"
+    },
+    {
+      "name": "B_recompute_identity_all_rows_vectorised",
+      "passed": true,
+      "detail": "40 app + 6 row-level LLM features; bad=[]"
+    },
+    {
+      "name": "B_recompute_identity_selected_customers",
+      "passed": true,
+      "detail": "63 ids incl. ['DAYS_EMPLOYED_365243', 'EXT_SOURCE_1_null', 'AMT_GOODS_PRICE_null', 'AMT_ANNUITY_null', 'OWN_CAR_AGE_null', 'CNT_FAM_MEMBERS_null', 'all_EXT_null', 'cat_NAME_CONTRACT_TYPE', 'cat_NAME_INCOME_TYPE_Commercial_associate', 'cat_NAME_INCOME_TYPE_Maternity_leave', 'cat_NAME_INCOME_TYPE_Pens"
+    },
+    {
+      "name": "B_no_edit_pred_matches_scored",
+      "passed": true,
+      "detail": "maxdiff=0"
+    },
+    {
+      "name": "B_edit_AMT_CREDIT_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_CREDIT'] expected_present=[]"
+    },
+    {
+      "name": "B_edit_AMT_GOODS_PRICE_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_GOODS_PRICE'] expected_present=[]"
+    },
+    {
+      "name": "B_edit_AMT_INCOME_TOTAL_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_INCOME_TOTAL'] expected_present=[]"
+    },
+    {
+      "name": "B_edit_EXT_SOURCE_2_propagates",
+      "passed": true,
+      "detail": "changed=['EXT_SOURCE_2', 'ext_source_dispersion'] expected_present=['EXT_SOURCE_2']"
+    },
+    {
+      "name": "B_edit_DAYS_EMPLOYED_propagates",
+      "passed": true,
+      "detail": "changed=['DAYS_EMPLOYED', 'DAYS_EMPLOYED_ANOM', 'EMPLOYMENT_YEARS'] expected_present=['DAYS_EMPLOYED_ANOM', 'EMPLOYMENT_YEARS']"
+    },
+    {
+      "name": "B_edit_changes_prediction",
+      "passed": true,
+      "detail": "0.319697->0.388745"
+    },
+    {
+      "name": "C_columns_order_eq_model",
+      "passed": true,
+      "detail": "289"
+    },
+    {
+      "name": "C_no_target_in_features",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C_float64",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C_rows_307511",
+      "passed": true,
+      "detail": "307511"
+    },
+    {
+      "name": "C_schema_matches_names",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C_ids_unique_and_order_eq_scored",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C_no_null_oof_pred",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C_full_parquet_pred_parity_batched",
+      "passed": true,
+      "detail": "rows=307511 maxdiff=0"
+    },
+    {
+      "name": "C_recompute_identity_all_rows_vectorised",
+      "passed": true,
+      "detail": "60 app + 6 row-level LLM features; bad=[]"
+    },
+    {
+      "name": "C_recompute_identity_selected_customers",
+      "passed": true,
+      "detail": "63 ids incl. ['DAYS_EMPLOYED_365243', 'EXT_SOURCE_1_null', 'AMT_GOODS_PRICE_null', 'AMT_ANNUITY_null', 'OWN_CAR_AGE_null', 'CNT_FAM_MEMBERS_null', 'all_EXT_null', 'cat_NAME_CONTRACT_TYPE', 'cat_NAME_INCOME_TYPE_Commercial_associate', 'cat_NAME_INCOME_TYPE_Maternity_leave', 'cat_NAME_INCOME_TYPE_Pens"
+    },
+    {
+      "name": "C_no_edit_pred_matches_scored",
+      "passed": true,
+      "detail": "maxdiff=0"
+    },
+    {
+      "name": "C_edit_AMT_CREDIT_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_CREDIT', 'FE_CREDIT_TO_INCOME', 'FE_CREDIT_TO_GOODS', 'FE_ANNUITY_TO_CREDIT', 'FE_GOODS_PRICE_GAP', 'FE_LOAN_TENOR_MONTHS', 'FE_EXT_MEAN_CREDIT'] expected_present=['FE_CREDIT_TO_INCOME', 'FE_CREDIT_TO_GOODS', 'FE_ANNUITY_TO_CREDIT']"
+    },
+    {
+      "name": "C_edit_AMT_GOODS_PRICE_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_GOODS_PRICE', 'FE_CREDIT_TO_GOODS', 'FE_GOODS_PRICE_GAP'] expected_present=['FE_CREDIT_TO_GOODS', 'FE_GOODS_PRICE_GAP']"
+    },
+    {
+      "name": "C_edit_AMT_INCOME_TOTAL_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_INCOME_TOTAL', 'FE_ANNUITY_TO_INCOME', 'FE_CREDIT_TO_INCOME', 'FE_INCOME_PER_PERSON'] expected_present=['FE_ANNUITY_TO_INCOME', 'FE_CREDIT_TO_INCOME', 'FE_INCOME_PER_PERSON']"
+    },
+    {
+      "name": "C_edit_EXT_SOURCE_2_propagates",
+      "passed": true,
+      "detail": "changed=['EXT_SOURCE_2', 'FE_EXT_SOURCE_MEAN', 'FE_EXT_SOURCE_MIN', 'FE_EXT_SOURCE_STD', 'FE_EXT_SOURCE_PRODUCT', 'FE_EXT_MEAN_ANNUITY', 'FE_EXT_MEAN_CREDIT', 'ext_source_dispersion'] expected_present=['FE_EXT_SOURCE_MEAN', 'EXT_SOURCE_2']"
+    },
+    {
+      "name": "C_edit_DAYS_EMPLOYED_propagates",
+      "passed": true,
+      "detail": "changed=['DAYS_EMPLOYED', 'DAYS_EMPLOYED_ANOM', 'EMPLOYMENT_YEARS', 'FE_EMPLOYMENT_TO_AGE', 'FE_WORKING_SINCE_AGE'] expected_present=['DAYS_EMPLOYED_ANOM', 'EMPLOYMENT_YEARS', 'FE_EMPLOYMENT_TO_AGE']"
+    },
+    {
+      "name": "C_edit_changes_prediction",
+      "passed": true,
+      "detail": "0.362644->0.278237"
+    },
+    {
+      "name": "secret_scan_package",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "equiv_category_vs_object_A_bureau",
+      "passed": true,
+      "detail": "identical; nrows=400000"
+    },
+    {
+      "name": "equiv_category_vs_object_A_install",
+      "passed": true,
+      "detail": "identical; nrows=400000"
+    },
+    {
+      "name": "equiv_category_vs_object_A_prev",
+      "passed": true,
+      "detail": "identical; nrows=400000"
+    },
+    {
+      "name": "equiv_category_vs_object_A_cc",
+      "passed": true,
+      "detail": "identical; nrows=400000"
+    },
+    {
+      "name": "equiv_category_vs_object_A_pos",
+      "passed": true,
+      "detail": "identical; nrows=400000"
+    },
+    {
+      "name": "equiv_category_vs_object_Aprime_bureau",
+      "passed": true,
+      "detail": "identical; nrows=400000"
+    },
+    {
+      "name": "equiv_category_vs_object_Aprime_install",
+      "passed": true,
+      "detail": "identical; nrows=400000"
+    },
+    {
+      "name": "equiv_category_vs_object_Aprime_prev",
+      "passed": true,
+      "detail": "identical; nrows=400000"
+    },
+    {
+      "name": "equiv_category_vs_object_Aprime_cc",
+      "passed": true,
+      "detail": "identical; nrows=400000"
+    },
+    {
+      "name": "equiv_category_vs_object_Aprime_pos",
+      "passed": true,
+      "detail": "identical; nrows=400000"
+    },
+    {
+      "name": "A_oof_auc_recomputed_from_scored_table",
+      "passed": true,
+      "detail": "0.783617"
+    },
+    {
+      "name": "B_oof_auc_recomputed_from_scored_table",
+      "passed": true,
+      "detail": "0.773603"
+    },
+    {
+      "name": "C_oof_auc_recomputed_from_scored_table",
+      "passed": true,
+      "detail": "0.785804"
+    },
+    {
+      "name": "llm_features_index_alignment_audit",
+      "passed": true,
+      "detail": "25 accepted LLM features re-executed on real tables"
+    },
+    {
+      "name": "A_features_equal_reference_registry_set",
+      "passed": true,
+      "detail": "order_equal=True"
+    },
+    {
+      "name": "six_live_llm_calls_successful",
+      "passed": true,
+      "detail": "qwen/qwen3.8-27b"
+    },
+    {
+      "name": "gate_log_all_candidates_8_stages",
+      "passed": true,
+      "detail": {
+        "passed": 26,
+        "constant": 5,
+        "security_violation": 1
+      }
+    }
+  ],
+  "historical_reference": {
+    "note": "Historical numbers from the June-2026 notebooks (Colab). NOT produced by this run.",
+    "original_A_2026_06_03": {
+      "n_features": 241,
+      "oof_auc": 0.78362,
+      "ks": 0.42897,
+      "gini": 0.56723,
+      "brier": 0.18035,
+      "lift": 3.677,
+      "cv_std": 0.00349,
+      "fold_aucs": [
+        0.78014,
+        0.78828,
+        0.7822,
+        0.7873,
+        0.78025
+      ]
+    },
+    "bc_notebook_llama4_scout_2026_06_16": {
+      "llm": "meta-llama/llama-4-scout-17b-16e-instruct (decommissioned on Groq 2026-07-17)",
+      "A_prime": {
+        "n_features": 264,
+        "oof_auc": 0.78402,
+        "fold_aucs": [
+          0.78036,
+          0.78887,
+          0.78313,
+          0.78715,
+          0.78071
+        ]
+      },
+      "B": {
+        "n_features": 197,
+        "n_llm": 31,
+        "oof_auc": 0.77665,
+        "fold_aucs": [
+          0.7722,
+          0.78139,
+          0.77702,
+          0.77999,
+          0.77273
+        ]
+      },
+      "C": {
+        "n_features": 295,
+        "oof_auc": 0.78428,
+        "fold_aucs": [
+          0.78111,
+          0.78833,
+          0.78326,
+          0.78809,
+          0.7807
+        ]
+      },
+      "gate": {
+        "proposed": 32,
+        "passed": 31,
+        "code_error": 1
+      }
+    },
+    "_note": "Earlier Colab run (Llama-4-Scout era); reference only, NOT produced by this run. A' was CV'd only historically."
+  }
+}

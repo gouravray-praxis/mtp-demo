@@ -1,0 +1,86 @@
+TASK: Generate 5 customer-level features for BFSI credit default prediction.
+TARGET: Binary - 1=default (8.1% positive rate), 0=no default
+FOCUS: credit_card_balance (revolving credit utilization)
+
+=== TABLE SCHEMAS ===
+TABLE: credit_card_balance
+  join_key: SK_ID_CURR | rows: 3,840,312 | cols: 23
+  columns (name | dtype | samples | description):
+    SK_ID_PREV (int64) | [samples redacted] | ID of previous credit in Home Credit related to loan in our sample. (One loan in our sampl
+    MONTHS_BALANCE (int64) | [samples redacted] | Month of balance relative to application date (-1 means the freshest balance date)
+    AMT_BALANCE (float64) | [samples redacted] | Balance during the month of previous credit
+    AMT_CREDIT_LIMIT_ACTUAL (int64) | [samples redacted] | Credit card limit during the month of the previous credit
+    AMT_DRAWINGS_ATM_CURRENT (float64) | [samples redacted] | Amount drawing at ATM during the month of the previous credit
+    AMT_DRAWINGS_CURRENT (float64) | [samples redacted] | Amount drawing during the month of the previous credit
+    AMT_DRAWINGS_OTHER_CURRENT (float64) | [samples redacted] | Amount of other drawings during the month of the previous credit
+    AMT_DRAWINGS_POS_CURRENT (float64) | [samples redacted] | Amount drawing or buying goods during the month of the previous credit
+    AMT_INST_MIN_REGULARITY (float64) | [samples redacted] | Minimal installment for this month of the previous credit
+    AMT_PAYMENT_CURRENT (float64) | [samples redacted] | How much did the client pay during the month on the previous credit
+    AMT_PAYMENT_TOTAL_CURRENT (float64) | [samples redacted] | How much did the client pay during the month in total on the previous credit
+    AMT_RECEIVABLE_PRINCIPAL (float64) | [samples redacted] | Amount receivable for principal on the previous credit
+    AMT_RECIVABLE (float64) | [samples redacted] | Amount receivable on the previous credit
+    AMT_TOTAL_RECEIVABLE (float64) | [samples redacted] | Total amount receivable on the previous credit
+    CNT_DRAWINGS_ATM_CURRENT (float64) | [samples redacted] | Number of drawings at ATM during this month on the previous credit
+    CNT_DRAWINGS_CURRENT (int64) | [samples redacted] | Number of drawings during this month on the previous credit
+    CNT_DRAWINGS_OTHER_CURRENT (float64) | [samples redacted] | Number of other drawings during this month on the previous credit
+    CNT_DRAWINGS_POS_CURRENT (float64) | [samples redacted] | Number of drawings for goods during this month on the previous credit
+    CNT_INSTALMENT_MATURE_CUM (float64) | [samples redacted] | Number of paid installments on the previous credit
+    NAME_CONTRACT_STATUS (object) | [samples redacted] | Contract status during the month
+    SK_DPD (int64) | [samples redacted] | DPD (days past due) during the month of previous credit
+    SK_DPD_DEF (int64) | [samples redacted] | DPD during the month with tolerance (debts with low loan amounts are ignored) of the previ
+
+
+MANDATORY CODE PATTERN - follow EXACTLY, no deviations:
+
+# Pattern 1: For auxiliary table features (groupby + merge to SK_ID_CURR)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    agg = bureau.groupby('SK_ID_CURR').agg(val=('AMT_CREDIT_SUM','mean')).reset_index()
+    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')
+    return result.set_index('SK_ID_CURR')['val'].rename('feature_name')
+
+# Pattern 2: For bureau_balance (join bureau first to get SK_ID_CURR)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    bb  = bureau_bal.merge(bureau[['SK_ID_BUREAU','SK_ID_CURR']], on='SK_ID_BUREAU', how='left')
+    agg = bb.groupby('SK_ID_CURR').agg(val=('STATUS','count')).reset_index()
+    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')
+    return result.set_index('SK_ID_CURR')['val'].rename('feature_name')
+
+# Pattern 3: For application_train (direct row-level computation)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    result = app_train[['SK_ID_CURR']].copy()
+    result['feature_name'] = app_train['AMT_CREDIT'] / (app_train['AMT_INCOME_TOTAL'] + 1)
+    return result.set_index('SK_ID_CURR')['feature_name']
+
+
+DO NOT recreate these human-designed features:
+  - CC_COUNT
+  - CC_BALANCE_MEAN
+  - CC_BALANCE_MAX
+  - CC_UTILIZATION_MEAN
+  - CC_UTILIZATION_MAX
+  - CC_DRAWING_RATIO_MEAN
+  - CC_OVERDRAWN_RATE
+  - CC_OVERDRAWN_COUNT
+  - CC_DPD_DEF_MEAN
+  - CC_DPD_MEAN
+  - CC_TOTAL_DRAWINGS
+
+
+
+REQUIREMENTS:
+1. Generate EXACTLY 5 features, all from the specified tables
+2. Every feature aggregated to SK_ID_CURR level
+3. Use ONLY column names as shown in schemas - no hallucination
+4. Handle NaN: use .fillna(0) or how='left' merge
+5. Guard all divisions: divide by (denominator + 1) or use np.where
+6. Always return pd.Series indexed by SK_ID_CURR (follow patterns above)
+7. feature_name: snake_case only, max 50 chars
+
+Return ONLY this JSON - no markdown, no preamble:
+{"features": [
+  {"feature_name": "snake_case_name",
+    "rationale": "BFSI credit risk rationale in one sentence",
+    "source_tables": ["table_name"],
+    "python_code": "def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash): ..."
+  }
+]}

@@ -1,0 +1,65 @@
+TASK: Generate 5 customer-level features for BFSI credit default prediction.
+TARGET: Binary - 1=default (8.1% positive rate), 0=no default
+FOCUS: POS_CASH_balance (point-of-sale and cash loan history)
+
+=== TABLE SCHEMAS ===
+TABLE: POS_CASH_balance
+  join_key: SK_ID_CURR | rows: 10,001,358 | cols: 8
+  columns (name | dtype | samples | description):
+    SK_ID_PREV (int64) | [samples redacted] | ID of previous credit in Home Credit related to loan in our sample. (One loan in our sampl
+    MONTHS_BALANCE (int64) | [samples redacted] | Month of balance relative to application date (-1 means the freshest balance date)
+    CNT_INSTALMENT (float64) | [samples redacted] | Term of previous credit (can change over time)
+    CNT_INSTALMENT_FUTURE (float64) | [samples redacted] | Installments left to pay on the previous credit
+    NAME_CONTRACT_STATUS (object) | [samples redacted] | Contract status during the month
+    SK_DPD (int64) | [samples redacted] | DPD (days past due) during the month of previous credit
+    SK_DPD_DEF (int64) | [samples redacted] | DPD during the month with tolerance (debts with low loan amounts are ignored) of the previ
+
+
+MANDATORY CODE PATTERN - follow EXACTLY, no deviations:
+
+# Pattern 1: For auxiliary table features (groupby + merge to SK_ID_CURR)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    agg = bureau.groupby('SK_ID_CURR').agg(val=('AMT_CREDIT_SUM','mean')).reset_index()
+    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')
+    return result.set_index('SK_ID_CURR')['val'].rename('feature_name')
+
+# Pattern 2: For bureau_balance (join bureau first to get SK_ID_CURR)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    bb  = bureau_bal.merge(bureau[['SK_ID_BUREAU','SK_ID_CURR']], on='SK_ID_BUREAU', how='left')
+    agg = bb.groupby('SK_ID_CURR').agg(val=('STATUS','count')).reset_index()
+    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')
+    return result.set_index('SK_ID_CURR')['val'].rename('feature_name')
+
+# Pattern 3: For application_train (direct row-level computation)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    result = app_train[['SK_ID_CURR']].copy()
+    result['feature_name'] = app_train['AMT_CREDIT'] / (app_train['AMT_INCOME_TOTAL'] + 1)
+    return result.set_index('SK_ID_CURR')['feature_name']
+
+
+DO NOT recreate these human-designed features:
+  - POS_COUNT
+  - POS_MONTHS_BALANCE_MEAN
+  - POS_CNT_INSTALMENT_MEAN
+  - POS_DPD_MEAN
+  - POS_DPD_DEF_MEAN
+
+
+
+REQUIREMENTS:
+1. Generate EXACTLY 5 features, all from the specified tables
+2. Every feature aggregated to SK_ID_CURR level
+3. Use ONLY column names as shown in schemas - no hallucination
+4. Handle NaN: use .fillna(0) or how='left' merge
+5. Guard all divisions: divide by (denominator + 1) or use np.where
+6. Always return pd.Series indexed by SK_ID_CURR (follow patterns above)
+7. feature_name: snake_case only, max 50 chars
+
+Return ONLY this JSON - no markdown, no preamble:
+{"features": [
+  {"feature_name": "snake_case_name",
+    "rationale": "BFSI credit risk rationale in one sentence",
+    "source_tables": ["table_name"],
+    "python_code": "def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash): ..."
+  }
+]}

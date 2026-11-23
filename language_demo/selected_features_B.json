@@ -1,0 +1,98 @@
+{
+  "pipeline": "B",
+  "repeat": 1,
+  "feature_order": [
+    "llm_case_pos_spread",
+    "llm_case_gap_ratio",
+    "llm_case_first_last_dist",
+    "llm_case_adjacency",
+    "llm_subj_obj_dist",
+    "llm_subj_pos_norm",
+    "llm_obj_pos_norm",
+    "llm_subj_obj_ratio",
+    "llm_dep_len_norm",
+    "llm_max_dep_len",
+    "llm_case_adjacency_ratio",
+    "llm_case_run_max",
+    "llm_case_swap_count"
+  ],
+  "n_features": 13,
+  "selection_rule": "all llm_ columns in llm_difference_features.parquet that passed the validation gate in every fold (validation_log.csv), minus identical-copy columns and columns constant on the training rows (original fit_fold 'usable' rule); order = proposed_features.json order",
+  "llm_columns_in_parquet": 20,
+  "dropped_identical": [
+    {
+      "column": "llm_subj_obj_span",
+      "copies": "llm_subj_obj_dist"
+    },
+    {
+      "column": "llm_form_repeat_ratio",
+      "copies": "llm_case_density"
+    },
+    {
+      "column": "llm_form_len_var",
+      "copies": "llm_case_density"
+    },
+    {
+      "column": "llm_form_len_range",
+      "copies": "llm_case_density"
+    },
+    {
+      "column": "llm_form_len_std",
+      "copies": "llm_case_density"
+    },
+    {
+      "column": "llm_subj_obj_dep_diff",
+      "copies": "llm_subj_obj_dist"
+    }
+  ],
+  "dropped_constant_on_train": [
+    "llm_case_density"
+  ],
+  "original_per_fold_rfecv_selected": {
+    "0": [
+      "llm_case_pos_spread",
+      "llm_case_gap_ratio",
+      "llm_case_first_last_dist",
+      "llm_case_adjacency",
+      "llm_obj_pos_norm",
+      "llm_subj_obj_ratio",
+      "llm_dep_len_norm",
+      "llm_max_dep_len",
+      "llm_case_adjacency_ratio"
+    ],
+    "1": [
+      "llm_case_pos_spread",
+      "llm_case_gap_ratio",
+      "llm_case_first_last_dist",
+      "llm_case_adjacency",
+      "llm_subj_obj_dist",
+      "llm_subj_pos_norm",
+      "llm_obj_pos_norm",
+      "llm_subj_obj_ratio",
+      "llm_dep_len_norm",
+      "llm_max_dep_len",
+      "llm_case_adjacency_ratio",
+      "llm_case_run_max"
+    ],
+    "2": [
+      "llm_case_pos_spread",
+      "llm_obj_pos_norm",
+      "llm_subj_obj_ratio",
+      "llm_max_dep_len"
+    ]
+  },
+  "union_of_original_fold_rfecv_selected_(info_only)": [
+    "llm_case_pos_spread",
+    "llm_case_gap_ratio",
+    "llm_case_first_last_dist",
+    "llm_case_adjacency",
+    "llm_obj_pos_norm",
+    "llm_subj_obj_ratio",
+    "llm_dep_len_norm",
+    "llm_max_dep_len",
+    "llm_case_adjacency_ratio",
+    "llm_subj_obj_dist",
+    "llm_subj_pos_norm",
+    "llm_case_run_max"
+  ]
+}

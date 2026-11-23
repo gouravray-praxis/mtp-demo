@@ -1,0 +1,189 @@
+TASK: Generate 6 customer-level features for BFSI credit default prediction.
+TARGET: Binary - 1=default (8.1% positive rate), 0=no default
+FOCUS: application_train (single-table row-level features)
+
+=== TABLE SCHEMAS ===
+TABLE: application_train
+  join_key: SK_ID_CURR | rows: 307,511 | cols: 121
+  columns (name | dtype | samples | description):
+    NAME_CONTRACT_TYPE (object) | [samples redacted] | Identification if loan is cash or revolving
+    CODE_GENDER (object) | [samples redacted] | Gender of the client
+    FLAG_OWN_CAR (object) | [samples redacted] | Flag if the client owns a car
+    FLAG_OWN_REALTY (object) | [samples redacted] | Flag if client owns a house or flat
+    CNT_CHILDREN (int64) | [samples redacted] | Number of children the client has
+    AMT_INCOME_TOTAL (float64) | [samples redacted] | Income of the client
+    AMT_CREDIT (float64) | [samples redacted] | Credit amount of the loan
+    AMT_ANNUITY (float64) | [samples redacted] | Loan annuity
+    AMT_GOODS_PRICE (float64) | [samples redacted] | For consumer loans it is the price of the goods for which the loan is given
+    NAME_TYPE_SUITE (object) | [samples redacted] | Who was accompanying client when he was applying for the loan
+    NAME_INCOME_TYPE (object) | [samples redacted] | Clients income type (businessman, working, maternity leave,)
+    NAME_EDUCATION_TYPE (object) | [samples redacted] | Level of highest education the client achieved
+    NAME_FAMILY_STATUS (object) | [samples redacted] | Family status of the client
+    NAME_HOUSING_TYPE (object) | [samples redacted] | What is the housing situation of the client (renting, living with parents, ...)
+    REGION_POPULATION_RELATIVE (float64) | [samples redacted] | Normalized population of region where client lives (higher number means the client lives i
+    DAYS_BIRTH (int64) | [samples redacted] | Client's age in days at the time of application
+    DAYS_EMPLOYED (int64) | [samples redacted] | How many days before the application the person started current employment
+    DAYS_REGISTRATION (float64) | [samples redacted] | How many days before the application did client change his registration
+    DAYS_ID_PUBLISH (int64) | [samples redacted] | How many days before the application did client change the identity document with which he
+    OWN_CAR_AGE (float64) | [samples redacted] | Age of client's car
+    FLAG_MOBIL (int64) | [samples redacted] | Did client provide mobile phone (1=YES, 0=NO)
+    FLAG_EMP_PHONE (int64) | [samples redacted] | Did client provide work phone (1=YES, 0=NO)
+    FLAG_WORK_PHONE (int64) | [samples redacted] | Did client provide home phone (1=YES, 0=NO)
+    FLAG_CONT_MOBILE (int64) | [samples redacted] | Was mobile phone reachable (1=YES, 0=NO)
+    FLAG_PHONE (int64) | [samples redacted] | Did client provide home phone (1=YES, 0=NO)
+    FLAG_EMAIL (int64) | [samples redacted] | Did client provide email (1=YES, 0=NO)
+    OCCUPATION_TYPE (object) | [samples redacted] | What kind of occupation does the client have
+    CNT_FAM_MEMBERS (float64) | [samples redacted] | How many family members does client have
+    REGION_RATING_CLIENT (int64) | [samples redacted] | Our rating of the region where client lives (1,2,3)
+    REGION_RATING_CLIENT_W_CITY (int64) | [samples redacted] | Our rating of the region where client lives with taking city into account (1,2,3)
+    WEEKDAY_APPR_PROCESS_START (object) | [samples redacted] | On which day of the week did the client apply for the loan
+    HOUR_APPR_PROCESS_START (int64) | [samples redacted] | Approximately at what hour did the client apply for the loan
+    REG_REGION_NOT_LIVE_REGION (int64) | [samples redacted] | Flag if client's permanent address does not match contact address (1=different, 0=same, at
+    REG_REGION_NOT_WORK_REGION (int64) | [samples redacted] | Flag if client's permanent address does not match work address (1=different, 0=same, at re
+    LIVE_REGION_NOT_WORK_REGION (int64) | [samples redacted] | Flag if client's contact address does not match work address (1=different, 0=same, at regi
+    REG_CITY_NOT_LIVE_CITY (int64) | [samples redacted] | Flag if client's permanent address does not match contact address (1=different, 0=same, at
+    REG_CITY_NOT_WORK_CITY (int64) | [samples redacted] | Flag if client's permanent address does not match work address (1=different, 0=same, at ci
+    LIVE_CITY_NOT_WORK_CITY (int64) | [samples redacted] | Flag if client's contact address does not match work address (1=different, 0=same, at city
+    ORGANIZATION_TYPE (object) | [samples redacted] | Type of organization where client works
+    EXT_SOURCE_1 (float64) | [samples redacted] | Normalized score from external data source
+    EXT_SOURCE_2 (float64) | [samples redacted] | Normalized score from external data source
+    EXT_SOURCE_3 (float64) | [samples redacted] | Normalized score from external data source
+    APARTMENTS_AVG (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    BASEMENTAREA_AVG (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    YEARS_BEGINEXPLUATATION_AVG (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    YEARS_BUILD_AVG (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    COMMONAREA_AVG (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    ELEVATORS_AVG (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    ENTRANCES_AVG (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    FLOORSMAX_AVG (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    FLOORSMIN_AVG (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    LANDAREA_AVG (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    LIVINGAPARTMENTS_AVG (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    LIVINGAREA_AVG (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    NONLIVINGAPARTMENTS_AVG (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    NONLIVINGAREA_AVG (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    APARTMENTS_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    BASEMENTAREA_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    YEARS_BEGINEXPLUATATION_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    YEARS_BUILD_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    COMMONAREA_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    ELEVATORS_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    ENTRANCES_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    FLOORSMAX_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    FLOORSMIN_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    LANDAREA_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    LIVINGAPARTMENTS_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    LIVINGAREA_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    NONLIVINGAPARTMENTS_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    NONLIVINGAREA_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    APARTMENTS_MEDI (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    BASEMENTAREA_MEDI (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    YEARS_BEGINEXPLUATATION_MEDI (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    YEARS_BUILD_MEDI (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    COMMONAREA_MEDI (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    ELEVATORS_MEDI (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    ENTRANCES_MEDI (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    FLOORSMAX_MEDI (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    FLOORSMIN_MEDI (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    LANDAREA_MEDI (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    LIVINGAPARTMENTS_MEDI (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    LIVINGAREA_MEDI (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    NONLIVINGAPARTMENTS_MEDI (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    NONLIVINGAREA_MEDI (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    FONDKAPREMONT_MODE (object) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    HOUSETYPE_MODE (object) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    TOTALAREA_MODE (float64) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    WALLSMATERIAL_MODE (object) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    EMERGENCYSTATE_MODE (object) | [samples redacted] | Normalized information about building where the client lives, What is average (_AVG suffix
+    OBS_30_CNT_SOCIAL_CIRCLE (float64) | [samples redacted] | How many observation of client's social surroundings with observable 30 DPD (days past due
+    DEF_30_CNT_SOCIAL_CIRCLE (float64) | [samples redacted] | How many observation of client's social surroundings defaulted on 30 DPD (days past due)
+    OBS_60_CNT_SOCIAL_CIRCLE (float64) | [samples redacted] | How many observation of client's social surroundings with observable 60 DPD (days past due
+    DEF_60_CNT_SOCIAL_CIRCLE (float64) | [samples redacted] | How many observation of client's social surroundings defaulted on 60 (days past due) DPD
+    DAYS_LAST_PHONE_CHANGE (float64) | [samples redacted] | How many days before application did client change phone
+    FLAG_DOCUMENT_2 (int64) | [samples redacted] | Did client provide document 2
+    FLAG_DOCUMENT_3 (int64) | [samples redacted] | Did client provide document 3
+    FLAG_DOCUMENT_4 (int64) | [samples redacted] | Did client provide document 4
+    FLAG_DOCUMENT_5 (int64) | [samples redacted] | Did client provide document 5
+    FLAG_DOCUMENT_6 (int64) | [samples redacted] | Did client provide document 6
+    FLAG_DOCUMENT_7 (int64) | [samples redacted] | Did client provide document 7
+    FLAG_DOCUMENT_8 (int64) | [samples redacted] | Did client provide document 8
+    FLAG_DOCUMENT_9 (int64) | [samples redacted] | Did client provide document 9
+    FLAG_DOCUMENT_10 (int64) | [samples redacted] | Did client provide document 10
+    FLAG_DOCUMENT_11 (int64) | [samples redacted] | Did client provide document 11
+    FLAG_DOCUMENT_12 (int64) | [samples redacted] | Did client provide document 12
+    FLAG_DOCUMENT_13 (int64) | [samples redacted] | Did client provide document 13
+    FLAG_DOCUMENT_14 (int64) | [samples redacted] | Did client provide document 14
+    FLAG_DOCUMENT_15 (int64) | [samples redacted] | Did client provide document 15
+    FLAG_DOCUMENT_16 (int64) | [samples redacted] | Did client provide document 16
+    FLAG_DOCUMENT_17 (int64) | [samples redacted] | Did client provide document 17
+    FLAG_DOCUMENT_18 (int64) | [samples redacted] | Did client provide document 18
+    FLAG_DOCUMENT_19 (int64) | [samples redacted] | Did client provide document 19
+    FLAG_DOCUMENT_20 (int64) | [samples redacted] | Did client provide document 20
+    FLAG_DOCUMENT_21 (int64) | [samples redacted] | Did client provide document 21
+    AMT_REQ_CREDIT_BUREAU_HOUR (float64) | [samples redacted] | Number of enquiries to Credit Bureau about the client one hour before application
+    AMT_REQ_CREDIT_BUREAU_DAY (float64) | [samples redacted] | Number of enquiries to Credit Bureau about the client one day before application (excludin
+    AMT_REQ_CREDIT_BUREAU_WEEK (float64) | [samples redacted] | Number of enquiries to Credit Bureau about the client one week before application (excludi
+    AMT_REQ_CREDIT_BUREAU_MON (float64) | [samples redacted] | Number of enquiries to Credit Bureau about the client one month before application (exclud
+    AMT_REQ_CREDIT_BUREAU_QRT (float64) | [samples redacted] | Number of enquiries to Credit Bureau about the client 3 month before application (excludin
+    AMT_REQ_CREDIT_BUREAU_YEAR (float64) | [samples redacted] | Number of enquiries to Credit Bureau about the client one day year (excluding last 3 month
+
+
+MANDATORY CODE PATTERN - follow EXACTLY, no deviations:
+
+# Pattern 1: For auxiliary table features (groupby + merge to SK_ID_CURR)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    agg = bureau.groupby('SK_ID_CURR').agg(val=('AMT_CREDIT_SUM','mean')).reset_index()
+    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')
+    return result.set_index('SK_ID_CURR')['val'].rename('feature_name')
+
+# Pattern 2: For bureau_balance (join bureau first to get SK_ID_CURR)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    bb  = bureau_bal.merge(bureau[['SK_ID_BUREAU','SK_ID_CURR']], on='SK_ID_BUREAU', how='left')
+    agg = bb.groupby('SK_ID_CURR').agg(val=('STATUS','count')).reset_index()
+    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')
+    return result.set_index('SK_ID_CURR')['val'].rename('feature_name')
+
+# Pattern 3: For application_train (direct row-level computation)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    result = app_train[['SK_ID_CURR']].copy()
+    result['feature_name'] = app_train['AMT_CREDIT'] / (app_train['AMT_INCOME_TOTAL'] + 1)
+    return result.set_index('SK_ID_CURR')['feature_name']
+
+
+DO NOT recreate these human-designed features:
+  - FE_ANNUITY_TO_INCOME
+  - FE_CREDIT_TO_INCOME
+  - FE_CREDIT_TO_GOODS
+  - FE_ANNUITY_TO_CREDIT
+  - FE_INCOME_PER_PERSON
+  - FE_GOODS_PRICE_GAP
+  - FE_EMPLOYMENT_TO_AGE
+  - FE_WORKING_SINCE_AGE
+  - FE_DOCS_SUBMITTED
+  - FE_ENQUIRY_TOTAL
+  - FE_EXT_SOURCE_MEAN
+  - FE_EXT_SOURCE_MIN
+  - FE_EXT_SOURCE_MAX
+  - FE_EXT_SOURCE_STD
+  - FE_EXT_MEAN_ANNUITY
+  - FE_EXT_MEAN_CREDIT
+
+
+
+REQUIREMENTS:
+1. Generate EXACTLY 6 features, all from the specified tables
+2. Every feature aggregated to SK_ID_CURR level
+3. Use ONLY column names as shown in schemas - no hallucination
+4. Handle NaN: use .fillna(0) or how='left' merge
+5. Guard all divisions: divide by (denominator + 1) or use np.where
+6. Always return pd.Series indexed by SK_ID_CURR (follow patterns above)
+7. feature_name: snake_case only, max 50 chars
+
+Return ONLY this JSON - no markdown, no preamble:
+{"features": [
+  {"feature_name": "snake_case_name",
+    "rationale": "BFSI credit risk rationale in one sentence",
+    "source_tables": ["table_name"],
+    "python_code": "def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash): ..."
+  }
+]}

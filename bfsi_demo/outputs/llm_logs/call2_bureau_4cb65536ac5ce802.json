@@ -1,0 +1,40 @@
+{
+ "label": "call2_bureau",
+ "model": "qwen/qwen3.8-27b",
+ "prompt_sha16": "4cb65536ac5ce802",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 1858,
+  "completion_tokens": 1433,
+  "total_tokens": 3291
+ },
+ "attempts": [
+  {
+   "attempt": 1,
+   "ok": false,
+   "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_deman",
+   "s": 0.05
+  },
+  {
+   "attempt": 2,
+   "ok": false,
+   "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_deman",
+   "s": 0.05
+  },
+  {
+   "attempt": 3,
+   "ok": false,
+   "error": "RateLimitError: Error code: 429 - {'error': {'message': \"Request too large for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_demand",
+   "s": 0.14
+  },
+  {
+   "attempt": 4,
+   "ok": true,
+   "finish_reason": "stop",
+   "s": 3.57
+  }
+ ],
+ "cached": false,
+ "elapsed_s": 3.57,
+ "content": "{\n  \"features\": [\n    {\n      \"feature_name\": \"bureau_active_credit_count\",\n      \"rationale\": \"Counts the number of currently active credit lines, indicating current leverage and potential over-indebtedness.\",\n      \"source_tables\": [\n        \"bureau\"\n      ],\n      \"python_code\": \"def compute_bureau_active_credit_count(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\\n    bureau['is_active'] = (bureau['CREDIT_ACTIVE'] == 'Active').astype(int)\\n    agg = bureau.groupby('SK_ID_CURR').agg(val=('is_active', 'sum')).reset_index()\\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\\n    result['val'] = result['val'].fillna(0)\\n    return result.set_index('SK_ID_CURR')['val'].rename('bureau_active_credit_count')\"\n    },\n    {\n      \"feature_name\": \"bureau_debt_to_limit_ratio\",\n      \"rationale\": \"Measures the utilization rate of available credit limits, a strong predictor of cash flow stress and default risk.\",\n      \"source_tables\": [\n        \"bureau\"\n      ],\n      \"python_code\": \"def compute_bureau_debt_to_limit_ratio(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\\n    bureau['debt_limit_ratio'] = bureau['AMT_CREDIT_SUM_DEBT'] / (bureau['AMT_CREDIT_SUM_LIMIT'] + 1)\\n    agg = bureau.groupby('SK_ID_CURR').agg(val=('debt_limit_ratio', 'mean')).reset_index()\\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\\n    result['val'] = result['val'].fillna(0)\\n    return result.set_index('SK_ID_CURR')['val'].rename('bureau_debt_to_limit_ratio')\"\n    },\n    {\n      \"feature_name\": \"bureau_max_overdue_amount\",\n      \"rationale\": \"Captures the peak historical delinquency amount, reflecting the severity of past payment failures.\",\n      \"source_tables\": [\n        \"bureau\"\n      ],\n      \"python_code\": \"def compute_bureau_max_overdue_amount(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\\n    agg = bureau.groupby('SK_ID_CURR').agg(val=('AMT_CREDIT_MAX_OVERDUE', 'max')).reset_index()\\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\\n    result['val'] = result['val'].fillna(0)\\n    return result.set_index('SK_ID_CURR')['val'].rename('bureau_max_overdue_amount')\"\n    },\n    {\n      \"feature_name\": \"bureau_balance_dpd30_plus_count\",\n      \"rationale\": \"Counts months with significant delinquency (DPD 30+), indicating persistent payment difficulties.\",\n      \"source_tables\": [\n        \"bureau_balance\",\n        \"bureau\"\n      ],\n      \"python_code\": \"def compute_bureau_balance_dpd30_plus_count(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\\n    bb = bureau_bal.merge(bureau[['SK_ID_BUREAU', 'SK_ID_CURR']], on='SK_ID_BUREAU', how='left')\\n    bb['is_dpd30_plus'] = bb['STATUS'].isin(['1', '2', '3', '4', '5']).astype(int)\\n    agg = bb.groupby('SK_ID_CURR').agg(val=('is_dpd30_plus', 'sum')).reset_index()\\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\\n    result['val'] = result['val'].fillna(0)\\n    return result.set_index('SK_ID_CURR')['val'].rename('bureau_balance_dpd30_plus_count')\"\n    },\n    {\n      \"feature_name\": \"bureau_balance_recent_dpd_ratio\",\n      \"rationale\": \"Calculates the proportion of delinquent months in the last 6 months, highlighting recent behavioral deterioration.\",\n      \"source_tables\": [\n        \"bureau_balance\",\n        \"bureau\"\n      ],\n      \"python_code\": \"def compute_bureau_balance_recent_dpd_ratio(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\\n    bb = bureau_bal.merge(bureau[['SK_ID_BUREAU', 'SK_ID_CURR']], on='SK_ID_BUREAU', how='left')\\n    recent = bb[bb['MONTHS_BALANCE'] >= -6]\\n    recent['is_dpd'] = recent['STATUS'].isin(['1', '2', '3', '4', '5']).astype(int)\\n    agg = recent.groupby('SK_ID_CURR').agg(total=('is_dpd', 'count'), dpd=('is_dpd', 'sum')).reset_index()\\n    agg['val'] = agg['dpd'] / (agg['total'] + 1)\\n    result = app_train[['SK_ID_CURR']].merge(agg[['SK_ID_CURR', 'val']], on='SK_ID_CURR', how='left')\\n    result['val'] = result['val'].fillna(0)\\n    return result.set_index('SK_ID_CURR')['val'].rename('bureau_balance_recent_dpd_ratio')\"\n    },\n    {\n      \"feature_name\": \"bureau_credit_prolong_count\",\n      \"rationale\": \"Aggregates the number of credit extensions, suggesting potential liquidity issues or inability to repay on time.\",\n      \"source_tables\": [\n        \"bureau\"\n      ],\n      \"python_code\": \"def compute_bureau_credit_prolong_count(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\\n    agg = bureau.groupby('SK_ID_CURR').agg(val=('CNT_CREDIT_PROLONG', 'sum')).reset_index()\\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\\n    result['val'] = result['val'].fillna(0)\\n    return result.set_index('SK_ID_CURR')['val'].rename('bureau_credit_prolong_count')\"\n    }\n  ]\n}"
+}

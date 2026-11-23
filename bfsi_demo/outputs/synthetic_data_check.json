@@ -1,0 +1,40 @@
+{
+ "synthetic": true,
+ "seed": 42,
+ "n_customers": 200,
+ "id_range": [
+  900001,
+  900200
+ ],
+ "no_edit_recompute_identity": {
+  "A": {
+   "rows_checked": 200,
+   "mismatches": 0
+  },
+  "B": {
+   "rows_checked": 200,
+   "mismatches": 0
+  },
+  "C": {
+   "rows_checked": 200,
+   "mismatches": 0
+  }
+ },
+ "application_level_columns_from_pipeline": {
+  "A": 167,
+  "B": 172,
+  "C": 192
+ },
+ "auxiliary_columns_sampled_from_marginals": {
+  "A": 74,
+  "B": 19,
+  "C": 97
+ },
+ "oof_equals_pred": true,
+ "synthetic_target_rate": 0.09,
+ "mean_pred": {
+  "A": 0.3813,
+  "B": 0.4257,
+  "C": 0.398
+ }
+}

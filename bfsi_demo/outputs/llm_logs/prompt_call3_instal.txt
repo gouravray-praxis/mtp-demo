@@ -1,0 +1,74 @@
+TASK: Generate 5 customer-level features for BFSI credit default prediction.
+TARGET: Binary - 1=default (8.1% positive rate), 0=no default
+FOCUS: installments_payments (payment behavior history)
+
+=== TABLE SCHEMAS ===
+TABLE: installments_payments
+  join_key: SK_ID_CURR | rows: 13,605,401 | cols: 8
+  columns (name | dtype | samples | description):
+    SK_ID_PREV (int64) | [samples redacted] | ID of previous credit in Home Credit related to loan in our sample. (One loan in our sampl
+    NUM_INSTALMENT_VERSION (float64) | [samples redacted] | Version of installment calendar (0 is for credit card) of previous credit. Change of insta
+    NUM_INSTALMENT_NUMBER (int64) | [samples redacted] | On which installment we observe payment
+    DAYS_INSTALMENT (float64) | [samples redacted] | When the installment of previous credit was supposed to be paid (relative to application d
+    DAYS_ENTRY_PAYMENT (float64) | [samples redacted] | When was the installments of previous credit paid actually (relative to application date o
+    AMT_INSTALMENT (float64) | [samples redacted] | What was the prescribed installment amount of previous credit on this installment
+    AMT_PAYMENT (float64) | [samples redacted] | What the client actually paid on previous credit on this installment
+
+
+MANDATORY CODE PATTERN - follow EXACTLY, no deviations:
+
+# Pattern 1: For auxiliary table features (groupby + merge to SK_ID_CURR)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    agg = bureau.groupby('SK_ID_CURR').agg(val=('AMT_CREDIT_SUM','mean')).reset_index()
+    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')
+    return result.set_index('SK_ID_CURR')['val'].rename('feature_name')
+
+# Pattern 2: For bureau_balance (join bureau first to get SK_ID_CURR)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    bb  = bureau_bal.merge(bureau[['SK_ID_BUREAU','SK_ID_CURR']], on='SK_ID_BUREAU', how='left')
+    agg = bb.groupby('SK_ID_CURR').agg(val=('STATUS','count')).reset_index()
+    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')
+    return result.set_index('SK_ID_CURR')['val'].rename('feature_name')
+
+# Pattern 3: For application_train (direct row-level computation)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    result = app_train[['SK_ID_CURR']].copy()
+    result['feature_name'] = app_train['AMT_CREDIT'] / (app_train['AMT_INCOME_TOTAL'] + 1)
+    return result.set_index('SK_ID_CURR')['feature_name']
+
+
+DO NOT recreate these human-designed features:
+  - INSTAL_COUNT
+  - INSTAL_PAYMENT_RATIO_MEAN
+  - INSTAL_PAYMENT_RATIO_MIN
+  - INSTAL_PAYMENT_DIFF_MEAN
+  - INSTAL_PAYMENT_DIFF_MAX
+  - INSTAL_DAYS_LATE_MEAN
+  - INSTAL_DAYS_LATE_MAX
+  - INSTAL_DAYS_LATE_STD
+  - INSTAL_LATE_COUNT
+  - INSTAL_LATE_RATE
+  - INSTAL_UNDERPAID_RATE
+  - INSTAL_AMT_PAID_SUM
+  - INSTAL_UNIQUE_LOANS
+  - INSTAL_TOTAL_COVERAGE
+
+
+
+REQUIREMENTS:
+1. Generate EXACTLY 5 features, all from the specified tables
+2. Every feature aggregated to SK_ID_CURR level
+3. Use ONLY column names as shown in schemas - no hallucination
+4. Handle NaN: use .fillna(0) or how='left' merge
+5. Guard all divisions: divide by (denominator + 1) or use np.where
+6. Always return pd.Series indexed by SK_ID_CURR (follow patterns above)
+7. feature_name: snake_case only, max 50 chars
+
+Return ONLY this JSON - no markdown, no preamble:
+{"features": [
+  {"feature_name": "snake_case_name",
+    "rationale": "BFSI credit risk rationale in one sentence",
+    "source_tables": ["table_name"],
+    "python_code": "def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash): ..."
+  }
+]}

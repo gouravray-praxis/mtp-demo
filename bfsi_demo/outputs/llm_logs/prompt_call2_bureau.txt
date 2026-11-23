@@ -1,0 +1,100 @@
+TASK: Generate 6 customer-level features for BFSI credit default prediction.
+TARGET: Binary - 1=default (8.1% positive rate), 0=no default
+FOCUS: bureau + bureau_balance (external credit history)
+
+=== TABLE SCHEMAS ===
+TABLE: bureau
+  join_key: SK_ID_CURR | rows: 1,716,428 | cols: 17
+  columns (name | dtype | samples | description):
+    SK_ID_BUREAU (int64) | [samples redacted]
+    CREDIT_ACTIVE (object) | [samples redacted] | Status of the Credit Bureau (CB) reported credits
+    CREDIT_CURRENCY (object) | [samples redacted] | Recoded currency of the Credit Bureau credit
+    DAYS_CREDIT (int64) | [samples redacted] | How many days before current application did client apply for Credit Bureau credit
+    CREDIT_DAY_OVERDUE (int64) | [samples redacted] | Number of days past due on CB credit at the time of application for related loan in our sa
+    DAYS_CREDIT_ENDDATE (float64) | [samples redacted] | Remaining duration of CB credit (in days) at the time of application in Home Credit
+    DAYS_ENDDATE_FACT (float64) | [samples redacted] | Days since CB credit ended at the time of application in Home Credit (only for closed cred
+    AMT_CREDIT_MAX_OVERDUE (float64) | [samples redacted] | Maximal amount overdue on the Credit Bureau credit so far (at application date of loan in 
+    CNT_CREDIT_PROLONG (int64) | [samples redacted] | How many times was the Credit Bureau credit prolonged
+    AMT_CREDIT_SUM (float64) | [samples redacted] | Current credit amount for the Credit Bureau credit
+    AMT_CREDIT_SUM_DEBT (float64) | [samples redacted] | Current debt on Credit Bureau credit
+    AMT_CREDIT_SUM_LIMIT (float64) | [samples redacted] | Current credit limit of credit card reported in Credit Bureau
+    AMT_CREDIT_SUM_OVERDUE (float64) | [samples redacted] | Current amount overdue on Credit Bureau credit
+    CREDIT_TYPE (object) | [samples redacted] | Type of Credit Bureau credit (Car, cash,...)
+    DAYS_CREDIT_UPDATE (int64) | [samples redacted] | How many days before loan application did last information about the Credit Bureau credit 
+    AMT_ANNUITY (float64) | [samples redacted] | Loan annuity
+
+TABLE: bureau_balance
+  join_key: SK_ID_BUREAU | rows: 27,299,925 | cols: 3
+  columns (name | dtype | samples | description):
+    MONTHS_BALANCE (int64) | [samples redacted] | Month of balance relative to application date (-1 means the freshest balance date)
+    STATUS (object) | [samples redacted] | Status of Credit Bureau loan during the month (active, closed, DPD0-30, [C means closed, 
+
+
+MANDATORY CODE PATTERN - follow EXACTLY, no deviations:
+
+# Pattern 1: For auxiliary table features (groupby + merge to SK_ID_CURR)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    agg = bureau.groupby('SK_ID_CURR').agg(val=('AMT_CREDIT_SUM','mean')).reset_index()
+    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')
+    return result.set_index('SK_ID_CURR')['val'].rename('feature_name')
+
+# Pattern 2: For bureau_balance (join bureau first to get SK_ID_CURR)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    bb  = bureau_bal.merge(bureau[['SK_ID_BUREAU','SK_ID_CURR']], on='SK_ID_BUREAU', how='left')
+    agg = bb.groupby('SK_ID_CURR').agg(val=('STATUS','count')).reset_index()
+    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')
+    return result.set_index('SK_ID_CURR')['val'].rename('feature_name')
+
+# Pattern 3: For application_train (direct row-level computation)
+def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):
+    result = app_train[['SK_ID_CURR']].copy()
+    result['feature_name'] = app_train['AMT_CREDIT'] / (app_train['AMT_INCOME_TOTAL'] + 1)
+    return result.set_index('SK_ID_CURR')['feature_name']
+
+
+DO NOT recreate these human-designed features:
+  - BUREAU_DAYS_CREDIT_MIN
+  - BUREAU_DAYS_CREDIT_MAX
+  - BUREAU_DAYS_CREDIT_MEAN
+  - BUREAU_DAYS_CREDIT_STD
+  - BUREAU_CREDIT_DAY_OVERDUE_MAX
+  - BUREAU_DAYS_CREDIT_ENDDATE_MIN
+  - BUREAU_DAYS_CREDIT_ENDDATE_MAX
+  - BUREAU_DAYS_CREDIT_ENDDATE_MEAN
+  - BUREAU_AMT_CREDIT_MAX_OVERDUE_MAX
+  - BUREAU_CNT_CREDIT_PROLONG_SUM
+  - BUREAU_AMT_CREDIT_SUM_MAX
+  - BUREAU_AMT_CREDIT_SUM_MEAN
+  - BUREAU_AMT_CREDIT_SUM_SUM
+  - BUREAU_AMT_CREDIT_SUM_DEBT_MAX
+  - BUREAU_AMT_CREDIT_SUM_DEBT_MEAN
+  - BUREAU_AMT_CREDIT_SUM_LIMIT_MAX
+  - BUREAU_AMT_CREDIT_SUM_OVERDUE_MAX
+  - BUREAU_DAYS_CREDIT_UPDATE_MEAN
+  - BUREAU_DAYS_CREDIT_UPDATE_MIN
+  - BUREAU_AMT_ANNUITY_MAX
+  - BUREAU_AMT_ANNUITY_MEAN
+  - BUREAU_AMT_ANNUITY_SUM
+  - BUREAU_BB_STATUS_MEAN_MEAN
+  - BUREAU_BB_MONTHS_COUNT_SUM
+  - BUREAU_BB_MONTHS_COUNT_MEAN
+
+
+
+REQUIREMENTS:
+1. Generate EXACTLY 6 features, all from the specified tables
+2. Every feature aggregated to SK_ID_CURR level
+3. Use ONLY column names as shown in schemas - no hallucination
+4. Handle NaN: use .fillna(0) or how='left' merge
+5. Guard all divisions: divide by (denominator + 1) or use np.where
+6. Always return pd.Series indexed by SK_ID_CURR (follow patterns above)
+7. feature_name: snake_case only, max 50 chars
+
+Return ONLY this JSON - no markdown, no preamble:
+{"features": [
+  {"feature_name": "snake_case_name",
+    "rationale": "BFSI credit risk rationale in one sentence",
+    "source_tables": ["table_name"],
+    "python_code": "def compute_FEATURENAME(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash): ..."
+  }
+]}

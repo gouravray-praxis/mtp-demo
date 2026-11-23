@@ -1,0 +1,281 @@
+{
+  "all_passed": true,
+  "n_features": 25,
+  "features": [
+    {
+      "feature_name": "social_circle_def_30_rate",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "social_circle_def_60_rate",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "ext_source_dispersion",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "address_mismatch_count",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "enquiry_acceleration_ratio",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "building_age_vs_client_age",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "bureau_active_credit_count",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "bureau_debt_to_limit_ratio",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "bureau_max_overdue_amount",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "bureau_credit_prolong_count",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "bureau_balance_dpd30_plus_count",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "bureau_balance_recent_dpd_ratio",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "instal_payment_volatility",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "instal_max_overpayment",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "instal_recent_late_trend",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "instal_avg_gap_days",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "pos_max_dpd_def",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "pos_active_contract_ratio",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "pos_future_instalment_mean",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "pos_dpd_def_std",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "prev_rejected_amt_ratio",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "prev_cash_loan_avg_annuity",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "prev_high_interest_count",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "prev_recent_app_count",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    },
+    {
+      "feature_name": "prev_insured_approval_ratio",
+      "index_unique": true,
+      "index_in_customer_ids": 1.0,
+      "coverage_of_customers": 1.0,
+      "matrix_equal": {
+        "B": true,
+        "C": true
+      },
+      "passed": true
+    }
+  ]
+}

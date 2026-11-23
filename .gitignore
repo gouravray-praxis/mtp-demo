@@ -1,0 +1,13 @@
+# Raw Home Credit CSVs are not included (several GB). Download from Kaggle into bfsi_demo/data/raw/.
+bfsi_demo/data/raw/*
+!bfsi_demo/data/raw/.gitkeep
+bfsi_demo/data/cache/*
+!bfsi_demo/data/cache/.gitkeep
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.log
+*.log.prev
+.env
+.secrets/

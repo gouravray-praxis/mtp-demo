@@ -1,0 +1,44 @@
+{
+  "features": [
+    {
+      "feature_name": "cc_utilization_trend_3m",
+      "rationale": "Captures the momentum of credit utilization over the last 3 months, indicating whether the borrower is increasing or decreasing their reliance on revolving credit.",
+      "source_tables": [
+        "credit_card_balance"
+      ],
+      "python_code": "def compute_cc_utilization_trend_3m(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    import numpy as np\n    cc = cc_bal.copy()\n    cc['utilization'] = cc['AMT_BALANCE'] / (cc['AMT_CREDIT_LIMIT_ACTUAL'] + 1)\n    cc = cc.sort_values(['SK_ID_PREV', 'MONTHS_BALANCE'])\n    cc['util_lag1'] = cc.groupby('SK_ID_PREV')['utilization'].shift(1)\n    cc['util_lag2'] = cc.groupby('SK_ID_PREV')['utilization'].shift(2)\n    cc['trend'] = cc['utilization'] - cc['util_lag2']\n    cc = cc[cc['MONTHS_BALANCE'].between(-3, -1)]\n    agg = cc.groupby('SK_ID_PREV')['trend'].mean().reset_index()\n    agg = agg.rename(columns={'SK_ID_PREV': 'SK_ID_CURR'})\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['cc_utilization_trend_3m'] = result['trend'].fillna(0)\n    return result.set_index('SK_ID_CURR')['cc_utilization_trend_3m']"
+    },
+    {
+      "feature_name": "cc_atm_drawings_ratio_6m",
+      "rationale": "Measures the proportion of cash withdrawals from total drawings in the last 6 months, a strong indicator of liquidity stress or cash-flow issues.",
+      "source_tables": [
+        "credit_card_balance"
+      ],
+      "python_code": "def compute_cc_atm_drawings_ratio_6m(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    import numpy as np\n    cc = cc_bal.copy()\n    cc = cc[cc['MONTHS_BALANCE'].between(-6, -1)]\n    agg = cc.groupby('SK_ID_PREV').agg(\n        atm_sum=('AMT_DRAWINGS_ATM_CURRENT', 'sum'),\n        total_drawings_sum=('AMT_DRAWINGS_CURRENT', 'sum')\n    ).reset_index()\n    agg['ratio'] = agg['atm_sum'] / (agg['total_drawings_sum'] + 1)\n    agg = agg.rename(columns={'SK_ID_PREV': 'SK_ID_CURR'})\n    result = app_train[['SK_ID_CURR']].merge(agg[['SK_ID_CURR', 'ratio']], on='SK_ID_CURR', how='left')\n    result['cc_atm_drawings_ratio_6m'] = result['ratio'].fillna(0)\n    return result.set_index('SK_ID_CURR')['cc_atm_drawings_ratio_6m']"
+    },
+    {
+      "feature_name": "cc_payment_coverage_ratio",
+      "rationale": "Evaluates the borrower's ability to cover their minimum required installments with actual payments, highlighting potential payment delinquency risk.",
+      "source_tables": [
+        "credit_card_balance"
+      ],
+      "python_code": "def compute_cc_payment_coverage_ratio(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    import numpy as np\n    cc = cc_bal.copy()\n    cc = cc[cc['MONTHS_BALANCE'].between(-6, -1)]\n    agg = cc.groupby('SK_ID_PREV').agg(\n        payment_sum=('AMT_PAYMENT_CURRENT', 'sum'),\n        min_inst_sum=('AMT_INST_MIN_REGULARITY', 'sum')\n    ).reset_index()\n    agg['coverage'] = agg['payment_sum'] / (agg['min_inst_sum'] + 1)\n    agg = agg.rename(columns={'SK_ID_PREV': 'SK_ID_CURR'})\n    result = app_train[['SK_ID_CURR']].merge(agg[['SK_ID_CURR', 'coverage']], on='SK_ID_CURR', how='left')\n    result['cc_payment_coverage_ratio'] = result['coverage'].fillna(0)\n    return result.set_index('SK_ID_CURR')['cc_payment_coverage_ratio']"
+    },
+    {
+      "feature_name": "cc_balance_volatility",
+      "rationale": "Quantifies the instability of the credit card balance over time, where high volatility suggests erratic spending or income patterns.",
+      "source_tables": [
+        "credit_card_balance"
+      ],
+      "python_code": "def compute_cc_balance_volatility(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    import numpy as np\n    cc = cc_bal.copy()\n    cc = cc[cc['MONTHS_BALANCE'].between(-6, -1)]\n    agg = cc.groupby('SK_ID_PREV')['AMT_BALANCE'].std().reset_index()\n    agg = agg.rename(columns={'SK_ID_PREV': 'SK_ID_CURR', 'AMT_BALANCE': 'volatility'})\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['cc_balance_volatility'] = result['volatility'].fillna(0)\n    return result.set_index('SK_ID_CURR')['cc_balance_volatility']"
+    },
+    {
+      "feature_name": "cc_dpd_def_max_6m",
+      "rationale": "Identifies the maximum days past due (with tolerance) in the last 6 months, serving as a direct proxy for recent credit delinquency severity.",
+      "source_tables": [
+        "credit_card_balance"
+      ],
+      "python_code": "def compute_cc_dpd_def_max_6m(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    import numpy as np\n    cc = cc_bal.copy()\n    cc = cc[cc['MONTHS_BALANCE'].between(-6, -1)]\n    agg = cc.groupby('SK_ID_PREV')['SK_DPD_DEF'].max().reset_index()\n    agg = agg.rename(columns={'SK_ID_PREV': 'SK_ID_CURR', 'SK_DPD_DEF': 'max_dpd'})\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['cc_dpd_def_max_6m'] = result['max_dpd'].fillna(0)\n    return result.set_index('SK_ID_CURR')['cc_dpd_def_max_6m']"
+    }
+  ]
+}

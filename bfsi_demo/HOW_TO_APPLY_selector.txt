@@ -1,0 +1,40 @@
+BFSI MTP demo — customer-selector patch (incremental, after UI v2)
+
+Apply this zip on top of your already extracted (v2) package. It does not
+replace models, feature matrices, scored results, or application_edit_inputs.
+
+1. Stop Streamlit if it is running (Ctrl+C in that terminal).
+
+2. Extract this zip into your existing package root, so that app\ merges into:
+
+     D:\mtech\Second year\mtech project\FINAL\BFSI_MTP_Demo_package\BFSI_MTP_Demo
+
+   If your unzip tool creates an extra wrapper folder, copy the contents into
+   that package root.
+
+   Files this patch replaces:
+     app\streamlit_demo.py
+     app\README_demo.md
+     app\tests\test_streamlit_demo.py
+     HOW_TO_APPLY_selector.txt
+
+   Leave models\, features\, src\, and outputs\ untouched.
+
+3. From that same package root, in PowerShell:
+
+     .\.venv\Scripts\python.exe -m streamlit run app\streamlit_demo.py
+
+   Then open http://localhost:8501
+
+   No new Python packages, no API keys, and no retraining.
+
+How to select a customer
+- Dropdown "Select a customer": choose an ID. The scores and edit fields update
+  immediately (no extra button).
+- "Or enter another ID": type a SK_ID_CURR and press Enter, or click Load ID.
+  The ID can be any customer in the official score table, including IDs that
+  are not in the short demo dropdown list.
+- An unknown ID shows an error and leaves the selectors usable. Pick a valid
+  customer from the dropdown, or enter another ID, to continue.
+- Switching customer clears any edits and Live what-if scores and shows that
+  customer's original held-out (OOF) predicted default probability.

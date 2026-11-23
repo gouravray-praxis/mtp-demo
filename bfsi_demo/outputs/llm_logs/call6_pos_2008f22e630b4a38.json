@@ -1,0 +1,43 @@
+{
+ "label": "call6_pos",
+ "model": "qwen/qwen3.8-27b",
+ "prompt_sha16": "2008f22e630b4a38",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 1082,
+  "completion_tokens": 1163,
+  "total_tokens": 2245
+ },
+ "attempts": [
+  {
+   "attempt": 1,
+   "ok": false,
+   "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_deman",
+   "s": 0.07,
+   "wait_s": 20
+  },
+  {
+   "attempt": 2,
+   "ok": false,
+   "error": "RateLimitError: Error code: 429 - {'error': {'message': \"Request too large for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_demand",
+   "s": 0.13,
+   "wait_s": 20
+  },
+  {
+   "attempt": 3,
+   "ok": false,
+   "error": "RateLimitError: Error code: 429 - {'error': {'message': \"Request too large for model `qwen/qwen3.8-27b` in organization `org_REDACTED` service tier `on_demand",
+   "s": 0.12,
+   "wait_s": 20
+  },
+  {
+   "attempt": 4,
+   "ok": true,
+   "finish_reason": "stop",
+   "s": 4.09
+  }
+ ],
+ "cached": false,
+ "elapsed_s": 4.09,
+ "content": "{\n  \"features\": [\n    {\n      \"feature_name\": \"pos_max_dpd_def\",\n      \"rationale\": \"Captures the maximum severity of payment delinquency (with tolerance) across all POS/Cash loans, indicating peak financial stress.\",\n      \"source_tables\": [\n        \"POS_CASH_balance\"\n      ],\n      \"python_code\": \"def compute_pos_max_dpd_def(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\\n    agg = pos_cash.groupby('SK_ID_CURR').agg(val=('SK_DPD_DEF', 'max')).reset_index()\\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\\n    result['val'] = result['val'].fillna(0)\\n    return result.set_index('SK_ID_CURR')['val'].rename('pos_max_dpd_def')\"\n    },\n    {\n      \"feature_name\": \"pos_active_contract_ratio\",\n      \"rationale\": \"Measures the proportion of time POS/Cash loans were active, reflecting ongoing debt burden and repayment commitment.\",\n      \"source_tables\": [\n        \"POS_CASH_balance\"\n      ],\n      \"python_code\": \"def compute_pos_active_contract_ratio(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\\n    pos_cash['is_active'] = (pos_cash['NAME_CONTRACT_STATUS'] == 'Active').astype(int)\\n    agg = pos_cash.groupby('SK_ID_CURR').agg(active_count=('is_active', 'sum'), total_count=('is_active', 'count')).reset_index()\\n    agg['val'] = agg['active_count'] / (agg['total_count'] + 1)\\n    result = app_train[['SK_ID_CURR']].merge(agg[['SK_ID_CURR', 'val']], on='SK_ID_CURR', how='left')\\n    result['val'] = result['val'].fillna(0)\\n    return result.set_index('SK_ID_CURR')['val'].rename('pos_active_contract_ratio')\"\n    },\n    {\n      \"feature_name\": \"pos_future_instalment_mean\",\n      \"rationale\": \"Indicates the average remaining installment count, serving as a proxy for the future cash flow commitment of the borrower.\",\n      \"source_tables\": [\n        \"POS_CASH_balance\"\n      ],\n      \"python_code\": \"def compute_pos_future_instalment_mean(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\\n    agg = pos_cash.groupby('SK_ID_CURR').agg(val=('CNT_INSTALMENT_FUTURE', 'mean')).reset_index()\\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\\n    result['val'] = result['val'].fillna(0)\\n    return result.set_index('SK_ID_CURR')['val'].rename('pos_future_instalment_mean')\"\n    },\n    {\n      \"feature_name\": \"pos_dpd_def_std\",\n      \"rationale\": \"Quantifies the volatility in delinquency behavior, where high variance suggests inconsistent repayment habits and higher risk.\",\n      \"source_tables\": [\n        \"POS_CASH_balance\"\n      ],\n      \"python_code\": \"def compute_pos_dpd_def_std(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\\n    agg = pos_cash.groupby('SK_ID_CURR').agg(val=('SK_DPD_DEF', 'std')).reset_index()\\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\\n    result['val'] = result['val'].fillna(0)\\n    return result.set_index('SK_ID_CURR')['val'].rename('pos_dpd_def_std')\"\n    },\n    {\n      \"feature_name\": \"pos_recent_dpd_def\",\n      \"rationale\": \"Focuses on the most recent month's delinquency status, as recent payment behavior is a strong predictor of immediate default risk.\",\n      \"source_tables\": [\n        \"POS_CASH_balance\"\n      ],\n      \"python_code\": \"def compute_pos_recent_dpd_def(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\\n    pos_cash = pos_cash.copy()\\n    pos_cash['is_recent'] = (pos_cash['MONTHS_BALANCE'] == -1).astype(int)\\n    agg = pos_cash.groupby('SK_ID_CURR').agg(val=('SK_DPD_DEF', 'max')).reset_index()\\n    # Note: This simple max might not strictly be 'recent' if multiple -1 exist or if we want the specific row.\\n    # Better approach: Filter for -1 first, then aggregate.\\n    recent_pos = pos_cash[pos_cash['MONTHS_BALANCE'] == -1]\\n    agg = recent_pos.groupby('SK_ID_CURR').agg(val=('SK_DPD_DEF', 'max')).reset_index()\\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\\n    result['val'] = result['val'].fillna(0)\\n    return result.set_index('SK_ID_CURR')['val'].rename('pos_recent_dpd_def')\"\n    }\n  ]\n}"
+}

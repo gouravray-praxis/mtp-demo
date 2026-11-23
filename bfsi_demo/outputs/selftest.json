@@ -1,0 +1,282 @@
+{
+  "all_passed": true,
+  "n_checks": 55,
+  "checks": [
+    {
+      "name": "scored_ids_unique",
+      "passed": true,
+      "detail": "307511"
+    },
+    {
+      "name": "raw_inputs_ids_match_scored",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fe_formulas_A_equal_Aprime_all_rows",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A_columns_order_eq_model",
+      "passed": true,
+      "detail": "241"
+    },
+    {
+      "name": "A_no_target_in_features",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A_float64",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A_rows_307511",
+      "passed": true,
+      "detail": "307511"
+    },
+    {
+      "name": "A_schema_matches_names",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A_ids_unique_and_order_eq_scored",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A_no_null_oof_pred",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A_full_parquet_pred_parity_batched",
+      "passed": true,
+      "detail": "rows=307511 maxdiff=0"
+    },
+    {
+      "name": "A_recompute_identity_all_rows_vectorised",
+      "passed": true,
+      "detail": "65 app + 0 row-level LLM features; bad=[]"
+    },
+    {
+      "name": "A_recompute_identity_selected_customers",
+      "passed": true,
+      "detail": "63 ids incl. ['DAYS_EMPLOYED_365243', 'EXT_SOURCE_1_null', 'AMT_GOODS_PRICE_null', 'AMT_ANNUITY_null', 'OWN_CAR_AGE_null', 'CNT_FAM_MEMBERS_null', 'all_EXT_null', 'cat_NAME_CONTRACT_TYPE', 'cat_NAME_INCOME_TYPE_Commercial_associate', 'cat_NAME_INCOME_TYPE_Maternity_leave', 'cat_NAME_INCOME_TYPE_Pens"
+    },
+    {
+      "name": "A_no_edit_pred_matches_scored",
+      "passed": true,
+      "detail": "maxdiff=0"
+    },
+    {
+      "name": "A_edit_AMT_CREDIT_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_CREDIT', 'FE_CREDIT_TO_INCOME', 'FE_CREDIT_TO_GOODS', 'FE_ANNUITY_TO_CREDIT', 'FE_GOODS_PRICE_GAP', 'FE_EXT_MEAN_CREDIT'] expected_present=['FE_CREDIT_TO_INCOME', 'FE_CREDIT_TO_GOODS', 'FE_ANNUITY_TO_CREDIT']"
+    },
+    {
+      "name": "A_edit_AMT_GOODS_PRICE_propagates",
+      "passed": true,
+      "detail": "changed=['FE_CREDIT_TO_GOODS', 'FE_GOODS_PRICE_GAP'] expected_present=['FE_CREDIT_TO_GOODS', 'FE_GOODS_PRICE_GAP']"
+    },
+    {
+      "name": "A_edit_AMT_INCOME_TOTAL_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_INCOME_TOTAL', 'FE_ANNUITY_TO_INCOME', 'FE_CREDIT_TO_INCOME', 'FE_INCOME_PER_PERSON'] expected_present=['FE_ANNUITY_TO_INCOME', 'FE_CREDIT_TO_INCOME', 'FE_INCOME_PER_PERSON']"
+    },
+    {
+      "name": "A_edit_EXT_SOURCE_2_propagates",
+      "passed": true,
+      "detail": "changed=['EXT_SOURCE_2', 'FE_EXT_SOURCE_MEAN', 'FE_EXT_SOURCE_MIN', 'FE_EXT_SOURCE_STD', 'FE_EXT_MEAN_ANNUITY', 'FE_EXT_MEAN_CREDIT'] expected_present=['FE_EXT_SOURCE_MEAN', 'EXT_SOURCE_2']"
+    },
+    {
+      "name": "A_edit_DAYS_EMPLOYED_propagates",
+      "passed": true,
+      "detail": "changed=['DAYS_EMPLOYED', 'FE_EMPLOYMENT_TO_AGE', 'FE_WORKING_SINCE_AGE'] expected_present=['FE_EMPLOYMENT_TO_AGE']"
+    },
+    {
+      "name": "A_edit_changes_prediction",
+      "passed": true,
+      "detail": "0.475975->0.433623"
+    },
+    {
+      "name": "B_columns_order_eq_model",
+      "passed": true,
+      "detail": "191"
+    },
+    {
+      "name": "B_no_target_in_features",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "B_float64",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "B_rows_307511",
+      "passed": true,
+      "detail": "307511"
+    },
+    {
+      "name": "B_schema_matches_names",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "B_ids_unique_and_order_eq_scored",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "B_no_null_oof_pred",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "B_full_parquet_pred_parity_batched",
+      "passed": true,
+      "detail": "rows=307511 maxdiff=0"
+    },
+    {
+      "name": "B_recompute_identity_all_rows_vectorised",
+      "passed": true,
+      "detail": "40 app + 6 row-level LLM features; bad=[]"
+    },
+    {
+      "name": "B_recompute_identity_selected_customers",
+      "passed": true,
+      "detail": "63 ids incl. ['DAYS_EMPLOYED_365243', 'EXT_SOURCE_1_null', 'AMT_GOODS_PRICE_null', 'AMT_ANNUITY_null', 'OWN_CAR_AGE_null', 'CNT_FAM_MEMBERS_null', 'all_EXT_null', 'cat_NAME_CONTRACT_TYPE', 'cat_NAME_INCOME_TYPE_Commercial_associate', 'cat_NAME_INCOME_TYPE_Maternity_leave', 'cat_NAME_INCOME_TYPE_Pens"
+    },
+    {
+      "name": "B_no_edit_pred_matches_scored",
+      "passed": true,
+      "detail": "maxdiff=0"
+    },
+    {
+      "name": "B_edit_AMT_CREDIT_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_CREDIT'] expected_present=[]"
+    },
+    {
+      "name": "B_edit_AMT_GOODS_PRICE_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_GOODS_PRICE'] expected_present=[]"
+    },
+    {
+      "name": "B_edit_AMT_INCOME_TOTAL_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_INCOME_TOTAL'] expected_present=[]"
+    },
+    {
+      "name": "B_edit_EXT_SOURCE_2_propagates",
+      "passed": true,
+      "detail": "changed=['EXT_SOURCE_2', 'ext_source_dispersion'] expected_present=['EXT_SOURCE_2']"
+    },
+    {
+      "name": "B_edit_DAYS_EMPLOYED_propagates",
+      "passed": true,
+      "detail": "changed=['DAYS_EMPLOYED', 'DAYS_EMPLOYED_ANOM', 'EMPLOYMENT_YEARS'] expected_present=['DAYS_EMPLOYED_ANOM', 'EMPLOYMENT_YEARS']"
+    },
+    {
+      "name": "B_edit_changes_prediction",
+      "passed": true,
+      "detail": "0.319697->0.388745"
+    },
+    {
+      "name": "C_columns_order_eq_model",
+      "passed": true,
+      "detail": "289"
+    },
+    {
+      "name": "C_no_target_in_features",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C_float64",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C_rows_307511",
+      "passed": true,
+      "detail": "307511"
+    },
+    {
+      "name": "C_schema_matches_names",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C_ids_unique_and_order_eq_scored",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C_no_null_oof_pred",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C_full_parquet_pred_parity_batched",
+      "passed": true,
+      "detail": "rows=307511 maxdiff=0"
+    },
+    {
+      "name": "C_recompute_identity_all_rows_vectorised",
+      "passed": true,
+      "detail": "60 app + 6 row-level LLM features; bad=[]"
+    },
+    {
+      "name": "C_recompute_identity_selected_customers",
+      "passed": true,
+      "detail": "63 ids incl. ['DAYS_EMPLOYED_365243', 'EXT_SOURCE_1_null', 'AMT_GOODS_PRICE_null', 'AMT_ANNUITY_null', 'OWN_CAR_AGE_null', 'CNT_FAM_MEMBERS_null', 'all_EXT_null', 'cat_NAME_CONTRACT_TYPE', 'cat_NAME_INCOME_TYPE_Commercial_associate', 'cat_NAME_INCOME_TYPE_Maternity_leave', 'cat_NAME_INCOME_TYPE_Pens"
+    },
+    {
+      "name": "C_no_edit_pred_matches_scored",
+      "passed": true,
+      "detail": "maxdiff=0"
+    },
+    {
+      "name": "C_edit_AMT_CREDIT_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_CREDIT', 'FE_CREDIT_TO_INCOME', 'FE_CREDIT_TO_GOODS', 'FE_ANNUITY_TO_CREDIT', 'FE_GOODS_PRICE_GAP', 'FE_LOAN_TENOR_MONTHS', 'FE_EXT_MEAN_CREDIT'] expected_present=['FE_CREDIT_TO_INCOME', 'FE_CREDIT_TO_GOODS', 'FE_ANNUITY_TO_CREDIT']"
+    },
+    {
+      "name": "C_edit_AMT_GOODS_PRICE_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_GOODS_PRICE', 'FE_CREDIT_TO_GOODS', 'FE_GOODS_PRICE_GAP'] expected_present=['FE_CREDIT_TO_GOODS', 'FE_GOODS_PRICE_GAP']"
+    },
+    {
+      "name": "C_edit_AMT_INCOME_TOTAL_propagates",
+      "passed": true,
+      "detail": "changed=['AMT_INCOME_TOTAL', 'FE_ANNUITY_TO_INCOME', 'FE_CREDIT_TO_INCOME', 'FE_INCOME_PER_PERSON'] expected_present=['FE_ANNUITY_TO_INCOME', 'FE_CREDIT_TO_INCOME', 'FE_INCOME_PER_PERSON']"
+    },
+    {
+      "name": "C_edit_EXT_SOURCE_2_propagates",
+      "passed": true,
+      "detail": "changed=['EXT_SOURCE_2', 'FE_EXT_SOURCE_MEAN', 'FE_EXT_SOURCE_MIN', 'FE_EXT_SOURCE_STD', 'FE_EXT_SOURCE_PRODUCT', 'FE_EXT_MEAN_ANNUITY', 'FE_EXT_MEAN_CREDIT', 'ext_source_dispersion'] expected_present=['FE_EXT_SOURCE_MEAN', 'EXT_SOURCE_2']"
+    },
+    {
+      "name": "C_edit_DAYS_EMPLOYED_propagates",
+      "passed": true,
+      "detail": "changed=['DAYS_EMPLOYED', 'DAYS_EMPLOYED_ANOM', 'EMPLOYMENT_YEARS', 'FE_EMPLOYMENT_TO_AGE', 'FE_WORKING_SINCE_AGE'] expected_present=['DAYS_EMPLOYED_ANOM', 'EMPLOYMENT_YEARS', 'FE_EMPLOYMENT_TO_AGE']"
+    },
+    {
+      "name": "C_edit_changes_prediction",
+      "passed": true,
+      "detail": "0.362644->0.278237"
+    },
+    {
+      "name": "secret_scan_package",
+      "passed": true,
+      "detail": "[]"
+    }
+  ],
+  "n_ids_tested": 63
+}

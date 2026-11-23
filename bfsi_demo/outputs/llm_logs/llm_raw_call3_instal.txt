@@ -1,0 +1,44 @@
+{
+  "features": [
+    {
+      "feature_name": "instal_payment_volatility",
+      "rationale": "Measures the consistency of payment amounts relative to prescribed installments, indicating financial stability or erratic cash flow.",
+      "source_tables": [
+        "installments_payments"
+      ],
+      "python_code": "def compute_instal_payment_volatility(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    import numpy as np\n    install['payment_ratio'] = install['AMT_PAYMENT'] / (install['AMT_INSTALMENT'] + 1)\n    agg = install.groupby('SK_ID_CURR').agg(val=('payment_ratio', 'std')).reset_index()\n    agg['val'] = agg['val'].fillna(0)\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('instal_payment_volatility')"
+    },
+    {
+      "feature_name": "instal_max_overpayment",
+      "rationale": "Captures the maximum instance of overpayment, which may indicate prepayment behavior or accounting errors affecting credit utilization.",
+      "source_tables": [
+        "installments_payments"
+      ],
+      "python_code": "def compute_instal_max_overpayment(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    install['overpayment'] = np.where(install['AMT_PAYMENT'] > install['AMT_INSTALMENT'], install['AMT_PAYMENT'] - install['AMT_INSTALMENT'], 0)\n    agg = install.groupby('SK_ID_CURR').agg(val=('overpayment', 'max')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('instal_max_overpayment')"
+    },
+    {
+      "feature_name": "instal_recent_late_trend",
+      "rationale": "Evaluates the trend in lateness for the most recent 5 installments, highlighting recent deterioration in payment discipline.",
+      "source_tables": [
+        "installments_payments"
+      ],
+      "python_code": "def compute_instal_recent_late_trend(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    install['days_late'] = install['DAYS_ENTRY_PAYMENT'] - install['DAYS_INSTALMENT']\n    install['is_late'] = (install['days_late'] > 0).astype(int)\n    install = install.sort_values(['SK_ID_CURR', 'DAYS_INSTALMENT'], ascending=[True, False])\n    recent = install.groupby('SK_ID_CURR').head(5)\n    agg = recent.groupby('SK_ID_CURR').agg(val=('is_late', 'mean')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('instal_recent_late_trend')"
+    },
+    {
+      "feature_name": "instal_zero_payment_rate",
+      "rationale": "Identifies the frequency of zero payments, a strong indicator of delinquency or account closure issues.",
+      "source_tables": [
+        "installments_payments"
+      ],
+      "python_code": "def compute_instal_zero_payment_rate(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    install['is_zero'] = (install['AMT_PAYMENT'] == 0).astype(int)\n    agg = install.groupby('SK_ID_CURR').agg(val=('is_zero', 'mean')).reset_index()\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('instal_zero_payment_rate')"
+    },
+    {
+      "feature_name": "instal_avg_gap_days",
+      "rationale": "Calculates the average gap between consecutive payment dates, reflecting the regularity of the client's payment cycle.",
+      "source_tables": [
+        "installments_payments"
+      ],
+      "python_code": "def compute_instal_avg_gap_days(app_train, bureau, bureau_bal, prev_app, install, cc_bal, pos_cash):\n    install = install.sort_values(['SK_ID_CURR', 'DAYS_ENTRY_PAYMENT'])\n    install['gap'] = install.groupby('SK_ID_CURR')['DAYS_ENTRY_PAYMENT'].diff()\n    agg = install.groupby('SK_ID_CURR').agg(val=('gap', 'mean')).reset_index()\n    agg['val'] = agg['val'].fillna(0)\n    result = app_train[['SK_ID_CURR']].merge(agg, on='SK_ID_CURR', how='left')\n    result['val'] = result['val'].fillna(0)\n    return result.set_index('SK_ID_CURR')['val'].rename('instal_avg_gap_days')"
+    }
+  ]
+}

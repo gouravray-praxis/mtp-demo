@@ -1,0 +1,64 @@
+{
+  "source": "OOF",
+  "source_path": "outputs/scored_table.parquet",
+  "source_columns": {
+    "A": "oof_A",
+    "B": "oof_B",
+    "C": "oof_C"
+  },
+  "n_rows": 307511,
+  "n_finite": {
+    "A": 307511,
+    "B": 307511,
+    "C": 307511
+  },
+  "quantiles": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "quantile_method": "numpy.quantile linear",
+  "orientation": "D1 highest risk, D10 lowest risk",
+  "tie_policy": "D1 if score >= q90 (ties at a cutoff enter the higher-risk decile). D10 if score < q10. Assignment is decile = 10 - np.searchsorted(cutoffs, score, side='right'), where cutoffs are the nine finite values [q10, q20, ..., q90] in ascending order. Non-finite scores are not assigned a decile. Cutoffs are fixed from the full OOF table and are never refit on a customer, edit, or incoming batch.",
+  "cutoffs": {
+    "A": [
+      0.12366106547012873,
+      0.1794007681600022,
+      0.23318416709035322,
+      0.29007480421465726,
+      0.3519931981633328,
+      0.4219476078977625,
+      0.5022375391512757,
+      0.5959330617349821,
+      0.7116418460486253
+    ],
+    "B": [
+      0.1356658192058577,
+      0.19377584847157067,
+      0.2487234660325248,
+      0.30538743389458023,
+      0.36631864907885864,
+      0.43337835406284786,
+      0.5089140668140122,
+      0.59687096948316,
+      0.7066959771281409
+    ],
+    "C": [
+      0.12087824569614343,
+      0.1758006275225818,
+      0.22947712157165823,
+      0.28619169653460075,
+      0.34911556171932934,
+      0.4193545280892916,
+      0.50059165261625,
+      0.5958741035831369,
+      0.7131839071597819
+    ]
+  }
+}

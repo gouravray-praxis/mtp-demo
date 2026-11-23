@@ -1,0 +1,44 @@
+BFSI MTP demo — UI patch v2 (not a full package rebuild)
+
+Apply this zip on top of your already extracted package. Do not replace the
+models, feature matrices, or scored table, and do not re-download the ~300 MB
+archive.
+
+1. Stop Streamlit if it is running (Ctrl+C in that terminal).
+
+2. Extract this zip into your existing package root, so that the folders app\,
+   features\, and src\ merge into:
+
+     D:\mtech\Second year\mtech project\FINAL\BFSI_MTP_Demo_package\BFSI_MTP_Demo
+
+   If your unzip tool creates an extra wrapper folder, copy the contents into
+   that package root.
+
+   Files this patch adds or replaces:
+     app\streamlit_demo.py
+     app\README_demo.md
+     app\tests\test_streamlit_demo.py
+     src\feature_recompute.py
+     features\editable_inputs.json
+     features\edit_encoding.json
+     features\application_edit_inputs.parquet
+     HOW_TO_APPLY.txt
+
+   Leave models\, features\features_*.parquet, features\raw_inputs.parquet,
+   and outputs\scored_table.parquet untouched.
+
+3. From that same package root, in PowerShell:
+
+     .\.venv\Scripts\python.exe -m streamlit run app\streamlit_demo.py
+
+   Then open http://localhost:8501
+
+   No new Python packages, no API keys, and no retraining.
+
+What to expect
+- Edit application inputs shows all packaged application fields (not a short
+  subset), grouped and visible.
+- Unchanged customers show Held-out (OOF) predicted default probability.
+- Click Recalculate predictions for a Live what-if. Reset edits returns to OOF.
+- There is no separate Live / OOF source toggle.
+- Historical-table features stay fixed. TARGET and customer ID are not editable.
