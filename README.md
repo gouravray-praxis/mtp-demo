@@ -17,7 +17,7 @@ These Streamlit apps were added only to explain the work visually during the pre
 
 To work with the real data, download it from the Kaggle competition page, https://www.kaggle.com/competitions/home-credit-default-risk (you need a Kaggle account and must accept the competition rules). The `bfsi_demo` folder still includes the build script from the demo package (`run_all.py`, described in `bfsi_demo/README.md` under "Exact rebuild"). It needs a Kaggle API token and a Groq API key, takes a long time and a lot of memory, and retrains the models, and it does not rebuild every file the app uses, so it is not a one-step way to get the presentation version back. The official experiments are in the separate replication submission.
 
-The Language demo uses the UD Hindi Dependency Treebank (HDTB), which is licensed CC BY-NC-SA, and runs on the same data as in the presentation.
+The Language demo uses the UD Hindi Dependency Treebank (HDTB), which is licensed CC BY-NC-SA [UD Hindi HDTB page](https://universaldependencies.org/treebanks/hi_hdtb/index.html)., and runs on the same data as in the presentation.
 
 Please refer to the MTP2 report for the official numbers.
 
